@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="popuDialogStyle" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dilog_enter</item>
+        <item name="@android:windowExitAnimation">@anim/dilog_exit</item>
+    </style>
+
+</resources>
