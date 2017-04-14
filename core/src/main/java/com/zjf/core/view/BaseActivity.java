@@ -8,18 +8,20 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.zjf.core.impl.JumpInto;
-import com.zjf.core.impl.JumpTo;
-import com.zjf.core.utils.DialogUtil;
-import com.zjf.core.utils.LogUtil;
+import com.zjf.core.utils.JumpInto;
+import com.zjf.core.utils.DialogUtils;
+import com.zjf.core.utils.LogUtils;
+import com.zjf.core.utils.SPUtils;
+
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private JumpTo mTo;
+    private JumpInto mTo;
     protected RxPermissions mPermissions;
     protected Bundle mBundle;
     public static String TAG;
     private Context mContext;
+    private SPUtils mSPUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +29,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.mBundle = savedInstanceState;
         mTo = new JumpInto();
         mPermissions = new RxPermissions(this);
-        initVariables();
-        initView();
-        setListener();
         String name = this.getClass().getName();
         TAG = name.substring(name.lastIndexOf("."), name.length());
         mContext = this;
+        initVariables();
+        initView();
+        setListener();
     }
 
 
@@ -79,7 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     public void showLog(String msg) {
-        LogUtil.e(TAG, msg);
+        LogUtils.e(TAG, msg);
     }
 
     public void showToast(String msg) {
@@ -87,7 +89,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void showDialog(String msg) {
-        DialogUtil.simpleTipDialog(msg, mContext);
+        DialogUtils.simpleTipDialog(msg, mContext);
     }
 
 }

@@ -15,15 +15,15 @@ import android.widget.TextView;
  * @version : 2016-12-01 上午 10:28
  */
 
-public class SnackBarUtil {
-    public static final int Info = 1;
-    public static final int Warning = 2;
-    public static final int Alert = 3;
+public class SnackBarUtils {
+    private static final int Info = FinalParams.ERROR_INFO;
+    private static final int Warning = FinalParams.ERROR_WARNING;
+    private static final int Alert = FinalParams.ERROR_ALERT;
 
 
-    public static int colorAccent = 0xfff9d150;
-    public static int blue = 0xff2195f3;
-    public static int red = 0xfff44336;
+    private static int colorAccent = 0xf2dd96;
+    private static int blue = 0xff2195f3;
+    private static int red = 0xfff44336;
 
 
     /**

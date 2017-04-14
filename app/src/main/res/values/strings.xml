@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">MTravel</string>
+    <string name="app_name">漫途</string>
+    <string name="error_token">getToken error</string>
+    <string name="enter">立即体验</string>
 </resources>

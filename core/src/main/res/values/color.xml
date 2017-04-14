@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 圆形指示器的颜色-->
+    <color name="color_indicator_bg">#40939191</color>
+    <color name="color_indicator_selected_bg">#e6ffffff</color>
+    <color name="color_button_bg">#97f25b</color>
+    <color name="color_button_bg_dark">#7fd745</color>
+    <color name="color_tab">#f4ebbd</color>
+
+    <color name="color_trans">#20ffffff</color>
+    <color name="color_trans_real">#00ffffff</color>
+    <color name="color_trans_press">#3bdcdada</color>
+    <color name="color_black">#d6000000</color>
+    <color name="color_blue">#fa254ed4</color>
+</resources>

@@ -9,8 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zjf.core.impl.JumpInto;
-import com.zjf.core.impl.JumpTo;
+import com.zjf.core.utils.JumpInto;
 
 
 /**
@@ -18,7 +17,7 @@ import com.zjf.core.impl.JumpTo;
  */
 public abstract class BaseFragment extends Fragment {
 
-    private JumpTo mTo;
+    private JumpInto mTo;
 
     public BaseFragment() {
         // Required empty public constructor
@@ -50,20 +49,20 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void loaderData();
 
-    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay,boolean isFinish) {
-        mTo.jumpTo(activity, aClazz, delay,isFinish);
+    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, delay, isFinish);
     }
 
-    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, final Bundle bundle,boolean isFinish) {
-        mTo.jumpTo(activity, aClazz, delay, bundle,isFinish);
+    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, final Bundle bundle, boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, delay, bundle, isFinish);
     }
 
 
-    public void jumpTo(Activity activity, Class<? extends Activity> aClazz, Bundle bundle,boolean isFinish) {
-        mTo.jumpTo(activity, aClazz, bundle,isFinish);
+    public void jumpTo(Activity activity, Class<? extends Activity> aClazz, Bundle bundle, boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, bundle, isFinish);
     }
 
-    public void jumpTo(Activity activity, Class<? extends Activity> aClazz,boolean isFinish) {
-        mTo.jumpTo(activity, aClazz,isFinish);
+    public void jumpTo(Activity activity, Class<? extends Activity> aClazz, boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, isFinish);
     }
 }

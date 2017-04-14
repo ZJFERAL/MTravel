@@ -1,4 +1,4 @@
-package com.zjf.core.impl;
+package com.zjf.core.utils;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import java.util.TimerTask;
  * @version : 2016-12-20 上午 11:05
  */
 
-public class JumpInto implements JumpTo {
+public class JumpInto{
     public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, final boolean isfinish) {
         if (delay == 0) {
             jumpTo(activity, aClazz, isfinish);

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.zjf.core.MyApplication;
 import com.zjf.core.R;
 
 /**
@@ -16,13 +15,13 @@ import com.zjf.core.R;
  * @version : 2016-12-21 上午 9:10
  */
 
-public class DialogUtil {
+public class DialogUtils {
 
     public static void simpleTipDialog(String msg, Context context) {
-        new AlertDialog.Builder(context).setMessage(msg).setPositiveButton(MyApplication.getStringRes(R.string.sure), null).show();
+        new AlertDialog.Builder(context).setMessage(msg).setPositiveButton(context.getString(R.string.sure), null).show();
     }
 
-    public static void popuDialog(Context context, View view) {
+    public static Dialog popuDialog(Context context, View view) {
         Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
@@ -35,6 +34,7 @@ public class DialogUtil {
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(params);
         window.setWindowAnimations(R.style.popuDialogStyle);
+        return dialog;
     }
 
 }

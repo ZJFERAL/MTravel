@@ -1,7 +1,9 @@
-package com.mcy.mtravel;
+package com.mcy.mtravel.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.mcy.mtravel.R;
 
 public class MainActivity extends AppCompatActivity {
 

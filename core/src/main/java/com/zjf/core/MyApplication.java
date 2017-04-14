@@ -7,7 +7,7 @@ import android.app.Application;
  */
 
 public class MyApplication extends Application{
-    private static MyApplication instance;
+    protected static MyApplication instance;
 
 
     @Override

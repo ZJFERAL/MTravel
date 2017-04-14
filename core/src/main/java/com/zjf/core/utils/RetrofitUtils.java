@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @version : 2016-12-26 上午 10:12
  */
 
-public class RetrofitUtil {
+public class RetrofitUtils {
 
     private static String mBaseUrl;
 
@@ -25,23 +25,29 @@ public class RetrofitUtil {
 
     static {
         builder = new OkHttpClient.Builder();
-        builder.connectTimeout(3, TimeUnit.SECONDS);
+        builder.connectTimeout(10, TimeUnit.SECONDS);
     }
 
-    public static Retrofit getClient(String baseUrl) {
-
+    public static Retrofit getClient(String baseUrl, OkHttpClient client) {
+        OkHttpClient localClient = builder.build();
+        if (client != null) {
+            localClient = client;
+        }
         return new Retrofit.Builder()
-                .client(builder.build())
+                .client(localClient)
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 
-    public static Retrofit getClient() {
-
+    public static Retrofit getClient(OkHttpClient client) {
+        OkHttpClient localClient = builder.build();
+        if (client != null) {
+            localClient = client;
+        }
         return new Retrofit.Builder()
-                .client(builder.build())
+                .client(localClient)
                 .baseUrl(mBaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

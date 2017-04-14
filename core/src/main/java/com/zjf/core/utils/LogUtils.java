@@ -8,17 +8,17 @@ import android.util.Log;
  * @author way
  * 
  */
-public class LogUtil
+public class LogUtils
 {
 
-	private LogUtil()
+	private LogUtils()
 	{
 		/* cannot be instantiated */
 		throw new UnsupportedOperationException("cannot be instantiated");
 	}
 
 	public static boolean isDebug = false;// 是否需要打印bug，可以在application的onCreate函数里面初始化
-	private static String TAG = "LogUtil";
+	private static String TAG = "LogUtils";
 
 	// 下面四个是默认tag的函数
 	public static void i(String msg)

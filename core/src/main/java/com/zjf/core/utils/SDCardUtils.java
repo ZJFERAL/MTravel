@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-public class SDCardUtil {
+public class SDCardUtils {
 
     /**
      * 获取sdcard挂载状态
