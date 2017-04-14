@@ -2,4 +2,10 @@
     <string name="app_name">漫途</string>
     <string name="error_token">getToken error</string>
     <string name="enter">立即体验</string>
+    <string name="error_net">网络不可用！</string>
+    <string name="news">资讯</string>
+    <string name="travelnote">游记</string>
+    <string name="plan">攻略</string>
+    <string name="next_exit">再按一次退出</string>
+
 </resources>

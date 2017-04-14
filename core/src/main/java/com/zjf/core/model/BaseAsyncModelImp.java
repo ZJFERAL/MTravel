@@ -8,7 +8,7 @@ import com.zjf.core.impl.OnAsyncModelListener;
  * @version : 2016-12-05 下午 4:12
  */
 
-public interface BaseAsyncModelImp<T>{
+public interface BaseAsyncModelImp<T> extends BaseModelImpl{
 
     void getData(OnAsyncModelListener<T> listener);
 }

@@ -12,10 +12,13 @@ import com.mcy.mtravel.utils.SPUtils;
 import com.mcy.mtravel.utils.UrlUtils;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.utils.DeviceUtils;
+import com.zjf.core.utils.LogUtils;
+import com.zjf.core.utils.NetUtils;
 import com.zjf.core.utils.RetrofitUtils;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -27,6 +30,7 @@ public class GetTokenModel implements GetTokenModelImpl {
 
     private SPUtils mSPUtils;
     private boolean isFirst = true;
+    private Disposable mSubscribe;
 
     public GetTokenModel() {
         mSPUtils = new SPUtils();
@@ -37,7 +41,12 @@ public class GetTokenModel implements GetTokenModelImpl {
     public void getData(OnAsyncModelListener<String> listener) {
         String token = mSPUtils.getToken();
         if (isFirst || TextUtils.isEmpty(token)) {
-            startNetWork(listener);
+            if (NetUtils.isNetworkReachable(App.getInstance())) {
+                startNetWork(listener);
+            } else {
+                listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_ALERT);
+            }
+
         } else {
             listener.onSuccess(token);
         }
@@ -61,13 +70,14 @@ public class GetTokenModel implements GetTokenModelImpl {
             listener.onFailure(App.getStringRes(R.string.error_token), FinalParams.ERROR_INFO);
             return;
         }
-        token.subscribeOn(Schedulers.io())
+        mSubscribe = token.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<TokenBean>() {
                     @Override
                     public void accept(TokenBean bean) throws Exception {
                         if (bean != null && "ok".equals(bean.getResult())) {
                             String msg = bean.getData().getToken();
+                            LogUtils.e("getaToken", "OK" + msg);
                             listener.onSuccess(msg);
                         } else {
                             listener.onFailure(App.getStringRes(R.string.error_token), FinalParams.ERROR_INFO);
@@ -79,5 +89,12 @@ public class GetTokenModel implements GetTokenModelImpl {
                         listener.onFailure(throwable.getMessage(), FinalParams.ERROR_INFO);
                     }
                 });
+    }
+
+    @Override
+    public void cancel() {
+        if (!mSubscribe.isDisposed()) {
+            mSubscribe.dispose();
+        }
     }
 }

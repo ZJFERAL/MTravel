@@ -156,4 +156,9 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
         mSPUtils.changeFirstFlag();
         startAPP();
     }
+
+    @Override
+    public void exit() {
+        SplashActivity.this.finish();
+    }
 }
