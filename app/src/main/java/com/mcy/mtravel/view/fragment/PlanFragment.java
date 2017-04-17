@@ -40,6 +40,6 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
 
     @Override
     public PlanPresenter create() {
-        return null;
+        return new PlanPresenter();
     }
 }

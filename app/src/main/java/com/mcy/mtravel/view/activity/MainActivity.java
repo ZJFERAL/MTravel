@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
 
     private TabAdapter mAdapter;
     private List<Fragment> mFragmentList;
-    private String[] titls = {getString(R.string.news), getString(R.string.travelnote), getString(R.string.plan)};
+    private String[] titls;
     private long currentTime;
 
 
@@ -42,6 +42,7 @@ public class MainActivity extends BaseActivity {
     public void initVariables() {
         mFragmentList = new ArrayList<>();
         makeFragment();
+        titls = new String[]{getString(R.string.news), getString(R.string.travelnote), getString(R.string.plan)};
         mAdapter = new TabAdapter(getSupportFragmentManager(), mFragmentList, titls);
     }
 

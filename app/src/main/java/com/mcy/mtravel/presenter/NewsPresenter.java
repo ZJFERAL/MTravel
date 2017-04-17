@@ -26,7 +26,7 @@ public class NewsPresenter extends Presenter<NewsView> {
         mNewsModel.getData(new OnAsyncModelListener<IndexBean>() {
             @Override
             public void onFailure(String msg, int type) {
-                
+
             }
 
             @Override

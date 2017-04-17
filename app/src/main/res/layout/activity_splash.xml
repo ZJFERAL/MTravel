@@ -24,6 +24,7 @@
         android:drawableTop="@drawable/ic_launcher"
         android:gravity="center"
         android:text="漫途"
+        android:textColor="@color/color_black"
         android:textStyle="bold"
         />
 

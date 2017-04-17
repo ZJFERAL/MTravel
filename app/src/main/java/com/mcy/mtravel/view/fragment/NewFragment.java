@@ -32,6 +32,10 @@ public class NewFragment extends MVPFragment<NewsPresenter> implements NewsView 
 
     }
 
+    @Override
+    public void loaderData() {
+        super.loaderData();
+    }
 
     @Override
     public void showSnakBar(String msg, int type) {

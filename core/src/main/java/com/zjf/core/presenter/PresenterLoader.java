@@ -19,7 +19,7 @@ public class PresenterLoader<T extends BasePresenter> extends Loader<T> {
 
     @Override
     protected void onStartLoading() {
-        if(mPresenter!=null){
+        if (mPresenter != null) {
             deliverResult(mPresenter);
             return;
         }

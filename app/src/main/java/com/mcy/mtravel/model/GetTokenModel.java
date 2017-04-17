@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 public class GetTokenModel implements GetTokenModelImpl {
 
     private SPUtils mSPUtils;
-    private boolean isFirst = true;
+    private boolean isFirst = false;
     private Disposable mSubscribe;
 
     public GetTokenModel() {
@@ -46,7 +46,6 @@ public class GetTokenModel implements GetTokenModelImpl {
             } else {
                 listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_ALERT);
             }
-
         } else {
             listener.onSuccess(token);
         }
@@ -93,7 +92,7 @@ public class GetTokenModel implements GetTokenModelImpl {
 
     @Override
     public void cancel() {
-        if (!mSubscribe.isDisposed()) {
+        if (mSubscribe != null && (!mSubscribe.isDisposed())) {
             mSubscribe.dispose();
         }
     }
