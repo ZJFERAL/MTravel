@@ -27,7 +27,6 @@ public class IndexBean extends BaseBean {
 
         private FeedsBean feeds;
         private List<SlideBean> slide;
-        private List<AdvertsBean> adverts;
 
         public FeedsBean getFeeds() {
             return feeds;
@@ -45,13 +44,6 @@ public class IndexBean extends BaseBean {
             this.slide = slide;
         }
 
-        public List<AdvertsBean> getAdverts() {
-            return adverts;
-        }
-
-        public void setAdverts(List<AdvertsBean> adverts) {
-            this.adverts = adverts;
-        }
 
         public static class FeedsBean {
             /**
@@ -93,7 +85,7 @@ public class IndexBean extends BaseBean {
                 private String page_url;
                 private String page_cover;
                 private String page_desc;
-                private int ctime;
+                private long ctime;
                 private List<AuthorsBean> authors;
                 private List<String> tags;
 
@@ -129,7 +121,7 @@ public class IndexBean extends BaseBean {
                     this.page_desc = page_desc;
                 }
 
-                public int getCtime() {
+                public long getCtime() {
                     return ctime;
                 }
 
@@ -217,40 +209,5 @@ public class IndexBean extends BaseBean {
             }
         }
 
-        public static class AdvertsBean {
-            /**
-             * name : 旅行安全
-             * image : https://pic.qyer.com/public/guide/config/2017/04/10/14918169981000
-             * link : qyerguide://safety/
-             */
-
-            private String name;
-            private String image;
-            private String link;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getImage() {
-                return image;
-            }
-
-            public void setImage(String image) {
-                this.image = image;
-            }
-
-            public String getLink() {
-                return link;
-            }
-
-            public void setLink(String link) {
-                this.link = link;
-            }
-        }
     }
 }

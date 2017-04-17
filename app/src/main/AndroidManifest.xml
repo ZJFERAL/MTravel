@@ -32,6 +32,12 @@
             android:name=".view.activity.GuideActivity"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name=".view.activity.WebViewActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

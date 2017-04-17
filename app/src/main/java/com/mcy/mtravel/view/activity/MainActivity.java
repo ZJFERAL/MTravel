@@ -5,10 +5,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.base.BaseActivity;
-import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.fragment.NewFragment;
 import com.mcy.mtravel.view.fragment.NoteFragment;
 import com.mcy.mtravel.view.fragment.PlanFragment;
@@ -31,6 +32,8 @@ public class MainActivity extends BaseActivity {
     TabLayout mTabLayout;
     @BindView(R.id.viewpager)
     ViewPager mViewpager;
+    @BindView(R.id.title_search)
+    TextView mTitleView;
 
     private TabAdapter mAdapter;
     private List<Fragment> mFragmentList;
@@ -59,7 +62,6 @@ public class MainActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mToolbar.setTitle(getString(R.string.app_name));
         setSupportActionBar(mToolbar);
         mTabLayout.setupWithViewPager(mViewpager);
         mViewpager.setAdapter(mAdapter);
@@ -68,7 +70,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setListener() {
+        mTitleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     @Override
@@ -76,7 +83,7 @@ public class MainActivity extends BaseActivity {
         long timeMillis = System.currentTimeMillis();
         if (timeMillis - currentTime > 2000) {
             currentTime = timeMillis;
-            showSnackBar(getString(R.string.next_exit), FinalParams.ERROR_INFO);
+            showToast(getString(R.string.next_exit));
         } else {
             super.onBackPressed();
         }

@@ -479,6 +479,10 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
 
     }
 
+    public boolean isLoading() {
+        return isLoading;
+    }
+
     public void onCompleteLoading() {
         removeLoadingView();
         isLoading = false;

@@ -36,17 +36,7 @@ public class SplashPresenter extends Presenter<SplashView> {
                     }
                 } else {
                     mView.showSnakBar(msg, type);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(500);
-                                mView.exit();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
+                    mView.NetWorkDone("");
 
                 }
 

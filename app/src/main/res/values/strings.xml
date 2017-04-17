@@ -7,5 +7,6 @@
     <string name="travelnote">游记</string>
     <string name="plan">攻略</string>
     <string name="next_exit">再按一次退出</string>
+    <string name="no_data">正在加载...</string>
 
 </resources>

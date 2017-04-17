@@ -23,16 +23,41 @@ public class NewsPresenter extends Presenter<NewsView> {
 
     @Override
     protected void onViewStart() {
-        mNewsModel.getData(new OnAsyncModelListener<IndexBean>() {
+        onflushData();
+    }
+
+    public void onflushData() {
+        mNewsModel.getRefreshData(new OnAsyncModelListener<IndexBean>() {
             @Override
             public void onFailure(String msg, int type) {
-
+                mView.showSnakBar(msg, type);
             }
 
             @Override
             public void onSuccess(IndexBean msg) {
-
+                mView.onRefreshData(msg.getData().getFeeds().getList(), null);
             }
         });
+    }
+
+    public void getMoreData() {
+        mNewsModel.getData(new OnAsyncModelListener<IndexBean>() {
+            @Override
+            public void onFailure(String msg, int type) {
+                mView.showSnakBar(msg, type);
+            }
+
+            @Override
+            public void onSuccess(IndexBean msg) {
+                mView.onGetMoreData(msg.getData().getFeeds().getList());
+            }
+        });
+
+    }
+
+    @Override
+    public void onDestroyed() {
+        super.onDestroyed();
+        mNewsModel.cancel();
     }
 }
