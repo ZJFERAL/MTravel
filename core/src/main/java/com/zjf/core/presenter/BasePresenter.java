@@ -6,7 +6,13 @@ package com.zjf.core.presenter;
  */
 
 public interface BasePresenter<V> {
-    void onViewAttached(V view);
+
+    void onCreate(V view);
+
+    void onViewAttached();
+
     void onViewDeached();
+
     void onDestroyed();
+
 }

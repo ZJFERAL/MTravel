@@ -81,7 +81,6 @@ public class NewsModel implements NewsModelImpl {
                 }
             }
             mDisposables.clear();
-            mDisposables = null;
         }
     }
 

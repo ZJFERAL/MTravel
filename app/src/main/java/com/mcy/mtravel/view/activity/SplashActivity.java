@@ -45,7 +45,7 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-        Glide.with(this).load(R.drawable.splash_bg).listener(new RequestListener<Integer, GlideDrawable>() {
+        Glide.with(mContext).load(R.drawable.splash_bg).listener(new RequestListener<Integer, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, Integer model, Target<GlideDrawable> target, boolean isFirstResource) {
                 return false;

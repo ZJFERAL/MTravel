@@ -9,7 +9,7 @@ import com.zjf.core.presenter.PresenterFactory;
 import com.zjf.core.presenter.PresenterLoader;
 
 
-public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity implements LoaderManager.LoaderCallbacks<T>, PresenterFactory<T>{
+public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity implements LoaderManager.LoaderCallbacks<T>, PresenterFactory<T> {
 
     protected T mPresenter;
 
@@ -27,6 +27,7 @@ public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity 
     @Override
     public void onLoadFinished(Loader<T> loader, T data) {
         this.mPresenter = data;
+        mPresenter.onCreate(this);
     }
 
     @Override
@@ -38,7 +39,7 @@ public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity 
     @Override
     protected void onStart() {
         super.onStart();
-        mPresenter.onViewAttached(this);
+        mPresenter.onViewAttached();
     }
 
     @Override

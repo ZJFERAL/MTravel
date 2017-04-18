@@ -46,7 +46,6 @@ public class NewFragment extends MVPFragment<NewsPresenter> implements NewsView 
     LinearLayout mEmptyView;
     Unbinder unbinder;
 
-    private int lastPosition = 0;
     private NewsAdapter mAdapter;
     private List<IndexBean.DataBean.FeedsBean.ListBean> mListBeen;
 
@@ -79,7 +78,7 @@ public class NewFragment extends MVPFragment<NewsPresenter> implements NewsView 
         mRefreshview.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.onflushData();
+                mPresenter.onFlushData();
             }
         });
 
@@ -106,11 +105,6 @@ public class NewFragment extends MVPFragment<NewsPresenter> implements NewsView 
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mRecyclerview.smoothScrollToPosition(lastPosition);
-    }
 
     @Override
     public void onRefreshData(List<IndexBean.DataBean.FeedsBean.ListBean> data, View headView) {

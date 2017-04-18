@@ -8,10 +8,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.zjf.core.utils.JumpInto;
 import com.zjf.core.utils.DialogUtils;
+import com.zjf.core.utils.JumpInto;
 import com.zjf.core.utils.LogUtils;
-import com.zjf.core.utils.SPUtils;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -20,8 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected RxPermissions mPermissions;
     protected Bundle mBundle;
     public static String TAG;
-    private Context mContext;
-    private SPUtils mSPUtils;
+    public Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

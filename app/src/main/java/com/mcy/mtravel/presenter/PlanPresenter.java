@@ -9,7 +9,7 @@ import com.zjf.core.presenter.Presenter;
 
 public class PlanPresenter extends Presenter<PlanView>{
     @Override
-    protected void onViewStart() {
+    protected void onViewCreated() {
         
     }
 }

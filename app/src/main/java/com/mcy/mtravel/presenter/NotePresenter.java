@@ -9,7 +9,7 @@ import com.zjf.core.presenter.Presenter;
 
 public class NotePresenter extends Presenter<NoteView>{
     @Override
-    protected void onViewStart() {
+    protected void onViewCreated() {
         
     }
 }

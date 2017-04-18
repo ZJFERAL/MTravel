@@ -22,11 +22,11 @@ public class NewsPresenter extends Presenter<NewsView> {
     }
 
     @Override
-    protected void onViewStart() {
-        onflushData();
+    protected void onViewCreated() {
+        onFlushData();
     }
 
-    public void onflushData() {
+    public void onFlushData() {
         mNewsModel.getRefreshData(new OnAsyncModelListener<IndexBean>() {
             @Override
             public void onFailure(String msg, int type) {
@@ -56,8 +56,10 @@ public class NewsPresenter extends Presenter<NewsView> {
     }
 
     @Override
-    public void onDestroyed() {
-        super.onDestroyed();
-        mNewsModel.cancel();
+    public void onViewDeached() {
+        super.onViewDeached();
+        if (mNewsModel != null) {
+            mNewsModel.cancel();
+        }
     }
 }

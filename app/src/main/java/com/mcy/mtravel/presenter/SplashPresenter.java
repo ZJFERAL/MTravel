@@ -22,14 +22,14 @@ public class SplashPresenter extends Presenter<SplashView> {
     }
 
     @Override
-    protected void onViewStart() {
+    protected void onViewCreated() {
         mModel.getData(new OnAsyncModelListener<String>() {
             @Override
             public void onFailure(String msg, int type) {
                 if (type == FinalParams.ERROR_INFO) {
                     loopTime++;
                     if (loopTime < 2) {
-                        onViewStart();
+                        onViewCreated();
                     } else {
                         mView.NetWorkDone("");
                         LogUtils.e("SPres_M_getData", msg);
@@ -52,6 +52,8 @@ public class SplashPresenter extends Presenter<SplashView> {
     @Override
     public void onViewDeached() {
         super.onViewDeached();
-        mModel.cancel();
+        if (mModel != null) {
+            mModel.cancel();
+        }
     }
 }

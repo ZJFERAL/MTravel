@@ -4,17 +4,22 @@ package com.zjf.core.presenter;
 public abstract class Presenter<V> implements BasePresenter<V> {
 
     protected V mView;
-    protected boolean isAttached = false;
+    public boolean isAttached = false;
 
 
     @Override
-    public void onViewAttached(V view) {
+    public void onCreate(V view) {
         this.mView = view;
-        isAttached = true;
-        onViewStart();
+        onViewCreated();
     }
 
-    protected abstract void onViewStart();
+    @Override
+    public void onViewAttached() {
+        isAttached = true;
+    }
+
+
+    protected abstract void onViewCreated();
 
     @Override
     public void onViewDeached() {

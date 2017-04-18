@@ -25,7 +25,7 @@ public abstract class MVPFragment<T extends BasePresenter> extends BaseFragment 
     public void onStart() {
         super.onStart();
         if (mPresenter != null) {
-            mPresenter.onViewAttached(this);
+            mPresenter.onViewAttached();
         }
     }
 
@@ -42,6 +42,9 @@ public abstract class MVPFragment<T extends BasePresenter> extends BaseFragment 
     @Override
     public void onLoadFinished(Loader<T> loader, T data) {
         this.mPresenter = data;
+        if (mPresenter != null) {
+            mPresenter.onCreate(this);
+        }
     }
 
     @Override

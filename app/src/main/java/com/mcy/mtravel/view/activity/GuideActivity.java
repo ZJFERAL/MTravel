@@ -36,10 +36,10 @@ public class GuideActivity extends BaseActivity {
         mViewList = new ArrayList<>();
         for (int i = 1; i <= 4; i++) {
             int identifier = getResources().getIdentifier("ic_splash_guide_bg" + i, "drawable", getPackageName());
-            ImageView imageView = new ImageView(this);
+            ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setLayoutParams(new ViewPager.LayoutParams());
-            Glide.with(this).load(identifier).into(imageView);
+            Glide.with(mContext).load(identifier).into(imageView);
             mViewList.add(imageView);
         }
         mAdapter = new ImageViewPagerAdapter(mViewList);
@@ -52,8 +52,8 @@ public class GuideActivity extends BaseActivity {
         setContentView(R.layout.activity_guide);
         ButterKnife.bind(this);
         mIndicator.setIndicatorMode(CircleIndicator.Mode.OUTSIDE);
-        mIndicator.setIndicatorRadius(SizeUtils.dp2px(3, this));//圆的大小
-        mIndicator.setIndicatorMargin(SizeUtils.dp2px(5, this));//间隔
+        mIndicator.setIndicatorRadius(SizeUtils.dp2px(3, mContext));//圆的大小
+        mIndicator.setIndicatorMargin(SizeUtils.dp2px(5, mContext));//间隔
         mIndicator.setViewPager(mViewpager, mViewList.size());
         mViewpager.setAdapter(mAdapter);
 
