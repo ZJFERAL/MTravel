@@ -1,7 +1,5 @@
 package com.mcy.mtravel.view.impl;
 
-import android.view.View;
-
 import com.mcy.mtravel.entity.IndexBean;
 import com.zjf.core.view.BaseViewImp;
 
@@ -13,7 +11,7 @@ import java.util.List;
 
 public interface NewsView extends BaseViewImp {
 
-    void onRefreshData(List<IndexBean.DataBean.FeedsBean.ListBean> data, View headView);
+    void onRefreshData(List<IndexBean.DataBean.FeedsBean.ListBean> data, List<IndexBean.DataBean.SlideBean> headData);
 
     void onGetMoreData(List<IndexBean.DataBean.FeedsBean.ListBean> data);
 

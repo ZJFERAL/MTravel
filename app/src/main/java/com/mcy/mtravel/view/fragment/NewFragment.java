@@ -10,8 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ViewFlipper;
 
+import com.bumptech.glide.Glide;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.NewsAdapter;
 import com.mcy.mtravel.base.MVPFragment;
@@ -20,7 +23,7 @@ import com.mcy.mtravel.presenter.NewsPresenter;
 import com.mcy.mtravel.view.activity.WebViewActivity;
 import com.mcy.mtravel.view.impl.NewsView;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
-import com.zjf.core.utils.LogUtils;
+import com.zjf.core.utils.DeviceUtils;
 import com.zjf.core.utils.SnackBarUtils;
 
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ public class NewFragment extends MVPFragment<NewsPresenter> implements NewsView 
     LinearLayout mEmptyView;
     Unbinder unbinder;
 
+    private ViewFlipper mFlipper;
     private NewsAdapter mAdapter;
     private List<IndexBean.DataBean.FeedsBean.ListBean> mListBeen;
 
@@ -92,24 +96,66 @@ public class NewFragment extends MVPFragment<NewsPresenter> implements NewsView 
         mRecyclerview.addOnItemTouchListener(new CRecyclerViewAdapter.RecyclerItemClickListener(getContext(), new CRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (mAdapter.isLoading()) {
+                if (mAdapter.isLoading() || (position == 0 && mAdapter.hasHeaderView())) {
                     return;
                 }
-                String url = mAdapter.getData().get(position).getPage_url();
+                if (mAdapter.hasHeaderView()) {
+                    position -= 1;
+                }
+                String url = mAdapter.getData()
+                        .get(position)
+                        .getPage_url()
+                        + "?client_id=qyer_guide_app_android&track_deviceid="
+                        + DeviceUtils.getDeviceId(getContext())
+                        + "&track_app_version=1.9.5&track_user_id=0&source=app";
                 Bundle bundle = new Bundle();
                 bundle.putString("path", url);
-                LogUtils.e("Path", url);
                 jumpTo(getActivity(), WebViewActivity.class, bundle, false);
             }
         }));
     }
 
 
-
     @Override
-    public void onRefreshData(List<IndexBean.DataBean.FeedsBean.ListBean> data, View headView) {
+    public void onRefreshData(List<IndexBean.DataBean.FeedsBean.ListBean> data, List<IndexBean.DataBean.SlideBean> headData) {
         mAdapter.flushData(data);
+        if (!mAdapter.hasHeaderView()) {
+            makeHead(headData);
+        }
         onCloseSwipe();
+    }
+
+    private void makeHead(List<IndexBean.DataBean.SlideBean> headData) {
+        mFlipper = new ViewFlipper(getContext());
+        mFlipper.setLayoutParams(new RecyclerView.LayoutParams(DeviceUtils.getDeviceScreenWidth(getContext()),
+                DeviceUtils.getDeviceScreenWidth(getContext()) / 2));
+        for (int i = 0; i < headData.size(); i++) {
+            final IndexBean.DataBean.SlideBean bean = headData.get(i);
+            ImageView imageView = new ImageView(getContext());
+            imageView.setLayoutParams(new RecyclerView.LayoutParams(DeviceUtils.getDeviceScreenWidth(getContext()),
+                    DeviceUtils.getDeviceScreenWidth(getContext()) / 2));
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String substring = bean.getUrl().substring(21, 26);
+                    String url = "http://m.qyer.com/guide/page/"
+                            + substring
+                            + "/?client_id=qyer_guide_app_android&track_deviceid="
+                            + DeviceUtils.getDeviceId(getContext())
+                            + "&track_app_version=1.9.5&track_user_id=0&source=app";
+                    Bundle bundle = new Bundle();
+                    bundle.putString("path", url);
+                    jumpTo(getActivity(), WebViewActivity.class, bundle, false);
+                }
+            });
+            Glide.with(getContext()).load(bean.getImage()).placeholder(R.drawable.weit_place).into(imageView);
+            mFlipper.addView(imageView);
+        }
+        mFlipper.setInAnimation(getContext(), R.anim.fliper_enter);
+        mFlipper.setOutAnimation(getContext(), R.anim.fliper_exit);
+        mFlipper.setAutoStart(true);
+        mAdapter.setHeaderView(mFlipper);
     }
 
     @Override
@@ -149,6 +195,5 @@ public class NewFragment extends MVPFragment<NewsPresenter> implements NewsView 
         super.onDestroyView();
         unbinder.unbind();
     }
-
 
 }

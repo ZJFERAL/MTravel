@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.base.BaseActivity;
-import com.zjf.core.utils.DeviceUtils;
+import com.zjf.core.utils.LogUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,14 +42,15 @@ public class WebViewActivity extends BaseActivity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
         Bundle data = intent.getBundleExtra("data");
-        mSource = data.getString("path") + "?client_id=qyer_guide_app_android&track_deviceid=" + DeviceUtils.getDeviceId(mContext) + "&track_app_version=1.9.5&track_user_id=0&source=app";
+        mSource = data.getString("path");
         //设置WebView属性，能够执行Javascript脚本
         mWebview.getSettings().setJavaScriptEnabled(true);
         //设置Web视图
         mWebview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.equals(mSource)) {
+                LogUtils.e("Path", url);
+                if (url.startsWith("http://m") && (!url.contains("authors"))) {
                     view.loadUrl(url);
                 }
                 return true;
@@ -60,7 +61,7 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                if (newProgress == 100) {
+                if (newProgress >= 95) {
                     mEmptyView.setVisibility(View.GONE);
                 } else {
                     mTxtProgressNum.setText(" " + getString(R.string.no_data) + newProgress + "%");

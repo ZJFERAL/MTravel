@@ -13,6 +13,7 @@ public class DeviceUtils {
 
     /**
      * 获取设备ID
+     *
      * @param context
      * @return
      */
@@ -24,6 +25,27 @@ public class DeviceUtils {
             deviceId = Settings.Secure.getString(context.getContentResolver(), "android_id");
         }
         return deviceId;
+    }
+
+
+    /**
+     * 获取设备屏幕宽度
+     *
+     * @param context
+     * @return
+     */
+    public static int getDeviceScreenWidth(Context context) {
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
+
+    /**
+     * 获取设备屏幕高度
+     *
+     * @param context
+     * @return
+     */
+    public static int getDeviceScreenHeight(Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels;
     }
 
 }

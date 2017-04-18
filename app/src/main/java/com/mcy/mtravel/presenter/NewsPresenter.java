@@ -35,7 +35,7 @@ public class NewsPresenter extends Presenter<NewsView> {
 
             @Override
             public void onSuccess(IndexBean msg) {
-                mView.onRefreshData(msg.getData().getFeeds().getList(), null);
+                mView.onRefreshData(msg.getData().getFeeds().getList(), msg.getData().getSlide());
             }
         });
     }

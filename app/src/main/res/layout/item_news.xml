@@ -50,7 +50,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:textColor="@color/colorLightDatk"
+                    android:textColor="@color/colorLightDark"
                     android:textSize="13sp"/>
 
                 <TextView
@@ -59,7 +59,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical|right"
-                    android:textColor="@color/colorLightDatk"
+                    android:textColor="@color/colorLightDark"
                     android:textSize="13sp"/>
             </LinearLayout>
         </LinearLayout>
