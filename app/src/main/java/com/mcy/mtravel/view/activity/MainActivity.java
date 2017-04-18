@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.base.BaseActivity;
 import com.mcy.mtravel.view.fragment.NewFragment;
-import com.mcy.mtravel.view.fragment.NoteFragment;
+import com.mcy.mtravel.view.fragment.TripsFragment;
 import com.mcy.mtravel.view.fragment.PlanFragment;
 import com.zjf.core.adapter.TabAdapter;
 import com.zjf.core.utils.SnackBarUtils;
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity {
     private void makeFragment() {
         NewFragment newFragment = new NewFragment();
         mFragmentList.add(newFragment);
-        NoteFragment noteFragment = new NoteFragment();
+        TripsFragment noteFragment = new TripsFragment();
         mFragmentList.add(noteFragment);
         PlanFragment planFragment = new PlanFragment();
         mFragmentList.add(planFragment);

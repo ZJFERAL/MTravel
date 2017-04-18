@@ -175,7 +175,8 @@ public class NewFragment extends MVPFragment<NewsPresenter> implements NewsView 
 
     @Override
     public void onFailure(String msg, int type) {
-
+        showSnakBar(msg, type);
+        onCloseSwipe();
     }
 
 

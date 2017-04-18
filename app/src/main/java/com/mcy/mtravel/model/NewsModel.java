@@ -48,7 +48,10 @@ public class NewsModel implements NewsModelImpl {
                     @Override
                     public void accept(IndexBean bean) throws Exception {
                         if (bean != null && "ok".equals(bean.getResult())) {
+                            currentIndex++;
                             listener.onSuccess(bean);
+                        } else if (bean != null && bean.getError_code() == FinalParams.ERROR_TOEKN) {
+                            listener.onFailure(App.getStringRes(R.string.error_token), FinalParams.ERROR_TOEKN);
                         } else {
                             listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                         }
@@ -60,7 +63,6 @@ public class NewsModel implements NewsModelImpl {
                     }
                 });
         mDisposables.add(subscribe);
-        currentIndex++;
     }
 
     @Override

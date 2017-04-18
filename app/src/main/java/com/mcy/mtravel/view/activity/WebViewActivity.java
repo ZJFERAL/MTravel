@@ -71,7 +71,7 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                mToolbar.setTitle(title);
+                mToolbar.setTitle(title.replace("穷游锦囊", "漫途"));
                 setSupportActionBar(mToolbar);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }

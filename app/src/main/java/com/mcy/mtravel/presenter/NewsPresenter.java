@@ -1,9 +1,12 @@
 package com.mcy.mtravel.presenter;
 
 import com.mcy.mtravel.entity.IndexBean;
+import com.mcy.mtravel.model.GetTokenModel;
 import com.mcy.mtravel.model.NewsModel;
 import com.mcy.mtravel.model.impl.GetTokenModelImpl;
 import com.mcy.mtravel.model.impl.NewsModelImpl;
+import com.mcy.mtravel.utils.FinalParams;
+import com.mcy.mtravel.utils.SPUtils;
 import com.mcy.mtravel.view.impl.NewsView;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.presenter.Presenter;
@@ -26,11 +29,19 @@ public class NewsPresenter extends Presenter<NewsView> {
         onFlushData();
     }
 
+
     public void onFlushData() {
         mNewsModel.getRefreshData(new OnAsyncModelListener<IndexBean>() {
             @Override
             public void onFailure(String msg, int type) {
-                mView.showSnakBar(msg, type);
+                if (type == FinalParams.ERROR_TOEKN) {
+                    if (mTokenModel == null) {
+                        mTokenModel = new GetTokenModel();
+                    }
+                    getToken(1);
+                } else {
+                    mView.onFailure(msg, type);
+                }
             }
 
             @Override
@@ -40,11 +51,38 @@ public class NewsPresenter extends Presenter<NewsView> {
         });
     }
 
+    private void getToken(final int which) {
+        mTokenModel.getData(new OnAsyncModelListener<String>() {
+            @Override
+            public void onFailure(String msg, int type) {
+                mView.onFailure(msg, type);
+            }
+
+            @Override
+            public void onSuccess(String msg) {
+                SPUtils spUtils = new SPUtils();
+                spUtils.saveToken(msg);
+                if (which == 1) {
+                    onFlushData();
+                } else {
+                    getMoreData();
+                }
+            }
+        });
+    }
+
     public void getMoreData() {
         mNewsModel.getData(new OnAsyncModelListener<IndexBean>() {
             @Override
             public void onFailure(String msg, int type) {
-                mView.showSnakBar(msg, type);
+                if (type == FinalParams.ERROR_TOEKN) {
+                    if (mTokenModel == null) {
+                        mTokenModel = new GetTokenModel();
+                    }
+                    getToken(2);
+                } else {
+                    mView.showSnakBar(msg, type);
+                }
             }
 
             @Override
@@ -61,5 +99,15 @@ public class NewsPresenter extends Presenter<NewsView> {
         if (mNewsModel != null) {
             mNewsModel.cancel();
         }
+        if (mTokenModel != null) {
+            mTokenModel.cancel();
+        }
+    }
+
+    @Override
+    public void onDestroyed() {
+        super.onDestroyed();
+        mTokenModel = null;
+        mNewsModel = null;
     }
 }

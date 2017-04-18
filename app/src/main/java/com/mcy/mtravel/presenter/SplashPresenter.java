@@ -37,7 +37,6 @@ public class SplashPresenter extends Presenter<SplashView> {
                 } else {
                     mView.showSnakBar(msg, type);
                     mView.NetWorkDone("");
-
                 }
 
             }
@@ -55,5 +54,11 @@ public class SplashPresenter extends Presenter<SplashView> {
         if (mModel != null) {
             mModel.cancel();
         }
+    }
+
+    @Override
+    public void onDestroyed() {
+        super.onDestroyed();
+        mModel = null;
     }
 }
