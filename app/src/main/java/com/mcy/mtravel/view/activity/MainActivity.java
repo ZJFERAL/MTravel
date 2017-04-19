@@ -45,15 +45,15 @@ public class MainActivity extends BaseActivity {
     public void initVariables() {
         mFragmentList = new ArrayList<>();
         makeFragment();
-        titls = new String[]{getString(R.string.news), getString(R.string.travelnote), getString(R.string.plan)};
+        titls = new String[]{getString(R.string.travelnote), getString(R.string.news), getString(R.string.plan)};
         mAdapter = new TabAdapter(getSupportFragmentManager(), mFragmentList, titls);
     }
 
     private void makeFragment() {
-        NewFragment newFragment = new NewFragment();
-        mFragmentList.add(newFragment);
         TripsFragment noteFragment = new TripsFragment();
         mFragmentList.add(noteFragment);
+        NewFragment newFragment = new NewFragment();
+        mFragmentList.add(newFragment);
         PlanFragment planFragment = new PlanFragment();
         mFragmentList.add(planFragment);
     }

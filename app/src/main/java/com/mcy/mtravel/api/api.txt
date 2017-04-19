@@ -1,0 +1,94 @@
+﻿chan
+
+首页 广告banner（有蝉游记标签）
+https://chanyouji.com/api/adverts.json?name=app_featured_banner_android
+
+	广告内容
+	https://chanyouji.com/api/articles/625.json
+
+游记
+https://chanyouji.com/api/trips/featured.json?page=1
+
+	游记内容
+	https://chanyouji.com/api/trips/582490.json
+
+查看用户
+https://chanyouji.com/api/users/313643.json?page=1
+	
+	用户喜欢
+	https://chanyouji.com/api/users/likes/122958.json?per_page=15&page=1
+
+
+攻略
+https://chanyouji.com/api/destinations.json
+	
+	目的地攻略概论
+	https://chanyouji.com/api/destinations/55.json
+	
+		攻略
+		https://chanyouji.com/api/wiki/destinations/55.json
+	
+		行程
+		https://chanyouji.com/api/destinations/plans/55.json?page=1
+
+			行程具体
+			https://chanyouji.com/api/plans/1693.json
+
+		旅行地
+		https://chanyouji.com/api/destinations/attractions/55.json?page=1
+			
+			旅行地具体
+			https://chanyouji.com/api/attractions/35443.json
+				
+				照片
+				https://chanyouji.com/api/attractions/photos/35443.json?page=1
+				
+				游记列表	order by 人气
+				https://chanyouji.com/api/attractions/35443.json?attraction_trips=true&page=1	
+				https://chanyouji.com/api/attractions/35443.json?attraction_trips=true&order=date&page=1
+
+				地图点
+				https://chanyouji.com/api/attractions/nearby_pois/35443.json
+		
+		专题列表
+		https://chanyouji.com/api/articles.json?destination_id=55&page=1
+			
+			专题具体
+			https://chanyouji.com/api/articles/76.json		
+
+
+qiongyou
+
+登出
+http://guide.open.qyer.com/app_logout:logout
+	POST
+	logout[qyer_token]
+
+
+获取TOKEN
+http://guide.open.qyer.com/device/register	
+	post请求
+	app_id  	com.qyer.android.qyerguide
+	app_version	1.9.5
+	device_id	866357010244140
+	init		1
+
+
+
+首页
+http://guide.open.qyer.com/recommend-rotator:slide,news-list:feeds,config-indexad:adverts
+	POST请求
+	feeds[keyword]	feed
+	feeds[limit]	10	一页的数量
+	feeds[offset]	0	新数据首个的偏移量  +=10；
+
+http://m.qyer.com/guide/page/Oav4eZZX-YA/?client_id=qyer_guide_app_android&track_deviceid=866357010244140&track_app_version=1.9.5&track_user_id=0&source=app
+
+
+轮播图
+	//一个WebView
+	http://m.qyer.com/guide/page/29140/?source=app&client_id=qyer_guide_app_android&track_deviceid=866357010244140&track_app_version=1.9.5&track_user_id=0&source=app
+	
+
+			
+			
