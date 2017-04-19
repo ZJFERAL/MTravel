@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.zjf.core.utils.LogUtils;
 import com.zjf.core.utils.SizeUtils;
 
 import java.util.ArrayList;
@@ -266,7 +265,6 @@ public class LoopViewPager extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        LogUtils.e("dispatchTouchEvent", ev.getAction() + "");
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             mHandler.removeCallbacks(mRunnable);
         } else if (ev.getAction() == MotionEvent.ACTION_UP) {

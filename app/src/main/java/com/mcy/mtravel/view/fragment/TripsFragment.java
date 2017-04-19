@@ -122,9 +122,11 @@ public class TripsFragment extends MVPFragment<TripsPresenter> implements TripsV
 
     @Override
     public void onRefreshData(List<TripsBean> data, List<CBannerBean> headData) {
-        mAdapter.flushData(data);
-        if (!mAdapter.hasHeaderView()) {
-            makeHead(headData);
+        if (data != null && mAdapter != null) {
+            mAdapter.flushData(data);
+            if (!mAdapter.hasHeaderView() && headData != null) {
+                makeHead(headData);
+            }
         }
         onCloseSwipe();
     }

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">漫途</string>
+    <string name="all_search">  大家都在搜 南京</string>
     <string name="error_token">getToken error</string>
     <string name="enter">立即体验</string>
     <string name="error_net">网络不可用！</string>
@@ -7,6 +8,11 @@
     <string name="travelnote">游记</string>
     <string name="plan">攻略</string>
     <string name="next_exit">再按一次退出</string>
-    <string name="no_data">正在加载...</string>
+    <string name="no_data">  正在加载...</string>
+    <string name="asian">国外 · 亚洲</string>
+    <string name="europe">国外 · 欧洲</string>
+    <string name="us">美洲、大洋洲、非洲与南极洲</string>
+    <string name="in_gat">国内 · 港澳台</string>
+    <string name="in_dl">国内 · 大陆</string>
 
 </resources>

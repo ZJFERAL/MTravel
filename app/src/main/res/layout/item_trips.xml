@@ -28,7 +28,7 @@
                 android:layout_margin="7dp"
                 android:background="@color/colorTransDark"
                 android:textColor="@color/colorWhite"
-                android:textSize="15sp"/>
+                android:textSize="17sp"/>
 
             <TextView
                 android:id="@+id/txt_time"
@@ -38,7 +38,7 @@
                 android:layout_margin="7dp"
                 android:background="@color/colorTransDark"
                 android:textColor="@color/colorWhite"
-                android:textSize="11sp"/>
+                android:textSize="14sp"/>
 
 
             <ImageView

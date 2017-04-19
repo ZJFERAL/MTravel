@@ -9,10 +9,11 @@ import java.util.List;
  * Created by zhaojifeng on 2017/4/14.
  */
 
-public interface PlanView extends BaseViewImp{
+public interface PlanView extends BaseViewImp {
 
-    void onRefreshData(List<TargetPlaceBean> data);
+    void onLeftItem(List<String> data);
 
+    void onRightItem(List<TargetPlaceBean.DestinationsBean> data);
 
     void onFailure(String msg, int type);
 }

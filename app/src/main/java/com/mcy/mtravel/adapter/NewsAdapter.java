@@ -38,7 +38,7 @@ public class NewsAdapter extends CRecyclerViewAdapter<IndexBean.DataBean.FeedsBe
         if (item.getAuthors() != null && item.getAuthors().size() > 0) {
             holder.setText(R.id.txt_time_author,
                     TimeUtils.millis2String(item.getCtime(), "yyyy-MM-dd")
-                            + " · " + item.getAuthors().get(0).getName().replace("锦囊", "漫途"));
+                            + "  ·  " + item.getAuthors().get(0).getName().replace("锦囊", "漫途"));
         }
         ImageView imageView = holder.getView(R.id.img_cover);
         imageView.setLayoutParams(new LinearLayout.LayoutParams(widthPixels, widthPixels / 3));

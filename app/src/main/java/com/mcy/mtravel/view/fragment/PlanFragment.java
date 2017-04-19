@@ -2,25 +2,24 @@ package com.mcy.mtravel.view.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.adapter.PlanZoneAdapter;
 import com.mcy.mtravel.base.MVPFragment;
 import com.mcy.mtravel.entity.TargetPlaceBean;
 import com.mcy.mtravel.presenter.PlanPresenter;
 import com.mcy.mtravel.view.impl.PlanView;
 import com.zjf.core.utils.SnackBarUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,19 +32,16 @@ import butterknife.Unbinder;
 public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView {
 
 
+    @BindView(R.id.radiogroup)
+    RadioGroup mGroup;
     @BindView(R.id.recyclerview)
-    RecyclerView mRecyclerview;
-    @BindView(R.id.refreshview)
-    SwipeRefreshLayout mRefreshview;
+    RecyclerView mRecyclerView;
     @BindView(R.id.empty_view)
     LinearLayout mEmptyView;
     @BindView(R.id.coor_bg)
     CoordinatorLayout mCoorBg;
     Unbinder unbinder;
 
-
-    private List<TargetPlaceBean> mTargetBeanList;
-    private PlanZoneAdapter mAdapter;
 
     public PlanFragment() {
         // Required empty public constructor
@@ -54,29 +50,21 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
     @Override
     public void initVariables() {
         super.initVariables();
-        mTargetBeanList = new ArrayList<>();
-        mAdapter = new PlanZoneAdapter(getContext(), mTargetBeanList, R.layout.item_plan_zone);
     }
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_plan, container, false);
         unbinder = ButterKnife.bind(this, view);
-        mRefreshview.setColorSchemeColors(getResources().getColor(R.color.colorAccent),
-                getResources().getColor(R.color.colorPrimary),
-                getResources().getColor(R.color.colorPrimaryDark));
-        mAdapter.setEmptyView(mEmptyView);
-        mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        mRecyclerview.setAdapter(mAdapter);
         return view;
     }
 
     @Override
     public void initListener() {
-        mRefreshview.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onRefresh() {
-                mPresenter.refreshData();
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+
             }
         });
     }
@@ -91,11 +79,45 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
         return new PlanPresenter();
     }
 
+    private String getStrByInt(int anInt) {
+        String string = "";
+        switch (anInt) {
+            case 1:
+                string = getString(R.string.asian);
+                break;
+            case 2:
+                string = getString(R.string.europe);
+                break;
+            case 3:
+                string = getString(R.string.us);
+                break;
+            case 99:
+                string = getString(R.string.in_gat);
+                break;
+            case 999:
+                string = getString(R.string.in_dl);
+                break;
+        }
+        return string;
+    }
 
     @Override
-    public void onRefreshData(List<TargetPlaceBean> data) {
-        mAdapter.flushData(data);
-        onCloseSwipe();
+    public void onLeftItem(List<String> data) {
+        int size = data.size();
+        for (int i = 0; i < size; i++) {
+            RadioButton rb = (RadioButton) LayoutInflater.from(getContext())
+                    .inflate(R.layout.item_zone, mGroup, false);
+            int anInt = Integer.parseInt(data.get(i));
+            String strByInt = getStrByInt(anInt);
+            rb.setText(strByInt);
+            mGroup.addView(rb);
+        }
+        mGroup.getChildAt(0).setSelected(true);
+    }
+
+    @Override
+    public void onRightItem(List<TargetPlaceBean.DestinationsBean> data) {
+
     }
 
     @Override
@@ -105,11 +127,8 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
     }
 
     private void onCloseSwipe() {
-        if (mRefreshview != null && mRefreshview.isRefreshing()) {
-            mRefreshview.setRefreshing(false);
-        }
-        if (mAdapter != null) {
-            mAdapter.onCompleteLoading();
+        if (mEmptyView.getVisibility() == View.VISIBLE) {
+            mEmptyView.setVisibility(View.GONE);
         }
     }
 
