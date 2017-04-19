@@ -1,6 +1,7 @@
 package com.mcy.mtravel.api;
 
 import com.mcy.mtravel.entity.CBannerBean;
+import com.mcy.mtravel.entity.TargetPlaceBean;
 import com.mcy.mtravel.entity.TripsBean;
 
 import java.util.List;
@@ -20,4 +21,7 @@ public interface CyjUrl {
 
     @GET(value = "adverts.json?name=app_featured_banner_android")
     Observable<List<CBannerBean>> getCBanner();
+
+    @GET(value = "destinations.json")
+    Observable<List<TargetPlaceBean>> getTargetZone();
 }

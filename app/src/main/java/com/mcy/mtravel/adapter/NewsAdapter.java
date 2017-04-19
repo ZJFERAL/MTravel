@@ -26,7 +26,7 @@ public class NewsAdapter extends CRecyclerViewAdapter<IndexBean.DataBean.FeedsBe
     }
 
     @Override
-    protected void setConvertView(CRecyclerViewViewHolder holder, IndexBean.DataBean.FeedsBean.ListBean item, int position) {
+    public void setConvertView(CRecyclerViewViewHolder holder, IndexBean.DataBean.FeedsBean.ListBean item, int position) {
 
         holder.setImageByUrl(R.id.img_cover, item.getPage_cover(),
                 R.drawable.weit_place)

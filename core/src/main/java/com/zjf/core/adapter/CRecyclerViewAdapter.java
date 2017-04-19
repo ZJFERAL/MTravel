@@ -207,7 +207,7 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
                 holder.getAdapterPosition() - getHeaderViewCount());
     }
 
-    protected abstract void setConvertView(CRecyclerViewViewHolder holder, T item, int position);
+    public abstract void setConvertView(CRecyclerViewViewHolder holder, T item, int position);
 
 
     @Override

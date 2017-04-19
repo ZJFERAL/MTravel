@@ -26,7 +26,7 @@ public class TripsAdapter extends CRecyclerViewAdapter<TripsBean> {
     }
 
     @Override
-    protected void setConvertView(CRecyclerViewViewHolder holder, TripsBean item, int position) {
+    public void setConvertView(CRecyclerViewViewHolder holder, TripsBean item, int position) {
         holder.setImageByUrl(R.id.img_cover, item.getFront_cover_photo_url(), R.drawable.weit_place)
                 .setText(R.id.txt_title, item.getName())
                 .setText(R.id.txt_time, item.getStart_date() + "/" + item.getDays() + "天," + item.getPhotos_count() + "图")

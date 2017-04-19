@@ -6,7 +6,7 @@ import java.util.List;
  * Created by zhaojifeng on 2017/4/19.
  */
 
-public class TargetPlace {
+public class TargetPlaceBean {
 
     /**
      * category : 1

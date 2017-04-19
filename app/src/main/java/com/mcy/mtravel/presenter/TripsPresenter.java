@@ -49,7 +49,7 @@ public class TripsPresenter extends Presenter<TripsView> {
             @Override
             public void onFailure(String msg, int type) {
                 mView.onFailure(msg, type);
-                LogUtils.e("TripsPresenter", "refreshData null");
+                LogUtils.e("TripsPresenter", "refreshData error");
             }
 
             @Override
