@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +15,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.mcy.mtravel.R;
+import com.mcy.mtravel.adapter.PlanCountryAdapter;
 import com.mcy.mtravel.base.MVPFragment;
 import com.mcy.mtravel.entity.TargetPlaceBean;
 import com.mcy.mtravel.presenter.PlanPresenter;
 import com.mcy.mtravel.view.impl.PlanView;
 import com.zjf.core.utils.SnackBarUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -42,6 +45,8 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
     CoordinatorLayout mCoorBg;
     Unbinder unbinder;
 
+    private PlanCountryAdapter mAdapter;
+    private List<TargetPlaceBean.DestinationsBean> mList;
 
     public PlanFragment() {
         // Required empty public constructor
@@ -50,12 +55,17 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
     @Override
     public void initVariables() {
         super.initVariables();
+        mList = new ArrayList<>();
+        mAdapter = new PlanCountryAdapter(getContext(), mList, R.layout.item_plan_country);
     }
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_plan, container, false);
         unbinder = ButterKnife.bind(this, view);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        mAdapter.setEmptyView(mEmptyView);
+        mRecyclerView.setAdapter(mAdapter);
         return view;
     }
 
@@ -64,7 +74,16 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
         mGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-
+                int count = group.getChildCount();
+                for (int i = 0; i < count; i++) {
+                    View view = group.getChildAt(i);
+                    if (view instanceof RadioButton) {
+                        RadioButton radioButton = (RadioButton) view;
+                        if (radioButton.isChecked()) {
+                            mPresenter.getRightData(i);
+                        }
+                    }
+                }
             }
         });
     }
@@ -79,27 +98,6 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
         return new PlanPresenter();
     }
 
-    private String getStrByInt(int anInt) {
-        String string = "";
-        switch (anInt) {
-            case 1:
-                string = getString(R.string.asian);
-                break;
-            case 2:
-                string = getString(R.string.europe);
-                break;
-            case 3:
-                string = getString(R.string.us);
-                break;
-            case 99:
-                string = getString(R.string.in_gat);
-                break;
-            case 999:
-                string = getString(R.string.in_dl);
-                break;
-        }
-        return string;
-    }
 
     @Override
     public void onLeftItem(List<String> data) {
@@ -107,17 +105,16 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
         for (int i = 0; i < size; i++) {
             RadioButton rb = (RadioButton) LayoutInflater.from(getContext())
                     .inflate(R.layout.item_zone, mGroup, false);
-            int anInt = Integer.parseInt(data.get(i));
-            String strByInt = getStrByInt(anInt);
-            rb.setText(strByInt);
-            mGroup.addView(rb);
+            rb.setText(data.get(i));
+            mGroup.addView(rb, i);
         }
-        mGroup.getChildAt(0).setSelected(true);
+        ((RadioButton) mGroup.getChildAt(0)).setChecked(true);
     }
 
     @Override
     public void onRightItem(List<TargetPlaceBean.DestinationsBean> data) {
-
+        mAdapter.flushData(data);
+        onCloseSwipe();
     }
 
     @Override
@@ -127,8 +124,8 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
     }
 
     private void onCloseSwipe() {
-        if (mEmptyView.getVisibility() == View.VISIBLE) {
-            mEmptyView.setVisibility(View.GONE);
+        if (mAdapter != null) {
+            mAdapter.onCompleteLoading();
         }
     }
 
