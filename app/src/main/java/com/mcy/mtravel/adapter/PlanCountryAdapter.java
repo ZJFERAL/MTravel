@@ -31,6 +31,6 @@ public class PlanCountryAdapter extends CRecyclerViewAdapter<TargetPlaceBean.Des
                 .setText(R.id.txt_country_name, item.getName_zh_cn() + "\n" + item.getName_en())
                 .setText(R.id.txt_poi_num, item.getPoi_count() + "旅行地");
         ImageView view = holder.getView(R.id.img_bg);
-        view.setLayoutParams(new FrameLayout.LayoutParams(widthPixels / 2, (int) (widthPixels / 1.6)));
+        view.setLayoutParams(new FrameLayout.LayoutParams(widthPixels / 3, widthPixels / 2));
     }
 }

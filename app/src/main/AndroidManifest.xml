@@ -17,13 +17,13 @@
         <activity
             android:name=".view.activity.MainActivity"
             android:screenOrientation="portrait">
-
         </activity>
         <activity
             android:name=".view.activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -31,11 +31,11 @@
             android:name=".view.activity.GuideActivity"
             android:screenOrientation="portrait">
         </activity>
-
         <activity
             android:name=".view.activity.WebViewActivity"
             android:screenOrientation="portrait">
-
+        </activity>
+        <activity android:name=".view.activity.TripsNoteActivity">
         </activity>
     </application>
 

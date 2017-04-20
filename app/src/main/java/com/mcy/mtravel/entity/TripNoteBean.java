@@ -1,19 +1,22 @@
 package com.mcy.mtravel.entity;
 
+import java.util.List;
+
 /**
- * Created by zhaojifeng on 2017/4/18.
+ * Created by zhaojifeng on 2017/4/20.
  */
 
-public class TripsBean {
+public class TripNoteBean {
+
 
     private int id;
     private String name;
     private int photos_count;
     private String start_date;
-    private int days;
     private int level;
-    private String front_cover_photo_url;
     private UserBean user;
+    private String front_cover_photo_url;
+    private List<TripDaysBean> trip_days;
 
     public int getId() {
         return id;
@@ -47,15 +50,6 @@ public class TripsBean {
         this.start_date = start_date;
     }
 
-
-    public int getDays() {
-        return days;
-    }
-
-    public void setDays(int days) {
-        this.days = days;
-    }
-
     public int getLevel() {
         return level;
     }
@@ -64,13 +58,6 @@ public class TripsBean {
         this.level = level;
     }
 
-    public String getFront_cover_photo_url() {
-        return front_cover_photo_url;
-    }
-
-    public void setFront_cover_photo_url(String front_cover_photo_url) {
-        this.front_cover_photo_url = front_cover_photo_url;
-    }
 
     public UserBean getUser() {
         return user;
@@ -80,5 +67,21 @@ public class TripsBean {
         this.user = user;
     }
 
+
+    public String getFront_cover_photo_url() {
+        return front_cover_photo_url;
+    }
+
+    public void setFront_cover_photo_url(String front_cover_photo_url) {
+        this.front_cover_photo_url = front_cover_photo_url;
+    }
+
+    public List<TripDaysBean> getTrip_days() {
+        return trip_days;
+    }
+
+    public void setTrip_days(List<TripDaysBean> trip_days) {
+        this.trip_days = trip_days;
+    }
 
 }
