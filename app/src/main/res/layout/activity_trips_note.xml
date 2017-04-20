@@ -29,10 +29,10 @@
 
                 <include
                     layout="@layout/layout_trips_note_head"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"/>
+                    />
 
                 <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin">
@@ -47,10 +47,6 @@
                 android:layout_height="35dp"
                 android:background="@color/colorWhite">
 
-                <TextView
-                    android:id="@+id/txt_data"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
             </ViewFlipper>
         </android.support.design.widget.AppBarLayout>
 
@@ -58,28 +54,36 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorYelloWhite"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         </android.support.v7.widget.RecyclerView>
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/empty_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
 
-            <ProgressBar
-                style="?android:attr/progressBarStyle"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/no_data"/>
-        </LinearLayout>
+                <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/no_data"/>
+            </LinearLayout>
+        </FrameLayout>
+
     </android.support.design.widget.CoordinatorLayout>
 
 

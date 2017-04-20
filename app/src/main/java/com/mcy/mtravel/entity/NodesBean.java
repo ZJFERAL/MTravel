@@ -7,9 +7,16 @@ import java.util.List;
  */
 
 public class NodesBean {
+
+
     private int id;
-    private int updated_at;
+    private int entry_id;
+    private int lat;
+    private int lng;
+    private boolean user_entry;
+    private String entry_name;
     private List<NotesBean> notes;
+
 
     public int getId() {
         return id;
@@ -19,12 +26,44 @@ public class NodesBean {
         this.id = id;
     }
 
-    public int getUpdated_at() {
-        return updated_at;
+    public int getEntry_id() {
+        return entry_id;
     }
 
-    public void setUpdated_at(int updated_at) {
-        this.updated_at = updated_at;
+    public void setEntry_id(int entry_id) {
+        this.entry_id = entry_id;
+    }
+
+    public int getLat() {
+        return lat;
+    }
+
+    public void setLat(int lat) {
+        this.lat = lat;
+    }
+
+    public int getLng() {
+        return lng;
+    }
+
+    public void setLng(int lng) {
+        this.lng = lng;
+    }
+
+    public boolean isUser_entry() {
+        return user_entry;
+    }
+
+    public void setUser_entry(boolean user_entry) {
+        this.user_entry = user_entry;
+    }
+
+    public String getEntry_name() {
+        return entry_name;
+    }
+
+    public void setEntry_name(String entry_name) {
+        this.entry_name = entry_name;
     }
 
     public List<NotesBean> getNotes() {
@@ -34,5 +73,4 @@ public class NodesBean {
     public void setNotes(List<NotesBean> notes) {
         this.notes = notes;
     }
-
 }

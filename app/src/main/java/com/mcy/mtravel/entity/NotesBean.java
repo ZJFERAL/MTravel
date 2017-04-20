@@ -5,10 +5,16 @@ package com.mcy.mtravel.entity;
  */
 
 public class NotesBean {
-    private int id;
 
+
+    private int id;
+    private String trip_date;
+    private int day;
+    private String entry_name;
+    private int entry_id;
+    private boolean user_entry;
     private String description;
-    private int updated_at;
+    private PhotoBean photo;
 
     public int getId() {
         return id;
@@ -26,11 +32,51 @@ public class NotesBean {
         this.description = description;
     }
 
-    public int getUpdated_at() {
-        return updated_at;
+    public PhotoBean getPhoto() {
+        return photo;
     }
 
-    public void setUpdated_at(int updated_at) {
-        this.updated_at = updated_at;
+    public void setPhoto(PhotoBean photo) {
+        this.photo = photo;
+    }
+
+    public String getTrip_date() {
+        return trip_date;
+    }
+
+    public void setTrip_date(String trip_date) {
+        this.trip_date = trip_date;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public String getEntry_name() {
+        return entry_name;
+    }
+
+    public void setEntry_name(String entry_name) {
+        this.entry_name = entry_name;
+    }
+
+    public int getEntry_id() {
+        return entry_id;
+    }
+
+    public void setEntry_id(int entry_id) {
+        this.entry_id = entry_id;
+    }
+
+    public boolean isUser_entry() {
+        return user_entry;
+    }
+
+    public void setUser_entry(boolean user_entry) {
+        this.user_entry = user_entry;
     }
 }

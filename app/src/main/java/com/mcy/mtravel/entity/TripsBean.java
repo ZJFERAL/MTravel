@@ -6,14 +6,14 @@ package com.mcy.mtravel.entity;
 
 public class TripsBean {
 
-    private int id;
-    private String name;
-    private int photos_count;
-    private String start_date;
-    private int days;
-    private int level;
-    private String front_cover_photo_url;
-    private UserBean user;
+    protected int id;
+    protected String name;
+    protected int photos_count;
+    protected String start_date;
+    protected int days;
+    protected int level;
+    protected String front_cover_photo_url;
+    protected UserBean user;
 
     public int getId() {
         return id;
