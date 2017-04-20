@@ -37,7 +37,7 @@ public class TripsNoteModel implements TripsNoteModelImpl {
         if (mUrl == null) {
             mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null).create(CyjUrl.class);
         }
-        mUrl.getTripsNote(mTripsID)
+        Disposable subscribe = mUrl.getTripsNote(mTripsID)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<TripNoteBean>() {
@@ -55,6 +55,7 @@ public class TripsNoteModel implements TripsNoteModelImpl {
                         listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                     }
                 });
+        mDisposables.add(subscribe);
     }
 
     @Override
