@@ -55,6 +55,7 @@ public class TripsNoteModel implements TripsNoteModelImpl {
                         listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                     }
                 });
+
         mDisposables.add(subscribe);
     }
 

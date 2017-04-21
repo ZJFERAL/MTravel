@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.entity.NotesBean;
+import com.mcy.mtravel.entity.PhotoBean;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.DeviceUtils;
@@ -24,7 +25,6 @@ import java.util.List;
 
 public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
 
-    private String mLastName = "";
     private int mWidth;
 
     public TripsNoteAdapter(Context context, List<NotesBean> data, int... itemLayoutIds) {
@@ -34,30 +34,40 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
 
     @Override
     public void setConvertView(CRecyclerViewViewHolder holder, NotesBean item, int position) {
+        //底部位置
         TextView txtLocation = holder.getView(R.id.txt_location);
+        txtLocation.setVisibility(View.GONE);
         txtLocation.setOnClickListener(null);
-        txtLocation.setTextColor(mContext.getResources().getColor(R.color.colorSimpleDark));
+        txtLocation.setTextColor(mContext.getResources().getColor(R.color.colorLightDark));
+        String entry_name = item.getEntry_name();
+        if (!TextUtils.isEmpty(entry_name)) {
+            txtLocation.setVisibility(View.VISIBLE);
+            txtLocation.setText(entry_name);
+            if (!item.isUser_entry()) {
+                txtLocation.setTextColor(Color.BLUE);
+                txtLocation.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-        txtLocation.setText(item.getEntry_name());
-        if (!item.isUser_entry()) {
-            txtLocation.setTextColor(Color.BLUE);
-            txtLocation.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
+                    }
+                });
+            }
         }
 
+
+        //标题
         View layout = holder.getView(R.id.layout_title);
         layout.setVisibility(View.GONE);
-        String name = item.getEntry_name();
-        if (!name.equals(mLastName)) {
+        String lastName = "";
+        if (position != 0) {
+            lastName = mData.get(position - 1).getEntry_name();
+        }
+        if ((!TextUtils.isEmpty(entry_name)) && (!entry_name.equals(lastName))) {
             layout.setVisibility(View.VISIBLE);
-            mLastName = name;
-            holder.setText(R.id.txt_title, name);
+            holder.setText(R.id.txt_title, entry_name);
         }
 
+        //文字内容
         TextView txtContent = holder.getView(R.id.txt_content);
         txtContent.setVisibility(View.GONE);
         String description = item.getDescription();
@@ -66,12 +76,18 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
             txtContent.setText(description);
         }
 
+        //图片内容
         ImageView imgNote = holder.getView(R.id.img_note);
         imgNote.setVisibility(View.GONE);
-        if (item.getPhoto() != null) {
+        PhotoBean photo = item.getPhoto();
+        if (photo != null) {
             imgNote.setVisibility(View.VISIBLE);
-            imgNote.setLayoutParams(new LinearLayout.LayoutParams(mWidth, mWidth / 2));
-            Glide.with(mContext).load(item.getPhoto().getUrl()).placeholder(R.drawable.weit_place)
+            int width = photo.getImage_width();
+            int height = photo.getImage_height();
+            float scale = width * 1f / mWidth;
+            float realHeight = height / scale;
+            imgNote.setLayoutParams(new LinearLayout.LayoutParams(mWidth, (int) realHeight));
+            Glide.with(mContext).load(photo.getUrl()).placeholder(R.drawable.weit_place)
                     .into(imgNote);
         }
     }

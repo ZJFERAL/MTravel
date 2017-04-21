@@ -7,15 +7,22 @@
         android:id="@+id/img_cover"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/weit_place"/>
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/img_cover"
+        android:layout_alignLeft="@id/img_cover"
+        android:layout_alignRight="@id/img_cover"
+        android:layout_alignTop="@id/img_cover"
+        android:background="@drawable/bg_black2trans"/>
 
     <TextView
         android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:background="@color/colorTransDark"
         android:textColor="@color/colorWhite"
         android:textSize="17sp"/>
 
@@ -25,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_title"
         android:layout_margin="7dp"
-        android:background="@color/colorTransDark"
         android:textColor="@color/colorWhite"
         android:textSize="14sp"/>
 

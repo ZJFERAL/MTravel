@@ -20,12 +20,14 @@
             android:theme="@style/TitleTheme">
 
             <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentScrim="@color/colorPrimaryDark"
                 app:expandedTitleMarginEnd="64dp"
                 app:expandedTitleMarginStart="48dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:statusBarScrim="@color/colorTrans">
 
                 <include
                     layout="@layout/layout_trips_note_head"
@@ -36,28 +38,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin">
-
                 </android.support.v7.widget.Toolbar>
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
-            <ViewFlipper
+            <TextView
                 android:id="@+id/viewfliper_data"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:background="@color/colorWhite">
-
-            </ViewFlipper>
+                android:background="@color/colorWhite"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp">
+            </TextView>
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorYelloWhite"
+            android:padding="4dp"
+            android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         </android.support.v7.widget.RecyclerView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/float_action_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="20dp"
+            app:srcCompat="@drawable/ic_menu_white_24dp"
+            />
 
         <FrameLayout
             android:id="@+id/empty_view"
@@ -84,12 +97,13 @@
             </LinearLayout>
         </FrameLayout>
 
+
     </android.support.design.widget.CoordinatorLayout>
 
 
     <include
         layout="@layout/layout_drawer"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"/>
 

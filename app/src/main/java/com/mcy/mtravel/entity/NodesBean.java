@@ -11,8 +11,8 @@ public class NodesBean {
 
     private int id;
     private int entry_id;
-    private int lat;
-    private int lng;
+    private double lat;
+    private double lng;
     private boolean user_entry;
     private String entry_name;
     private List<NotesBean> notes;
@@ -34,19 +34,19 @@ public class NodesBean {
         this.entry_id = entry_id;
     }
 
-    public int getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public void setLat(int lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public int getLng() {
+    public double getLng() {
         return lng;
     }
 
-    public void setLng(int lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 

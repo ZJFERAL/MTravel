@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/colorYelloWhite"
               android:orientation="vertical"
               android:padding="7dp">
 
@@ -15,7 +16,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/bg_location"
-            android:src="@drawable/ic_add_location_yellow_200_24dp"/>
+            android:src="@drawable/ic_location_on_yellow_200_24dp"/>
 
         <TextView
             android:id="@+id/txt_title"
@@ -45,12 +46,12 @@
         android:layout_marginTop="7dp"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_location_on_grey_600_18dp"
-        android:textColor="@color/colorSimpleDark"/>
+        android:textColor="@color/colorLightDark"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:background="@color/colorSimpleDark"/>
+        android:background="@color/colorSimpleLine"/>
 
 </LinearLayout>

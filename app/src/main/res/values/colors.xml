@@ -5,10 +5,12 @@
     <color name="colorAccent">#f2b096</color>
     <color name="colorWhite">#fff</color>
     <color name="colorSimpleWhite">#e2e1e1</color>
-    <color name="colorYelloWhite">#fcfad8</color>
+    <color name="colorYelloWhite">#fcfbf0</color>
     <color name="colorTrans">#00ffffff</color>
     <color name="colorBlack">#262525</color>
-    <color name="colorSimpleDark">#5b5a5a</color>
+    <color name="colorSimpleLine">#d2d1d1</color>
     <color name="colorLightDark">#8b8a8a</color>
     <color name="colorTransDark">#b78b8a8a</color>
+    <color name="colorDrawerBG">#dcea6952</color>
+    <color name="colorTransDeepDark">#b7535353</color>
 </resources>

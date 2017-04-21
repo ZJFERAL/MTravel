@@ -1,5 +1,7 @@
 package com.mcy.mtravel.presenter;
 
+import android.text.TextUtils;
+
 import com.mcy.mtravel.entity.NodesBean;
 import com.mcy.mtravel.entity.NotesBean;
 import com.mcy.mtravel.entity.TripDaysBean;
@@ -9,7 +11,6 @@ import com.mcy.mtravel.model.impl.TripsNoteModelImpl;
 import com.mcy.mtravel.view.impl.TripsNoteView;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.presenter.Presenter;
-import com.zjf.core.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,6 @@ public class TripsNotePresenter extends Presenter<TripsNoteView> {
 
     @Override
     protected void onViewCreated() {
-        LogUtils.e("onViewCreated");
         mNoteModel.getData(new OnAsyncModelListener<TripNoteBean>() {
             @Override
             public void onFailure(String msg, int type) {
@@ -40,7 +40,6 @@ public class TripsNotePresenter extends Presenter<TripsNoteView> {
 
             @Override
             public void onSuccess(TripNoteBean msg) {
-                LogUtils.e("onViewCreated", "onSuccess");
                 mView.onTitleData(msg);
                 makeData(msg);
             }
@@ -67,7 +66,9 @@ public class TripsNotePresenter extends Presenter<TripsNoteView> {
                 int entry_id = nodesBean.getEntry_id();
                 String entry_name = nodesBean.getEntry_name();
                 boolean user_entry = nodesBean.isUser_entry();
-                item_items.add(entry_name);
+                if (!TextUtils.isEmpty(entry_name)) {
+                    item_items.add(entry_name);
+                }
                 List<NotesBean> notes = nodesBean.getNotes();
                 int notesSize = notes.size();
                 for (int k = 0; k < notesSize; k++) {
