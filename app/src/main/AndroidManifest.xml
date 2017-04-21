@@ -35,7 +35,13 @@
             android:name=".view.activity.WebViewActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TripsNoteActivity">
+        <activity
+            android:name=".view.activity.TripsNoteActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".view.activity.UserInfoActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

@@ -24,8 +24,6 @@ import com.mcy.mtravel.base.MVPFragment;
 import com.mcy.mtravel.entity.CBannerBean;
 import com.mcy.mtravel.entity.TripsBean;
 import com.mcy.mtravel.presenter.TripsPresenter;
-import com.mcy.mtravel.utils.FinalParams;
-import com.mcy.mtravel.view.activity.TripsNoteActivity;
 import com.mcy.mtravel.view.impl.TripsView;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.utils.DeviceUtils;
@@ -98,26 +96,6 @@ public class TripsFragment extends MVPFragment<TripsPresenter> implements TripsV
             }
         });
 
-        mRecyclerview.addOnItemTouchListener(new CRecyclerViewAdapter.RecyclerItemClickListener(getContext(), new CRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                if (mAdapter.isLoading() || (position == 0 && mAdapter.hasHeaderView())) {
-                    return;
-                }
-                if (mAdapter.hasHeaderView()) {
-                    position -= 1;
-                }
-                try {
-                    int id = mAdapter.getData().get(position).getId();
-                    Bundle bundle = new Bundle();
-                    bundle.putString(FinalParams.TRIPS_NOTE_ID, id + "");
-                    jumpTo(getActivity(), TripsNoteActivity.class, bundle, false);
-                } catch (Exception e) {
-                }
-
-
-            }
-        }));
     }
 
     @Override

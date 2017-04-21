@@ -334,6 +334,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         if (mAdapter != null) {
             mAdapter.onCompleteLoading();
         }
+        mFloatActionMenu.setVisibility(View.VISIBLE);
     }
 
     @Override

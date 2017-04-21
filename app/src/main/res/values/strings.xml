@@ -4,6 +4,7 @@
     <string name="error_token">getToken error</string>
     <string name="enter">立即体验</string>
     <string name="error_net">网络不可用！</string>
+    <string name="no_more_data">没有很多数据了</string>
     <string name="news">资讯</string>
     <string name="travelnote">游记</string>
     <string name="plan">攻略</string>

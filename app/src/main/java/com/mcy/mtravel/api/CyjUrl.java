@@ -4,6 +4,7 @@ import com.mcy.mtravel.entity.CBannerBean;
 import com.mcy.mtravel.entity.TargetPlaceBean;
 import com.mcy.mtravel.entity.TripNoteBean;
 import com.mcy.mtravel.entity.TripsBean;
+import com.mcy.mtravel.entity.UserWithTripsBean;
 
 import java.util.List;
 
@@ -29,4 +30,7 @@ public interface CyjUrl {
 
     @GET(value = "trips/{id}.json")
     Observable<TripNoteBean> getTripsNote(@Path("id") String id);
+
+    @GET(value = "https://chanyouji.com/api/users/{id}.json")
+    Observable<UserWithTripsBean> getUser(@Path("id") String id, @Query("page") int page);
 }

@@ -61,7 +61,7 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                if (newProgress >= 95) {
+                if (newProgress >= 90) {
                     mEmptyView.setVisibility(View.GONE);
                 } else {
                     mTxtProgressNum.setText(" " + getString(R.string.no_data) + newProgress + "%");
