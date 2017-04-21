@@ -18,10 +18,12 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.ExpandableAdapter;
 import com.mcy.mtravel.adapter.TripsNoteAdapter;
@@ -46,8 +48,8 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
     @BindView(R.id.img_cover)
     ImageView mImgCover;
-    @BindView(R.id.img_user)
-    ImageView mImgUser;
+    @BindView(R.id.action_head)
+    FloatingActionButton mImgUser;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.viewfliper_data)
@@ -335,6 +337,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
             mAdapter.onCompleteLoading();
         }
         mFloatActionMenu.setVisibility(View.VISIBLE);
+        mImgUser.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -381,15 +384,22 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                 .load(bean.getFront_cover_photo_url())
                 .placeholder(R.drawable.weit_place)
                 .into(mImgCover);
-        mImgCover.setLayoutParams(new RelativeLayout.LayoutParams(width, width / 2));
+        mImgCover.setLayoutParams(new CollapsingToolbarLayout.LayoutParams(width, width / 2));
         Glide.with(mContext)
                 .load(bean.getUser().getImage())
-                .placeholder(R.drawable.weit_place)
-                .into(mImgUser);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width / 9, width / 9);
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        mImgUser.setLayoutParams(params);
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String s, Target<GlideDrawable> target, boolean b) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable drawable, String s, Target<GlideDrawable> target, boolean b, boolean b1) {
+                        //mImgUser.set
+                        return true;
+                    }
+                });
+
         mCollapsingToolbar.setTitle(bean.getName());
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

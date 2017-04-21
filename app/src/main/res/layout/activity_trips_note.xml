@@ -15,6 +15,7 @@
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/TitleTheme">
@@ -29,9 +30,11 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:statusBarScrim="@color/colorTrans">
 
-                <include
-                    layout="@layout/layout_trips_note_head"
-                    />
+                <ImageView
+                    android:id="@+id/img_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"/>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -52,6 +55,16 @@
                 android:textSize="18sp">
             </TextView>
         </android.support.design.widget.AppBarLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/action_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:visibility="gone"
+            app:layout_anchor="@id/collapsing_toolbar"
+            app:layout_anchorGravity="bottom|end"
+            />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
