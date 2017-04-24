@@ -4,14 +4,14 @@
               android:layout_height="wrap_content"
               android:background="@color/colorYelloWhite"
               android:orientation="vertical"
-              >
+    >
 
     <include
         android:id="@+id/lay_date_head"
         layout="@layout/layout_date_head"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="35dp"/>
+        android:layout_height="35dp"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/layout_title"
@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -47,9 +48,6 @@
         android:id="@+id/img_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="7dp"
         android:scaleType="fitXY"/>
 
     <TextView
@@ -66,9 +64,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
+        android:layout_marginTop="10dp"
         android:background="@color/colorSimpleLine"/>
 
 </LinearLayout>

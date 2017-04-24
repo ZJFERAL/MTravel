@@ -15,6 +15,7 @@ import com.mcy.mtravel.entity.PhotoBean;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.DeviceUtils;
+import com.zjf.core.utils.SizeUtils;
 import com.zjf.core.utils.TimeUtils;
 
 import java.util.List;
@@ -67,7 +68,7 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
         if (day != lastDay) {
             layout_date.setVisibility(View.VISIBLE);
             holder.setText(R.id.txt_day_num, "Day" + day);
-            holder.setText(R.id.txt_time, bean.getTrip_date() + " " + TimeUtils.getWeek(bean.getTrip_date(), "yyyy-MM-dd"));
+            holder.setText(R.id.txt_head_time, bean.getTrip_date() + " " + TimeUtils.getWeek(bean.getTrip_date(), "yyyy-MM-dd"));
         }
 
 
@@ -78,9 +79,11 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
         if (position != 0) {
             lastName = mData.get(position - 1).getEntry_name();
         }
-        if ((!TextUtils.isEmpty(entry_name)) && ((!entry_name.equals(lastName))) || (day != lastDay)) {
-            layout.setVisibility(View.VISIBLE);
-            holder.setText(R.id.txt_title, entry_name);
+        if ((!TextUtils.isEmpty(entry_name))) {
+            if ((!entry_name.equals(lastName)) || day != lastDay) {
+                layout.setVisibility(View.VISIBLE);
+                holder.setText(R.id.txt_title, entry_name);
+            }
         }
 
         //文字内容
@@ -102,7 +105,11 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
             int height = photo.getImage_height();
             float scale = width * 1f / mWidth;
             float realHeight = height / scale;
-            imgNote.setLayoutParams(new LinearLayout.LayoutParams(mWidth, (int) realHeight));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(mWidth, (int) realHeight);
+            params.setMargins(SizeUtils.dp2px(5, mContext),
+                    SizeUtils.dp2px(7, mContext),
+                    SizeUtils.dp2px(7, mContext), 0);
+            imgNote.setLayoutParams(params);
             Glide.with(mContext).load(photo.getUrl()).placeholder(R.drawable.weit_place)
                     .into(imgNote);
         }

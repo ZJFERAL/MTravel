@@ -55,7 +55,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     Toolbar mToolbar;
     @BindView(R.id.txt_day_num)
     TextView mTxtDayNum;
-    @BindView(R.id.txt_time)
+    @BindView(R.id.txt_head_time)
     TextView mTxtTime;
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerview;
@@ -126,9 +126,13 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                 int times = 0;
                 for (int i = 0; i <= groupPosition; i++) {
                     List<String> strings = mItems.get(i);
-                    for (int j = 0; j <= childPosition; j++) {
+                    int size = strings.size();
+                    for (int j = 0; j < size; j++) {
                         if (strings.get(j).equals(title)) {
                             times++;
+                        }
+                        if (i == groupPosition && j == childPosition) {
+                            break;
                         }
                     }
                 }
@@ -337,12 +341,28 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         for (int i = 0; i < size; i++) {
             NotesBean bean = mNoteList.get(i);
             String name = bean.getEntry_name();
+            String lastName = "";
+            int lastDay = -1;
+            if (i != 0) {
+                lastName = mNoteList.get(i - 1).getEntry_name();
+                lastDay = mNoteList.get(i - 1).getDay();
+            }
+            int day = mNoteList.get(i).getDay();
             if (title.equals(name)) {
-                locTimes++;
-                if (locTimes == times) {
-                    index = i;
-                    break;
+                if ((!title.equals(lastName))) {
+                    locTimes++;
+                    if (locTimes == times) {
+                        index = i;
+                        break;
+                    }
+                } else if (day != lastDay) {
+                    locTimes++;
+                    if (locTimes == times) {
+                        index = i;
+                        break;
+                    }
                 }
+
             }
         }
         return index;
