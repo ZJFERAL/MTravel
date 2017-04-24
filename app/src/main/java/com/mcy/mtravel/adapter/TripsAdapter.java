@@ -41,16 +41,11 @@ public class TripsAdapter extends CRecyclerViewAdapter<TripsBean> {
         cover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int locationPosition = position;
-
-                if (isLoading() || (locationPosition == 0 && hasHeaderView())) {
+                if (isLoading()) {
                     return;
                 }
-                if (hasHeaderView()) {
-                    locationPosition -= 1;
-                }
                 try {
-                    int id = getData().get(locationPosition).getId();
+                    int id = getData().get(position).getId();
                     Bundle bundle = new Bundle();
                     bundle.putString(FinalParams.TRIPS_NOTE_ID, id + "");
                     Intent intent = new Intent(mContext, TripsNoteActivity.class);

@@ -30,11 +30,10 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:statusBarScrim="@color/colorTrans">
 
-                <ImageView
-                    android:id="@+id/img_cover"
+                <include
+                    layout="@layout/layout_trips_note_head"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"/>
+                    android:layout_height="wrap_content"/>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -45,36 +44,41 @@
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
-            <TextView
-                android:id="@+id/viewfliper_data"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/colorWhite"
-                android:gravity="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp">
-            </TextView>
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/action_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:visibility="gone"
-            app:layout_anchor="@id/collapsing_toolbar"
-            app:layout_anchorGravity="bottom|end"
-            />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="4dp"
-            android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </android.support.v7.widget.RecyclerView>
+            <include
+                android:id="@+id/lay_date_head"
+                layout="@layout/layout_date_head"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:visibility="gone"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                >
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+
+
+        <com.zjf.core.widget.CircleImageView
+            android:id="@+id/action_head"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_margin="15dp"
+            android:padding="2dp"
+            android:visibility="gone"
+            app:layout_anchor="@id/appbar_layout"
+            app:layout_anchorGravity="bottom|end"
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/float_action_menu"

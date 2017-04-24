@@ -4,12 +4,21 @@
               android:layout_height="wrap_content"
               android:background="@color/colorYelloWhite"
               android:orientation="vertical"
-              android:padding="7dp">
+              >
+
+    <include
+        android:id="@+id/lay_date_head"
+        layout="@layout/layout_date_head"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="35dp"/>
 
     <LinearLayout
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -30,12 +39,16 @@
         android:id="@+id/txt_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         android:layout_marginTop="7dp"/>
 
     <ImageView
         android:id="@+id/img_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         android:layout_marginTop="7dp"
         android:scaleType="fitXY"/>
 
@@ -43,6 +56,8 @@
         android:id="@+id/txt_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         android:layout_marginTop="7dp"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_location_on_grey_600_18dp"
@@ -52,6 +67,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         android:background="@color/colorSimpleLine"/>
 
 </LinearLayout>

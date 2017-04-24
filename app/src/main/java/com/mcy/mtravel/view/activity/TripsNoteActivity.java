@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -18,12 +19,10 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.ExpandableAdapter;
 import com.mcy.mtravel.adapter.TripsNoteAdapter;
@@ -33,10 +32,12 @@ import com.mcy.mtravel.entity.TripsBean;
 import com.mcy.mtravel.presenter.TripsNotePresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.TripsNoteView;
+import com.zjf.core.impl.AppBarStateChangeListener;
 import com.zjf.core.utils.DeviceUtils;
 import com.zjf.core.utils.LogUtils;
 import com.zjf.core.utils.SnackBarUtils;
 import com.zjf.core.utils.TimeUtils;
+import com.zjf.core.widget.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,11 +50,13 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     @BindView(R.id.img_cover)
     ImageView mImgCover;
     @BindView(R.id.action_head)
-    FloatingActionButton mImgUser;
+    CircleImageView mImgUser;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.viewfliper_data)
-    TextView mViewfliper;
+    @BindView(R.id.txt_day_num)
+    TextView mTxtDayNum;
+    @BindView(R.id.txt_time)
+    TextView mTxtTime;
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerview;
     @BindView(R.id.coor_bg)
@@ -68,6 +71,10 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     FloatingActionButton mFloatActionMenu;
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbar;
+    @BindView(R.id.img_user)
+    ImageView mImgHead;
+    @BindView(R.id.appbar_layout)
+    AppBarLayout mAppbarLayout;
 
 
     private String mTripsID;
@@ -116,7 +123,16 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 String title = mItems.get(groupPosition).get(childPosition);
-                int index = getFirstIndexByTitle(title);
+                int times = 0;
+                for (int i = 0; i <= groupPosition; i++) {
+                    List<String> strings = mItems.get(i);
+                    for (int j = 0; j <= childPosition; j++) {
+                        if (strings.get(j).equals(title)) {
+                            times++;
+                        }
+                    }
+                }
+                int index = getTargetIndexByTitle(title, times);
                 moveToPosition(index);
                 mDrawer.closeDrawer(Gravity.START);
                 return false;
@@ -146,6 +162,17 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                     }
                 }
                 return false;
+            }
+        });
+
+        mAppbarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state) {
+                if (state == State.COLLAPSED) {
+                    mImgUser.setVisibility(View.VISIBLE);
+                } else {
+                    mImgUser.setVisibility(View.GONE);
+                }
             }
         });
 
@@ -189,7 +216,8 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                 if (currentDay != this.day) {
                     day = currentDay;
                     String date = bean.getTrip_date();
-                    mViewfliper.setText("Day" + day + " " + date + " " + TimeUtils.getWeek(date, "yyyy-MM-dd"));
+                    mTxtDayNum.setText("Day" + day);
+                    mTxtTime.setText(date + " " + TimeUtils.getWeek(date, "yyyy-MM-dd"));
                 }
 
             }
@@ -302,15 +330,19 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         return index;
     }
 
-    private int getFirstIndexByTitle(String title) {
+    private int getTargetIndexByTitle(String title, int times) {
+        int locTimes = 0;
         int index = 0;
         int size = mNoteList.size();
         for (int i = 0; i < size; i++) {
             NotesBean bean = mNoteList.get(i);
             String name = bean.getEntry_name();
             if (title.equals(name)) {
-                index = i;
-                break;
+                locTimes++;
+                if (locTimes == times) {
+                    index = i;
+                    break;
+                }
             }
         }
         return index;
@@ -337,7 +369,6 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
             mAdapter.onCompleteLoading();
         }
         mFloatActionMenu.setVisibility(View.VISIBLE);
-        mImgUser.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -360,7 +391,8 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         NotesBean bean = mNoteList.get(0);
         int day = bean.getDay();
         String date = bean.getTrip_date();
-        mViewfliper.setText("Day" + day + " " + date + " " + TimeUtils.getWeek(date, "yyyy-MM-dd"));
+        mTxtDayNum.setText("Day" + day);
+        mTxtTime.setText(date + " " + TimeUtils.getWeek(date, "yyyy-MM-dd"));
         onCloseSwipe();
     }
 
@@ -384,26 +416,20 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                 .load(bean.getFront_cover_photo_url())
                 .placeholder(R.drawable.weit_place)
                 .into(mImgCover);
-        mImgCover.setLayoutParams(new CollapsingToolbarLayout.LayoutParams(width, width / 2));
+        mImgCover.setLayoutParams(new RelativeLayout.LayoutParams(width, width / 2));
         Glide.with(mContext)
                 .load(bean.getUser().getImage())
-                .listener(new RequestListener<String, GlideDrawable>() {
-                    @Override
-                    public boolean onException(Exception e, String s, Target<GlideDrawable> target, boolean b) {
-                        return false;
-                    }
+                .into(mImgUser);
+        Glide.with(mContext)
+                .load(bean.getUser().getImage())
+                .into(mImgHead);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width / 9, width / 9);
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        mImgHead.setLayoutParams(params);
 
-                    @Override
-                    public boolean onResourceReady(GlideDrawable drawable, String s, Target<GlideDrawable> target, boolean b, boolean b1) {
-                        //mImgUser.set
-                        return true;
-                    }
-                });
 
         mCollapsingToolbar.setTitle(bean.getName());
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
-
 }

@@ -15,6 +15,7 @@ import com.mcy.mtravel.entity.PhotoBean;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.DeviceUtils;
+import com.zjf.core.utils.TimeUtils;
 
 import java.util.List;
 
@@ -54,6 +55,21 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
             }
         }
 
+        //日期
+        View layout_date = holder.getView(R.id.lay_date_head);
+        layout_date.setVisibility(View.GONE);
+        int lastDay = -1;
+        NotesBean bean = mData.get(position);
+        int day = bean.getDay();
+        if (position != 0) {
+            lastDay = mData.get(position - 1).getDay();
+        }
+        if (day != lastDay) {
+            layout_date.setVisibility(View.VISIBLE);
+            holder.setText(R.id.txt_day_num, "Day" + day);
+            holder.setText(R.id.txt_time, bean.getTrip_date() + " " + TimeUtils.getWeek(bean.getTrip_date(), "yyyy-MM-dd"));
+        }
+
 
         //标题
         View layout = holder.getView(R.id.layout_title);
@@ -62,7 +78,7 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
         if (position != 0) {
             lastName = mData.get(position - 1).getEntry_name();
         }
-        if ((!TextUtils.isEmpty(entry_name)) && (!entry_name.equals(lastName))) {
+        if ((!TextUtils.isEmpty(entry_name)) && ((!entry_name.equals(lastName))) || (day != lastDay)) {
             layout.setVisibility(View.VISIBLE);
             holder.setText(R.id.txt_title, entry_name);
         }
