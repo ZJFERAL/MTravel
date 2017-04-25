@@ -89,6 +89,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     private int mHeadHeight;
     private int mTop;
     private int mBottom;
+    private boolean isScrollToFirst;
 
 
     @Override
@@ -145,7 +146,8 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                     }
                 }
                 int index = getTargetIndexByTitle(title, times);
-                moveToPosition(index);
+                boolean isFirst = childPosition == 0;
+                moveToPosition(index, isFirst);
                 mDrawer.closeDrawer(Gravity.START);
                 return false;
             }
@@ -165,7 +167,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                             String title = strings.get(size - 1);
                             int index = getLastIndexByTitle(title);
                             if (index != 0) {
-                                moveToPosition(index + 1);
+                                moveToPosition(index + 1, true);
                                 setTitleData(index + 1);
                             }
                             mDrawer.closeDrawer(Gravity.START);
@@ -232,10 +234,14 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                         //获取要置顶的项顶部离RecyclerView顶部的距离
                         int top = mRecyclerview.getChildAt(n).getTop();
                         //最后的移动
+                        if (!isScrollToFirst) {
+                            top = top - mHeadHeight;
+                        }
                         mRecyclerview.scrollBy(0, top);
                         isAutoScroll = false;
                     }
                 }
+
 
                 if (!isAutoScroll) {
                     if (dy > 0 && (!isActionBtnHide)) {
@@ -269,7 +275,8 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
     private int mIndex;
 
-    private void moveToPosition(int index) {
+    private void moveToPosition(int index, boolean isFirst) {
+        isScrollToFirst = isFirst;
         mIndex = index;
         //获取当前recycleView屏幕可见的第一项和最后一项的Position
         int firstItem = mLayoutManager.findFirstVisibleItemPosition();
@@ -281,7 +288,10 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         } else if (index <= lastItem) {
             //当要置顶的项已经在屏幕上显示时，计算它离屏幕原点的距离
             int top = mRecyclerview.getChildAt(index - firstItem).getTop();
-            mRecyclerview.scrollBy(0, top);
+            if (!isFirst) {
+                top = top - mHeadHeight;
+            }
+            mRecyclerview.smoothScrollBy(0, top);
         } else {
             //当要置顶的项在当前显示的最后一项的后面时
             mRecyclerview.scrollToPosition(index);
