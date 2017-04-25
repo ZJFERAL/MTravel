@@ -49,6 +49,8 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
     @BindView(R.id.img_cover)
     ImageView mImgCover;
+    @BindView(R.id.img_user)
+    ImageView mImgUser;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.txt_day_num)
@@ -112,6 +114,12 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         mRecyclerview.setLayoutManager(mLayoutManager);
         mRecyclerview.setAdapter(mAdapter);
         mDrawer.setScrimColor(Color.TRANSPARENT);
+        mImgUser.setVisibility(View.GONE);
+        if (mHeadHeight == 0) {
+            mHeadHeight = mLayDateHead.getHeight();
+            mTop = mLayDateHead.getTop();
+            mBottom = mLayDateHead.getBottom();
+        }
     }
 
     @Override
@@ -196,12 +204,6 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                 int nextPostion = firstPosition == mNoteList.size() - 1 ? firstPosition : firstPosition + 1;
                 NotesBean nextBean = mNoteList.get(nextPostion);
                 int nextBeanDay = nextBean.getDay();
-
-                if (mHeadHeight == 0) {
-                    mHeadHeight = mLayDateHead.getHeight();
-                    mTop = mLayDateHead.getTop();
-                    mBottom = mLayDateHead.getBottom();
-                }
 
                 if (nextBeanDay != day) {
                     if (mLayoutManager.getChildCount() >= 2) {
@@ -473,7 +475,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         Glide.with(mContext)
                 .load(bean.getUser().getImage())
                 .into(mImgHead);
-        Toolbar.LayoutParams params = new Toolbar.LayoutParams(width / 9, width / 9);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width / 9, width / 9);
         mImgHead.setLayoutParams(params);
 
         mCollapsingToolbar.setTitle(bean.getName());

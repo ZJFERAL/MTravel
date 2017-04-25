@@ -13,27 +13,14 @@
         android:layout_height="wrap_content"
         android:theme="@style/TitleTheme">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentScrim="@color/colorPrimaryDark"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:statusBarScrim="@color/colorTrans">
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin">
+        </android.support.v7.widget.Toolbar>
 
-            <include
-                layout="@layout/layout_trips_note_head"
-                />
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin">
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -46,15 +33,6 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:visibility="gone"
-        app:layout_anchor="@id/appbar_layout"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_menu_white_24dp"
-        />
 
     <FrameLayout
         android:id="@+id/empty_view"
