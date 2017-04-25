@@ -57,7 +57,7 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
         }
 
         //日期
-        View layout_date = holder.getView(R.id.lay_date_head);
+        View layout_date = holder.getView(R.id.lay_date_head_line);
         layout_date.setVisibility(View.GONE);
         int lastDay = -1;
         NotesBean bean = mData.get(position);

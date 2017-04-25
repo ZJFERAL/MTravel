@@ -16,9 +16,11 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -75,6 +77,8 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     ImageView mImgHead;
     @BindView(R.id.appbar_layout)
     AppBarLayout mAppbarLayout;
+    @BindView(R.id.lay_date_head_line)
+    LinearLayout mLayDateHead;
 
 
     private String mTripsID;
@@ -83,6 +87,11 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     private TripsNoteAdapter mAdapter;
     private List<List<String>> mItems;
     private LinearLayoutManager mLayoutManager;
+    private ViewGroup.LayoutParams mParams;
+    private int mHeadHeight;
+    private int mTop;
+    private int mBottom;
+
 
     @Override
     public void initVariables() {
@@ -158,6 +167,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                             int index = getLastIndexByTitle(title);
                             if (index != 0) {
                                 moveToPosition(index + 1);
+                                setTitleData(index + 1);
                             }
                             mDrawer.closeDrawer(Gravity.START);
                         } catch (Exception e) {
@@ -182,22 +192,54 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
         mRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-            private int day = -1;
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-
             }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                int position = mLayoutManager.findFirstVisibleItemPosition();
+
+                int firstPosition = mLayoutManager.findFirstVisibleItemPosition();
+
+                setTitleData(firstPosition);
+
+
+                int nextPostion = firstPosition == mNoteList.size() - 1 ? firstPosition : firstPosition + 1;
+                NotesBean nextBean = mNoteList.get(nextPostion);
+                int nextBeanDay = nextBean.getDay();
+
+                if (mHeadHeight == 0) {
+                    mHeadHeight = mLayDateHead.getHeight();
+                    mTop = mLayDateHead.getTop();
+                    mBottom = mLayDateHead.getBottom();
+                }
+
+                if (nextBeanDay != day) {
+                    if (mLayoutManager.getChildCount() >= 2) {
+                        int top = recyclerView.getChildAt(1).getTop();
+                        if (mParams == null) {
+                            mParams = mLayDateHead.getLayoutParams();
+                        }
+                        if (top <= mHeadHeight) {
+                            mLayDateHead.setTop(mTop - (mHeadHeight - top));
+                            mLayDateHead.setBottom(mBottom - (mHeadHeight - top));
+                        } else {
+                            mLayDateHead.setTop(mTop);
+                            mLayDateHead.setBottom(mBottom);
+                        }
+                    }
+                } else {
+                    mLayDateHead.setTop(mTop);
+                    mLayDateHead.setBottom(mBottom);
+                }
+
                 if (move) {
                     move = false;
                     //获取要置顶的项在当前屏幕的位置，mIndex是记录的要置顶项在RecyclerView中的位置
-                    int n = mIndex - position;
+                    int n = mIndex - firstPosition;
                     if (0 <= n && n < mRecyclerview.getChildCount()) {
                         //获取要置顶的项顶部离RecyclerView顶部的距离
                         int top = mRecyclerview.getChildAt(n).getTop();
@@ -215,17 +257,22 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                         upActionButon();
                     }
                 }
-                NotesBean bean = mNoteList.get(position);
-                int currentDay = bean.getDay();
-                if (currentDay != this.day) {
-                    day = currentDay;
-                    String date = bean.getTrip_date();
-                    mTxtDayNum.setText("Day" + day);
-                    mTxtTime.setText(date + " " + TimeUtils.getWeek(date, "yyyy-MM-dd"));
-                }
 
             }
         });
+    }
+
+    private int day = -1;
+
+    private void setTitleData(int position) {
+        NotesBean bean = mNoteList.get(position);
+        int currentDay = bean.getDay();
+        if (currentDay != this.day) {
+            day = currentDay;
+            String date = bean.getTrip_date();
+            mTxtDayNum.setText("Day" + day);
+            mTxtTime.setText(date + " " + TimeUtils.getWeek(date, "yyyy-MM-dd"));
+        }
     }
 
 
@@ -452,4 +499,5 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 }
