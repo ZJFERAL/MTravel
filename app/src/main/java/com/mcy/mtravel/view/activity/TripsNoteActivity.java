@@ -34,12 +34,10 @@ import com.mcy.mtravel.entity.TripsBean;
 import com.mcy.mtravel.presenter.TripsNotePresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.TripsNoteView;
-import com.zjf.core.impl.AppBarStateChangeListener;
 import com.zjf.core.utils.DeviceUtils;
 import com.zjf.core.utils.LogUtils;
 import com.zjf.core.utils.SnackBarUtils;
 import com.zjf.core.utils.TimeUtils;
-import com.zjf.core.widget.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +49,6 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
     @BindView(R.id.img_cover)
     ImageView mImgCover;
-    @BindView(R.id.action_head)
-    CircleImageView mImgUser;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.txt_day_num)
@@ -73,7 +69,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     FloatingActionButton mFloatActionMenu;
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbar;
-    @BindView(R.id.img_user)
+    @BindView(R.id.img_head_user)
     ImageView mImgHead;
     @BindView(R.id.appbar_layout)
     AppBarLayout mAppbarLayout;
@@ -179,16 +175,6 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
             }
         });
 
-        mAppbarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
-            @Override
-            public void onStateChanged(AppBarLayout appBarLayout, State state) {
-                if (state == State.COLLAPSED) {
-                    mImgUser.setVisibility(View.VISIBLE);
-                } else {
-                    mImgUser.setVisibility(View.GONE);
-                }
-            }
-        });
 
         mRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -486,14 +472,9 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         mImgCover.setLayoutParams(new RelativeLayout.LayoutParams(width, width / 2));
         Glide.with(mContext)
                 .load(bean.getUser().getImage())
-                .into(mImgUser);
-        Glide.with(mContext)
-                .load(bean.getUser().getImage())
                 .into(mImgHead);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width / 9, width / 9);
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        Toolbar.LayoutParams params = new Toolbar.LayoutParams(width / 9, width / 9);
         mImgHead.setLayoutParams(params);
-
 
         mCollapsingToolbar.setTitle(bean.getName());
         setSupportActionBar(mToolbar);

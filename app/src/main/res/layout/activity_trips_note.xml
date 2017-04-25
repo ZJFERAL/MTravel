@@ -42,13 +42,13 @@
                     android:gravity="right"
                     app:layout_collapseMode="pin">
 
-                    <com.zjf.core.widget.CircleImageView
-                        android:id="@+id/action_head"
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
-                        android:layout_marginRight="7dp"
-                        android:padding="2dp"
-                        android:visibility="gone"/>
+                    <ImageView
+                        android:id="@+id/img_head_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_trips_user"
+                        android:padding="4dp"
+                        android:scaleType="fitXY"/>
                 </android.support.v7.widget.Toolbar>
 
             </android.support.design.widget.CollapsingToolbarLayout>
