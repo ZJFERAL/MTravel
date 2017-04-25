@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.NewsAdapter;
@@ -170,7 +171,11 @@ public class NewFragment extends MVPFragment<NewsPresenter> implements NewsView 
 
     @Override
     public void onFailure(String msg, int type) {
-        showSnakBar(msg, type);
+        try {
+            showSnakBar(msg, type);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        }
         onCloseSwipe();
     }
 

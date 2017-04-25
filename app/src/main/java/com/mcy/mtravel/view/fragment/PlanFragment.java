@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.PlanCountryAdapter;
@@ -119,7 +120,11 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
 
     @Override
     public void onFailure(String msg, int type) {
-        showSnakBar(msg, type);
+        try {
+            showSnakBar(msg, type);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        }
         onCloseSwipe();
     }
 

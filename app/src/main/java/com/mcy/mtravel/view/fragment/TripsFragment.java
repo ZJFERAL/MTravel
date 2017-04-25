@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
@@ -176,7 +177,11 @@ public class TripsFragment extends MVPFragment<TripsPresenter> implements TripsV
 
     @Override
     public void onFailure(String msg, int type) {
-        showSnakBar(msg, type);
+        try {
+            showSnakBar(msg, type);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        }
         onCloseSwipe();
     }
 

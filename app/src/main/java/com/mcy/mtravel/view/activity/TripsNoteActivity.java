@@ -115,11 +115,6 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         mRecyclerview.setAdapter(mAdapter);
         mDrawer.setScrimColor(Color.TRANSPARENT);
         mImgUser.setVisibility(View.GONE);
-        if (mHeadHeight == 0) {
-            mHeadHeight = mLayDateHead.getHeight();
-            mTop = mLayDateHead.getTop();
-            mBottom = mLayDateHead.getBottom();
-        }
     }
 
     @Override
@@ -205,6 +200,11 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                 NotesBean nextBean = mNoteList.get(nextPostion);
                 int nextBeanDay = nextBean.getDay();
 
+                if (mHeadHeight == 0) {
+                    mHeadHeight = mLayDateHead.getHeight();
+                    mTop = mLayDateHead.getTop();
+                    mBottom = mLayDateHead.getBottom();
+                }
                 if (nextBeanDay != day) {
                     if (mLayoutManager.getChildCount() >= 2) {
                         int top = recyclerView.getChildAt(1).getTop();
@@ -476,6 +476,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                 .load(bean.getUser().getImage())
                 .into(mImgHead);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width / 9, width / 9);
+        params.leftMargin = 10;
         mImgHead.setLayoutParams(params);
 
         mCollapsingToolbar.setTitle(bean.getName());

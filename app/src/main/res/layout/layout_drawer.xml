@@ -5,20 +5,32 @@
               android:background="@color/colorDrawerBG"
               android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/img_head_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_trips_user"
-        android:padding="4dp"
-        android:scaleType="fitXY"/>
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/menu"
-        android:textColor="@color/colorWhite"
-        android:textSize="20sp"/>
+        android:layout_margin="5dp"
+        android:background="@color/colorDrawerHeadBG"
+        android:orientation="vertical"
+        android:paddingTop="40dp">
+
+        <ImageView
+            android:id="@+id/img_head_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_trips_user"
+            android:padding="4dp"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="@string/menu"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
 
     <ExpandableListView
         android:id="@+id/expand_listview"

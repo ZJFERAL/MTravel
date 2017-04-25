@@ -12,5 +12,6 @@
     <color name="colorLightDark">#8b8a8a</color>
     <color name="colorTransDark">#b78b8a8a</color>
     <color name="colorDrawerBG">#dcea6952</color>
+    <color name="colorDrawerHeadBG">#cde68c65</color>
     <color name="colorTransDeepDark">#b7535353</color>
 </resources>
