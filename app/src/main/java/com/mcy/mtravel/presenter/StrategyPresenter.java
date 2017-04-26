@@ -28,7 +28,7 @@ public class StrategyPresenter extends Presenter<StrategyView> {
         onGetData();
     }
 
-    private void onGetData() {
+    public void onGetData() {
         mStrategyModel.getData(new OnAsyncModelListener<List<StrategyBean>>() {
             @Override
             public void onFailure(String msg, int type) {

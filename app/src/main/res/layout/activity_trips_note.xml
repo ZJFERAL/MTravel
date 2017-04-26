@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 app:contentScrim="@color/colorPrimaryDark"
                 app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleMarginStart="38dp"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <include
@@ -38,7 +38,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="20dp"
                     app:layout_collapseMode="pin">
                 </android.support.v7.widget.Toolbar>
 
@@ -51,12 +51,6 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <include
-                layout="@layout/layout_date_head"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
@@ -65,6 +59,10 @@
                 >
             </android.support.v7.widget.RecyclerView>
 
+            <include
+                layout="@layout/layout_date_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </RelativeLayout>
 
 
@@ -109,7 +107,7 @@
 
     <include
         layout="@layout/layout_drawer"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"/>
 

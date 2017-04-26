@@ -11,7 +11,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/TitleTheme">
+        android:theme="@style/TitleDarkTheme">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -35,6 +35,7 @@
                 android:drawableRight="@drawable/ic_search_white_24dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
+                android:textColor="@color/colorWhite"
                 android:gravity="center_vertical"
                 android:text="@string/all_search"/>
 

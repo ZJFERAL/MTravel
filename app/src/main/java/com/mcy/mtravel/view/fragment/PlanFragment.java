@@ -20,7 +20,10 @@ import com.mcy.mtravel.adapter.PlanCountryAdapter;
 import com.mcy.mtravel.base.MVPFragment;
 import com.mcy.mtravel.entity.TargetPlaceBean;
 import com.mcy.mtravel.presenter.PlanPresenter;
+import com.mcy.mtravel.utils.FinalParams;
+import com.mcy.mtravel.view.activity.StrategyActivity;
 import com.mcy.mtravel.view.impl.PlanView;
+import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.utils.SnackBarUtils;
 
 import java.util.ArrayList;
@@ -87,6 +90,14 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
                 }
             }
         });
+        mRecyclerView.addOnItemTouchListener(new CRecyclerViewAdapter.RecyclerItemClickListener(getContext(), new CRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString(FinalParams.STRATEGY_ID, mAdapter.getData().get(position).getId() + "");
+                jumpTo(getActivity(), StrategyActivity.class, bundle, false);
+            }
+        }));
     }
 
     @Override

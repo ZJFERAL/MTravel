@@ -83,6 +83,10 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     AppBarLayout mAppbarLayout;
     @BindView(R.id.lay_date_head_line)
     LinearLayout mLayDateHead;
+    @BindView(R.id.bg_head)
+    LinearLayout mBgHead;
+    @BindView(R.id.bg_menu)
+    LinearLayout mBgMenu;
 
 
     private String mTripsID;
@@ -124,6 +128,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         mRecyclerview.setAdapter(mAdapter);
         mDrawer.setScrimColor(Color.TRANSPARENT);
         mImgUser.setVisibility(View.GONE);
+        mCollapsingToolbar.setExpandedTitleColor(Color.WHITE);
     }
 
     @Override
@@ -162,6 +167,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                         }
                     }
                 }
+                LogUtils.e(title + " " + times);
                 int index = getTargetIndexByTitle(title, times);
                 boolean isFirst = judgeFirst(index);
                 moveToPosition(index, isFirst);
@@ -431,6 +437,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
             }
             int day = mNoteList.get(i).getDay();
             if (title.equals(name)) {
+                LogUtils.e(name);
                 if ((!title.equals(lastName))) {
                     locTimes++;
                     if (locTimes == times) {
@@ -531,13 +538,14 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                     }
                 }).into(mImgCover);
         mImgCover.setLayoutParams(new RelativeLayout.LayoutParams(width, (int) (width / 1.7)));
+
         Glide.with(mContext)
                 .load(bean.getUser().getImage())
+                .override(width / 8, width / 8)
+                .placeholder(R.drawable.ic_insert_emoticon_orange_a200_48dp)
                 .into(mImgHead);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width / 9, width / 9);
-        params.leftMargin = 10;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width / 8, width / 8);
         mImgHead.setLayoutParams(params);
-
         mCollapsingToolbar.setTitle(bean.getName());
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -568,7 +576,15 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                     if (swatch != null) {
                         mCollapsingToolbar.setContentScrimColor(swatch.getRgb());
                         mCollapsingToolbar.setCollapsedTitleTextColor(swatch.getTitleTextColor());
+                        mFloatActionMenu.setRippleColor(swatch.getRgb());
                     }
+                    Palette.Swatch swatch_lm = palette.getLightMutedSwatch();
+                    Palette.Swatch swatch_lv = palette.getLightVibrantSwatch();
+                    if (swatch_lm != null && swatch_lv != null) {
+                        mBgMenu.setBackgroundColor(swatch_lm.getRgb());
+                        mBgHead.setBackgroundColor(swatch_lv.getRgb());
+                    }
+
 
                 }
             });

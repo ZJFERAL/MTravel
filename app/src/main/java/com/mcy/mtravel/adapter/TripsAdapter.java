@@ -39,11 +39,30 @@ public class TripsAdapter extends CRecyclerViewAdapter<TripsBean> {
 
     @Override
     public void setConvertView(CRecyclerViewViewHolder holder, final TripsBean item, final int position) {
+        ImageView userHead = holder.getView(R.id.img_user);
+        if (isShowUser) {
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width / 9, width / 9);
+            params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            userHead.setLayoutParams(params);
+            userHead.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, UserInfoActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FinalParams.USER_ID, item.getUser().getId() + "");
+                    intent.putExtra("data", bundle);
+                    mContext.startActivity(intent);
+                }
+            });
+        } else {
+            userHead.setVisibility(View.GONE);
+        }
+
         holder.setImageByUrl(R.id.img_cover, item.getFront_cover_photo_url(), R.drawable.weit_place)
                 .setText(R.id.txt_title, item.getName())
                 .setText(R.id.txt_time, item.getStart_date() + "/" + item.getDays() + "天," + item.getPhotos_count() + "图");
         if (isShowUser) {
-            holder.setImageByUrl(R.id.img_user, item.getUser().getImage(), R.drawable.weit_place);
+            holder.setImageByUrl(R.id.img_user, item.getUser().getImage(), R.drawable.ic_insert_emoticon_orange_a200_48dp);
         }
         ImageView cover = holder.getView(R.id.img_cover);
         cover.setLayoutParams(new RelativeLayout.LayoutParams(width, (int) (width / 1.7)));
@@ -64,25 +83,6 @@ public class TripsAdapter extends CRecyclerViewAdapter<TripsBean> {
                 }
             }
         });
-
-        ImageView userHead = holder.getView(R.id.img_user);
-        if (isShowUser) {
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width / 9, width / 9);
-            params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            userHead.setLayoutParams(params);
-            userHead.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, UserInfoActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString(FinalParams.USER_ID, item.getUser().getId() + "");
-                    intent.putExtra("data", bundle);
-                    mContext.startActivity(intent);
-                }
-            });
-        } else {
-            userHead.setVisibility(View.GONE);
-        }
 
     }
 }

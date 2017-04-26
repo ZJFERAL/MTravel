@@ -154,7 +154,9 @@ public class UserInfoActivity extends MVPActivity<UserInfoPresenter> implements 
                         setTitleBackColor(drawable);
                         return true;
                     }
-                }).into(mImgUser);
+                })
+                .placeholder(R.drawable.ic_insert_emoticon_orange_a200_48dp)
+                .into(mImgUser);
         int width = DeviceUtils.getDeviceScreenWidth(mContext);
         mImgUser.setLayoutParams(new LinearLayout.LayoutParams(width / 8, width / 8));
         if (data.getGender() == 0) {
