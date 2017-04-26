@@ -18,4 +18,5 @@
     <string name="menu">目录</string>
     <string name="error_user">用户错误</string>
     <string name="user_info">用户信息</string>
+    <string name="error_place">地点错误</string>
 </resources>

@@ -15,4 +15,5 @@ public class FinalParams extends com.zjf.core.utils.FinalParams {
     public static final String CY_APP_BASEURL = "http://chanyouji.com/api/";
     public static final String TRIPS_NOTE_ID = "TRIPS_NOTE_ID";
     public static final String USER_ID = "USER_ID";
+    public static final String STRATEGY_ID = "STRATEGY_ID";
 }

@@ -1,6 +1,7 @@
 package com.mcy.mtravel.api;
 
 import com.mcy.mtravel.entity.CBannerBean;
+import com.mcy.mtravel.entity.StrategyBean;
 import com.mcy.mtravel.entity.TargetPlaceBean;
 import com.mcy.mtravel.entity.TripNoteBean;
 import com.mcy.mtravel.entity.TripsBean;
@@ -33,4 +34,7 @@ public interface CyjUrl {
 
     @GET(value = "users/{id}.json")
     Observable<UserWithTripsBean> getUser(@Path("id") String id, @Query("page") int page);
+
+    @GET(value = "destinations/{id}.json")
+    Observable<List<StrategyBean>> getStrategy(@Path("id") String id);
 }

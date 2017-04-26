@@ -43,6 +43,8 @@
             android:name=".view.activity.UserInfoActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".view.activity.StrategyActivity">
+        </activity>
     </application>
 
 </manifest>
