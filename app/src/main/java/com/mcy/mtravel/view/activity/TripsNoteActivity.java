@@ -9,6 +9,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -25,6 +27,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.ExpandableAdapter;
 import com.mcy.mtravel.adapter.TripsNoteAdapter;
@@ -35,6 +40,7 @@ import com.mcy.mtravel.presenter.TripsNotePresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.TripsNoteView;
 import com.zjf.core.utils.DeviceUtils;
+import com.zjf.core.utils.ImageUtils;
 import com.zjf.core.utils.LogUtils;
 import com.zjf.core.utils.SnackBarUtils;
 import com.zjf.core.utils.TimeUtils;
@@ -90,6 +96,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     private int mTop;
     private int mBottom;
     private boolean isScrollToFirst;
+    private int mID;
 
 
     @Override
@@ -108,6 +115,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
     @Override
     public void initView() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.activity_trips_note);
         ButterKnife.bind(this);
         mAdapter.setEmptyView(mEmptyView);
@@ -120,6 +128,15 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
     @Override
     public void setListener() {
+        mImgHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString(FinalParams.USER_ID, mID + "");
+                jumpTo(TripsNoteActivity.this, UserInfoActivity.class, bundle, false);
+            }
+        });
+
         mFloatActionMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -500,8 +517,20 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         Glide.with(mContext)
                 .load(bean.getFront_cover_photo_url())
                 .placeholder(R.drawable.weit_place)
-                .into(mImgCover);
-        mImgCover.setLayoutParams(new RelativeLayout.LayoutParams(width, width / 2));
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String s, Target<GlideDrawable> target, boolean b) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable drawable, String s, Target<GlideDrawable> target, boolean b, boolean b1) {
+                        mImgCover.setImageDrawable(drawable);
+                        setTitleBackColor(drawable);
+                        return true;
+                    }
+                }).into(mImgCover);
+        mImgCover.setLayoutParams(new RelativeLayout.LayoutParams(width, (int) (width / 1.7)));
         Glide.with(mContext)
                 .load(bean.getUser().getImage())
                 .into(mImgHead);
@@ -512,6 +541,41 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         mCollapsingToolbar.setTitle(bean.getName());
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mID = bean.getUser().getId();
     }
 
+    private void setTitleBackColor(GlideDrawable drawable) {
+        try {
+            Palette.Builder builder = Palette.from(ImageUtils.drawableToBitmap(drawable));
+            builder.generate(new Palette.PaletteAsyncListener() {
+                @Override
+                public void onGenerated(Palette palette) {
+                    Palette.Swatch swatch = palette.getLightMutedSwatch();
+                    LogUtils.e("onGenerated");
+                    if (swatch == null) {
+                        LogUtils.e("swatch != null");
+                        swatch = palette.getLightVibrantSwatch();
+                        if (swatch == null) {
+                            swatch = palette.getDarkMutedSwatch();
+                            if (swatch == null) {
+                                swatch = palette.getDarkVibrantSwatch();
+                                if (swatch == null) {
+                                    swatch = palette.getDominantSwatch();
+                                }
+                            }
+                        }
+                    }
+                    if (swatch != null) {
+                        mCollapsingToolbar.setContentScrimColor(swatch.getRgb());
+                        mCollapsingToolbar.setCollapsedTitleTextColor(swatch.getTitleTextColor());
+                    }
+
+                }
+            });
+        } catch (Exception e) {
+            LogUtils.e("setTitleBackColor", e.getMessage());
+        } finally {
+            onCloseSwipe();
+        }
+    }
 }

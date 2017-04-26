@@ -15,6 +15,10 @@ https://chanyouji.com/api/trips/featured.json?page=1
 查看用户
 https://chanyouji.com/api/users/313643.json?page=1
 
+搜索
+https://chanyouji.com/api/search/trips.json?page=1&q=%E6%97%A5%E6%9C%AC
+https://chanyouji.com/api/search/attractions.json?page=1&q=%E6%97%A5%E6%9C%AC
+https://chanyouji.com/api/search/users.json?page=1&q=%E6%97%A5%E6%9C%AC
 
 攻略
 https://chanyouji.com/api/destinations.json

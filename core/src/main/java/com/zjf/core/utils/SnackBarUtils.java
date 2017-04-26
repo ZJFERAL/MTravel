@@ -21,9 +21,9 @@ public class SnackBarUtils {
     private static final int Alert = FinalParams.ERROR_ALERT;
 
 
-    private static int colorAccent = 0xf2dd96;
-    private static int blue = 0xff2195f3;
-    private static int red = 0xfff44336;
+    public static int colorAccent = 0xf2dd96;
+    public static int blue = 0xff2195f3;
+    public static int red = 0xfff44336;
 
 
     /**
@@ -80,6 +80,12 @@ public class SnackBarUtils {
      * @return
      */
     public static Snackbar ShortSnackbar(View view, String message, int type) {
+        if (view == null) {
+            LogUtils.e("SnackbarUtils", "view is null");
+        }
+        if (message == null) {
+            LogUtils.e("SnackbarUtils", "message is null");
+        }
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
         switchType(snackbar, type);
         return snackbar;

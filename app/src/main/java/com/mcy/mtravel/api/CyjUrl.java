@@ -31,6 +31,6 @@ public interface CyjUrl {
     @GET(value = "trips/{id}.json")
     Observable<TripNoteBean> getTripsNote(@Path("id") String id);
 
-    @GET(value = "https://chanyouji.com/api/users/{id}.json")
+    @GET(value = "users/{id}.json")
     Observable<UserWithTripsBean> getUser(@Path("id") String id, @Query("page") int page);
 }

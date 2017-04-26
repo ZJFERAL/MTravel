@@ -27,8 +27,7 @@
                 app:contentScrim="@color/colorPrimaryDark"
                 app:expandedTitleMarginEnd="64dp"
                 app:expandedTitleMarginStart="48dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:statusBarScrim="@color/colorTrans">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <include
                     layout="@layout/layout_trips_note_head"
@@ -39,7 +38,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:gravity="right"
+                    android:layout_marginTop="28dp"
                     app:layout_collapseMode="pin">
                 </android.support.v7.widget.Toolbar>
 

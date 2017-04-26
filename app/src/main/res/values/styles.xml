@@ -15,4 +15,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="TransTitleTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorTrans</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

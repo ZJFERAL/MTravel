@@ -48,6 +48,7 @@ public class UserInfoModel implements UserInfoModelImpl {
                     public void accept(UserWithTripsBean bean) throws Exception {
                         if (bean != null) {
                             listener.onSuccess(bean);
+                            currentIndex++;
                         } else {
                             listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                         }
@@ -58,7 +59,6 @@ public class UserInfoModel implements UserInfoModelImpl {
                         listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                     }
                 });
-
         mDisposables.add(subscribe);
     }
 
