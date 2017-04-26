@@ -23,4 +23,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="btn_tips">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@drawable/txt_color</item>
+        <item name="android:background">#fff</item>
+    </style>
+
 </resources>

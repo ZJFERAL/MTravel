@@ -19,4 +19,8 @@
     <string name="error_user">用户错误</string>
     <string name="user_info">用户信息</string>
     <string name="error_place">地点错误</string>
+    <string name="tip">攻略</string>
+    <string name="trip">行程</string>
+    <string name="travel">旅行地</string>
+    <string name="special">专题</string>
 </resources>
