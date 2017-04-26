@@ -146,7 +146,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                     }
                 }
                 int index = getTargetIndexByTitle(title, times);
-                boolean isFirst = childPosition == 0;
+                boolean isFirst = judgeFirst(index);
                 moveToPosition(index, isFirst);
                 mDrawer.closeDrawer(Gravity.START);
                 return false;
@@ -170,11 +170,11 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                                 moveToPosition(index + 1, true);
                                 setTitleData(index + 1);
                             }
-                            mDrawer.closeDrawer(Gravity.START);
                         } catch (Exception e) {
                             LogUtils.e("groupsClick", "error Index");
                         }
                     }
+                    mDrawer.closeDrawer(Gravity.START);
                 }
                 return false;
             }
@@ -242,6 +242,14 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                     }
                 }
 
+                if (moveToUp) {
+                    moveToUp = false;
+                    if (!isScrollToFirst) {
+                        mRecyclerview.scrollBy(0, -mHeadHeight);
+                    }
+                    isAutoScroll = false;
+                }
+
 
                 if (!isAutoScroll) {
                     if (dy > 0 && (!isActionBtnHide)) {
@@ -254,6 +262,15 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
             }
         });
+    }
+
+    private boolean judgeFirst(int index) {
+        if (index == 0) {
+            return true;
+        } else {
+            return !(mNoteList.get(index - 1).getDay() == mNoteList.get(index).getDay());
+        }
+
     }
 
     private int day = -1;
@@ -272,6 +289,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
     private boolean isAutoScroll = false;
     private boolean move = false;
+    private boolean moveToUp = false;
 
     private int mIndex;
 
@@ -285,6 +303,8 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         if (index <= firstItem) {
             //当要置顶的项在当前显示的第一个项的前面时
             mRecyclerview.scrollToPosition(index);
+            moveToUp = true;
+            isAutoScroll = true;
         } else if (index <= lastItem) {
             //当要置顶的项已经在屏幕上显示时，计算它离屏幕原点的距离
             int top = mRecyclerview.getChildAt(index - firstItem).getTop();
