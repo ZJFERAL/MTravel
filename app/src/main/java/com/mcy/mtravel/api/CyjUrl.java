@@ -2,6 +2,7 @@ package com.mcy.mtravel.api;
 
 import com.mcy.mtravel.entity.CBannerBean;
 import com.mcy.mtravel.entity.StrategyBean;
+import com.mcy.mtravel.entity.StrategyDetialBean;
 import com.mcy.mtravel.entity.TargetPlaceBean;
 import com.mcy.mtravel.entity.TripNoteBean;
 import com.mcy.mtravel.entity.TripsBean;
@@ -37,4 +38,7 @@ public interface CyjUrl {
 
     @GET(value = "destinations/{id}.json")
     Observable<List<StrategyBean>> getStrategy(@Path("id") String id);
+
+    @GET(value = "wiki/destinations/{id}.json")
+    Observable<List<StrategyDetialBean>> getWikiTips(@Path("id") String id);
 }
