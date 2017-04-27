@@ -13,5 +13,4 @@ public interface UserInfoView extends BaseViewImp {
 
     void onGetMoreData(UserWithTripsBean data);
 
-    void onFailure(String msg, int type);
 }

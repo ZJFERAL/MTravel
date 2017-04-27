@@ -12,7 +12,6 @@ import java.util.List;
 
 public interface TripsNoteView extends BaseViewImp {
 
-    void onFailure(String msg, int type);
 
     void onLeftView(List<String> dates, List<List<String>> items);
 

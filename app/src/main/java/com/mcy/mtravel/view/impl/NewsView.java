@@ -15,6 +15,4 @@ public interface NewsView extends BaseViewImp {
 
     void onGetMoreData(List<IndexBean.DataBean.FeedsBean.ListBean> data);
 
-    void onFailure(String msg, int type);
-
 }

@@ -138,6 +138,15 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
         SnackBarUtils.ShortSnackbar(mCoorBG, msg, type).show();
     }
 
+    @Override
+    public void onFailure(String msg, int type) {
+        try {
+            showSnakBar(msg, type);
+        } catch (Exception e) {
+            showToast(msg);
+        }
+    }
+
     public void startAPP() {
         if (isNetWorkDone && isAnimDone) {
             if (isFirst) {

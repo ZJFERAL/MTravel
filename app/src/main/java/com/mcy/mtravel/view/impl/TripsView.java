@@ -16,5 +16,4 @@ public interface TripsView extends BaseViewImp {
 
     void onGetMoreData(List<TripsBean> data);
 
-    void onFailure(String msg, int type);
 }

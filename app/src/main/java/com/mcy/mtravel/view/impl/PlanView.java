@@ -15,5 +15,4 @@ public interface PlanView extends BaseViewImp {
 
     void onRightItem(List<TargetPlaceBean.DestinationsBean> data);
 
-    void onFailure(String msg, int type);
 }

@@ -13,6 +13,4 @@ public interface StrategyView extends BaseViewImp{
 
     void onRefreshData(List<StrategyBean> data);
 
-
-    void onFailure(String msg, int type);
 }
