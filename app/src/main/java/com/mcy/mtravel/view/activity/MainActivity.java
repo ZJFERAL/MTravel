@@ -6,13 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.base.BaseActivity;
 import com.mcy.mtravel.view.fragment.NewFragment;
-import com.mcy.mtravel.view.fragment.TripsFragment;
 import com.mcy.mtravel.view.fragment.PlanFragment;
+import com.mcy.mtravel.view.fragment.TripsFragment;
 import com.zjf.core.adapter.TabAdapter;
 import com.zjf.core.utils.SnackBarUtils;
 
@@ -34,6 +35,8 @@ public class MainActivity extends BaseActivity {
     ViewPager mViewpager;
     @BindView(R.id.title_search)
     TextView mTitleView;
+    @BindView(R.id.img_about)
+    ImageView mBtnAbout;
 
     private TabAdapter mAdapter;
     private List<Fragment> mFragmentList;
@@ -74,6 +77,12 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+        mBtnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jumpTo(MainActivity.this, AboutActivity.class, false);
             }
         });
     }
