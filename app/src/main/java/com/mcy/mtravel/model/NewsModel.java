@@ -29,6 +29,7 @@ public class NewsModel implements NewsModelImpl {
     private SPUtils mSPUtils;
     private int currentIndex = 0;
     private List<Disposable> mDisposables;
+    private QyerUrl mQyerUrl;
 
     public NewsModel() {
         mSPUtils = new SPUtils();
@@ -38,8 +39,10 @@ public class NewsModel implements NewsModelImpl {
     @Override
     public void getData(final OnAsyncModelListener<IndexBean> listener) {
         String token = mSPUtils.getToken();
-        QyerUrl qyerUrl = RetrofitUtils.getClient(FinalParams.QY_APP_BASEURL, null).create(QyerUrl.class);
-        Observable<IndexBean> indexUrl = qyerUrl.getIndex(FinalParams.QY_APP_INDEXURL, token, UrlUtils.getIndexAuthorization(currentIndex),
+        if (mQyerUrl == null) {
+            mQyerUrl = RetrofitUtils.getClient(FinalParams.QY_APP_BASEURL, null, App.getInstance()).create(QyerUrl.class);
+        }
+        Observable<IndexBean> indexUrl = mQyerUrl.getIndex(FinalParams.QY_APP_INDEXURL, token, UrlUtils.getIndexAuthorization(currentIndex),
                 FinalParams.CONTENT_TYPE,
                 "feed", "10", "" + currentIndex * 10);
         Disposable subscribe = indexUrl.subscribeOn(Schedulers.io())

@@ -35,7 +35,7 @@ public class StrategyModel implements StrategyModelImpl {
     @Override
     public void getData(final OnAsyncModelListener<List<StrategyBean>> listener) {
         if (mUrl == null) {
-            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null).create(CyjUrl.class);
+            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null,App.getInstance()).create(CyjUrl.class);
         }
         mUrl.getStrategy(mStrategyID)
                 .observeOn(AndroidSchedulers.mainThread())

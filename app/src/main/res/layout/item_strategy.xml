@@ -17,18 +17,34 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_place_name"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginLeft="15dp"/>
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/img_cover"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"/>
+                <ImageView
+                    android:id="@+id/img_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/img_cover"
+                    android:layout_alignLeft="@id/img_cover"
+                    android:layout_alignRight="@id/img_cover"
+                    android:layout_alignTop="@id/img_cover"
+                    android:background="@drawable/bg_black2trans"/>
+
+                <TextView
+                    android:id="@+id/txt_place_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,25 +54,25 @@
                 <Button
                     android:id="@+id/tips"
                     style="@style/btn_tips"
-                    android:drawableTop="@drawable/bg_btn_tips"
+                    android:drawableTop="@drawable/tips_destination_pressed"
                     android:text="@string/tip"/>
 
                 <Button
                     android:id="@+id/trip"
                     style="@style/btn_tips"
-                    android:drawableTop="@drawable/bg_btn_trip"
+                    android:drawableTop="@drawable/trip_destination_pressed"
                     android:text="@string/trip"/>
 
                 <Button
                     android:id="@+id/travel"
                     style="@style/btn_tips"
-                    android:drawableTop="@drawable/bg_btn_travel"
+                    android:drawableTop="@drawable/travel_destination_pressed"
                     android:text="@string/travel"/>
 
                 <Button
                     android:id="@+id/special"
                     style="@style/btn_tips"
-                    android:drawableTop="@drawable/bg_btn_special"
+                    android:drawableTop="@drawable/special_destination_pressed"
                     android:text="@string/special"/>
             </LinearLayout>
 

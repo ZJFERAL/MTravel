@@ -50,7 +50,7 @@ public class TripsModel implements TripsModelImpl {
     @Override
     public void getData(final OnAsyncModelListener<List<TripsBean>> listener) {
         if (mUrl == null) {
-            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null).create(CyjUrl.class);
+            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null,App.getInstance()).create(CyjUrl.class);
         }
         Disposable subscribe = mUrl.getTrips(currentIndex)
                 .observeOn(AndroidSchedulers.mainThread())

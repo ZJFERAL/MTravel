@@ -52,7 +52,7 @@ public class GetTokenModel implements GetTokenModelImpl {
     }
 
     private void startNetWork(final OnAsyncModelListener<String> listener) {
-        QyerUrl qyerUrl = RetrofitUtils.getClient(FinalParams.QY_APP_BASEURL, null).create(QyerUrl.class);
+        QyerUrl qyerUrl = RetrofitUtils.getClient(FinalParams.QY_APP_BASEURL, null, App.getInstance()).create(QyerUrl.class);
         Observable<TokenBean> token = null;
         if (isFirst) {
             token = qyerUrl.getInitToken("",

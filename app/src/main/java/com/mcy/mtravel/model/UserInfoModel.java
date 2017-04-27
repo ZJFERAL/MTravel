@@ -37,7 +37,7 @@ public class UserInfoModel implements UserInfoModelImpl {
     @Override
     public void getData(final OnAsyncModelListener<UserWithTripsBean> listener) {
         if (mUrl == null) {
-            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null).create(CyjUrl.class);
+            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null, App.getInstance()).create(CyjUrl.class);
         }
 
         Disposable subscribe = mUrl.getUser(mUserID, currentIndex)

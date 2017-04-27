@@ -49,7 +49,7 @@ public class PlanModel implements PlanModelImpl {
     @Override
     public void getData(final OnAsyncModelListener<List<TargetPlaceBean>> listener) {
         if (mUrl == null) {
-            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null).create(CyjUrl.class);
+            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null,App.getInstance()).create(CyjUrl.class);
         }
         mUrl.getTargetZone()
                 .observeOn(AndroidSchedulers.mainThread())

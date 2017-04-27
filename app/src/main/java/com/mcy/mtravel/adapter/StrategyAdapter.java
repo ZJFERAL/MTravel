@@ -3,7 +3,7 @@ package com.mcy.mtravel.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.entity.StrategyBean;
@@ -53,6 +53,6 @@ public class StrategyAdapter extends CRecyclerViewAdapter<StrategyBean> {
             }
         });
         ImageView view = holder.getView(R.id.img_cover);
-        view.setLayoutParams(new LinearLayout.LayoutParams(mWidth, (int) (mWidth / 1.7)));
+        view.setLayoutParams(new RelativeLayout.LayoutParams(mWidth, (int) (mWidth / 1.7)));
     }
 }

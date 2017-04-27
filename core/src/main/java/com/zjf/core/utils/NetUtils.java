@@ -3,6 +3,7 @@ package com.zjf.core.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 
 /**
  * Created by zhaojifeng on 2017/4/11.
@@ -22,6 +23,17 @@ public class NetUtils {
             return false;
         }
         return (current.isAvailable());
+    }
+
+    /**
+     * 判断wifi是否打开
+     * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
+     *
+     * @return {@code true}: 是<br>{@code false}: 否
+     */
+    public static boolean getWifiEnabled(Context context) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        return wifiManager.isWifiEnabled();
     }
 
 }
