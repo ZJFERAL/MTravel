@@ -23,8 +23,7 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:background="@drawable/bg_location"
-            android:src="@drawable/ic_location_on_yellow_200_24dp"/>
+            android:src="@drawable/scenery_a"/>
 
         <TextView
             android:id="@+id/txt_title"

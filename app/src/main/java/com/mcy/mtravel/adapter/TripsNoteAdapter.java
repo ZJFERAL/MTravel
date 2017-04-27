@@ -36,25 +36,8 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
 
     @Override
     public void setConvertView(CRecyclerViewViewHolder holder, NotesBean item, int position) {
-        //底部位置
-        TextView txtLocation = holder.getView(R.id.txt_location);
-        txtLocation.setVisibility(View.GONE);
-        txtLocation.setOnClickListener(null);
-        txtLocation.setTextColor(mContext.getResources().getColor(R.color.colorLightDark));
         String entry_name = item.getEntry_name();
-        if (!TextUtils.isEmpty(entry_name)) {
-            txtLocation.setVisibility(View.VISIBLE);
-            txtLocation.setText(entry_name);
-            if (!item.isUser_entry()) {
-                txtLocation.setTextColor(Color.BLUE);
-                txtLocation.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
-            }
-        }
+        boolean isShowBottom = false;
 
         //日期
         View layout_date = holder.getView(R.id.lay_date_head_line);
@@ -93,6 +76,7 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
         if (!TextUtils.isEmpty(description)) {
             txtContent.setVisibility(View.VISIBLE);
             txtContent.setText(description);
+            isShowBottom = true;
         }
 
         //图片内容
@@ -112,6 +96,26 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
             imgNote.setLayoutParams(params);
             Glide.with(mContext).load(photo.getUrl()).placeholder(R.drawable.weit_place)
                     .into(imgNote);
+            isShowBottom = true;
+        }
+
+        //底部定位
+        TextView txtLocation = holder.getView(R.id.txt_location);
+        txtLocation.setVisibility(View.GONE);
+        txtLocation.setOnClickListener(null);
+        txtLocation.setTextColor(mContext.getResources().getColor(R.color.colorLightDark));
+        if ((!TextUtils.isEmpty(entry_name)) && isShowBottom) {
+            txtLocation.setVisibility(View.VISIBLE);
+            txtLocation.setText(entry_name);
+            if (!item.isUser_entry()) {
+                txtLocation.setTextColor(Color.BLUE);
+                txtLocation.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }
         }
     }
 }

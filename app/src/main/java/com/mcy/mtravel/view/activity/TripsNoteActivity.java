@@ -13,7 +13,6 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -101,6 +100,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     private int mBottom;
     private boolean isScrollToFirst;
     private int mID;
+    private List<String> mMenuTitles;
 
 
     @Override
@@ -179,27 +179,13 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         mExpandListview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                List<String> list = mItems.get(groupPosition);
-                if (list == null || list.size() == 0) {
-                    if (groupPosition == 0) {
-                        mRecyclerview.scrollToPosition(0);
-                    } else {
-                        try {
-                            List<String> strings = mItems.get(groupPosition - 1);
-                            int size = strings.size();
-                            String title = strings.get(size - 1);
-                            int index = getLastIndexByTitle(title);
-                            if (index != 0) {
-                                moveToPosition(index + 1, true);
-                                setTitleData(index + 1);
-                            }
-                        } catch (Exception e) {
-                            LogUtils.e("groupsClick", "error Index");
-                        }
-                    }
-                    mDrawer.closeDrawer(Gravity.START);
-                }
-                return false;
+
+                String s = mMenuTitles.get(groupPosition);
+                int index = getIndexByMenuTitle(s);
+                moveToPosition(index, true);
+                setTitleData(index);
+                mDrawer.closeDrawer(Gravity.START);
+                return true;
             }
         });
 
@@ -285,6 +271,20 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
             }
         });
+    }
+
+    private int getIndexByMenuTitle(String s) {
+        int index = 0;
+        int size = mNoteList.size();
+        for (int i = 0; i < size - 1; i++) {
+            NotesBean bean = mNoteList.get(i);
+            int day = bean.getDay();
+            if (s.equals(day + "")) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     private boolean judgeFirst(int index) {
@@ -404,24 +404,6 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         }
     }
 
-    private int getLastIndexByTitle(String title) {
-        int index = 0;
-        int size = mNoteList.size();
-        for (int i = 0; i < size - 1; i++) {
-            NotesBean bean = mNoteList.get(i);
-            String name = bean.getEntry_name();
-            if (title.equals(name)) {
-                NotesBean beanNext = mNoteList.get(i + 1);
-                String nextName = beanNext.getEntry_name();
-                if (TextUtils.isEmpty(nextName)) {
-                    index = i;
-                    break;
-                }
-            }
-        }
-        return index;
-    }
-
     private int getTargetIndexByTitle(String title, int times) {
         int locTimes = 0;
         int index = 0;
@@ -482,6 +464,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
     @Override
     public void onLeftView(List<String> dates, List<List<String>> items) {
+        mMenuTitles = dates;
         mItems = items;
         mExpandableAdapter = new ExpandableAdapter(dates, items, mContext);
         mExpandListview.setAdapter(mExpandableAdapter);
@@ -559,9 +542,8 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                 @Override
                 public void onGenerated(Palette palette) {
                     Palette.Swatch swatch = palette.getLightMutedSwatch();
-                    LogUtils.e("onGenerated");
                     if (swatch == null) {
-                        LogUtils.e("swatch != null");
+                        LogUtils.e("swatch == null");
                         swatch = palette.getLightVibrantSwatch();
                         if (swatch == null) {
                             swatch = palette.getDarkMutedSwatch();

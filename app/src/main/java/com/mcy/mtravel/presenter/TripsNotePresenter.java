@@ -11,6 +11,7 @@ import com.mcy.mtravel.model.impl.TripsNoteModelImpl;
 import com.mcy.mtravel.view.impl.TripsNoteView;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.presenter.Presenter;
+import com.zjf.core.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class TripsNotePresenter extends Presenter<TripsNoteView> {
         for (int i = 0; i < size; i++) {
             TripDaysBean daysBean = days.get(i);
             int day = daysBean.getDay();
-            dayTitles.add("DAY " + day);
+            dayTitles.add("" + day);
             String trip_date = daysBean.getTrip_date();
             List<NodesBean> nodes = daysBean.getNodes();
             int nodesSize = nodes.size();
@@ -68,9 +69,19 @@ public class TripsNotePresenter extends Presenter<TripsNoteView> {
                 boolean user_entry = nodesBean.isUser_entry();
                 if (!TextUtils.isEmpty(entry_name)) {
                     item_items.add(entry_name);
+                    LogUtils.e(i + " " + j);
                 }
                 List<NotesBean> notes = nodesBean.getNotes();
                 int notesSize = notes.size();
+                if ((!TextUtils.isEmpty(entry_name)) && (nodes == null || notesSize == 0)) {
+                    NotesBean notesBean = new NotesBean();
+                    notesBean.setEntry_id(entry_id);
+                    notesBean.setEntry_name(entry_name);
+                    notesBean.setUser_entry(user_entry);
+                    notesBean.setDay(day);
+                    notesBean.setTrip_date(trip_date);
+                    notesBeens.add(notesBean);
+                }
                 for (int k = 0; k < notesSize; k++) {
                     NotesBean notesBean = notes.get(k);
                     notesBean.setEntry_id(entry_id);
