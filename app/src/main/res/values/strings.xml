@@ -25,4 +25,16 @@
     <string name="special">专题</string>
     <string name="app_tips">\n\n本应用为马成渊毕业设计，禁止其他用途。\n联系方式：15201390504</string>
     <string name="about">关于</string>
+    <string name="author">作者资料\nAuthor</string>
+    <string name="overview">概览\nOverview</string>
+    <string name="note">出行需知\nNote</string>
+    <string name="arrive">如何到达\nArrive</string>
+    <string name="traffic">当地交通\nTraffic</string>
+    <string name="entertainment">娱乐\nEntertainment</string>
+    <string name="food">美食\nFood</string>
+    <string name="shopping">购物\nShopping</string>
+    <string name="other">其他\nOther</string>
+    <string name="attraction">景点\nAttraction</string>
+    <string name="hotel">住宿\nHotel</string>
+    <string name="departure">离境需知\nDeparture</string>
 </resources>

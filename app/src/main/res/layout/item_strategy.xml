@@ -51,25 +51,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
+                <TextView
                     android:id="@+id/tips"
                     style="@style/btn_tips"
                     android:drawableTop="@drawable/tips_destination_pressed"
                     android:text="@string/tip"/>
 
-                <Button
+                <TextView
                     android:id="@+id/trip"
                     style="@style/btn_tips"
                     android:drawableTop="@drawable/trip_destination_pressed"
                     android:text="@string/trip"/>
 
-                <Button
+                <TextView
                     android:id="@+id/travel"
                     style="@style/btn_tips"
                     android:drawableTop="@drawable/travel_destination_pressed"
                     android:text="@string/travel"/>
 
-                <Button
+                <TextView
                     android:id="@+id/special"
                     style="@style/btn_tips"
                     android:drawableTop="@drawable/special_destination_pressed"

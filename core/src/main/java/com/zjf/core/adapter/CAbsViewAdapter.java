@@ -68,14 +68,13 @@ public abstract class CAbsViewAdapter<T> extends BaseAdapter {
         return CAbsViewViewHolder.creatViewHolder(convertView, mContext, mItemLayoutIds[type], parent, type);
     }
 
-    public void fulshData(List<T> data) {
-        mData.clear();
-        mData.addAll(data);
-        notifyDataSetChanged();
+    public void flushData(List<T> data) {
+        this.mData.clear();
+        this.addData(data);
     }
 
-    public void addData(List<T> data){
-        mData.addAll(data);
+    public void addData(List<T> data) {
+        this.mData.addAll(data);
         notifyDataSetChanged();
     }
 }

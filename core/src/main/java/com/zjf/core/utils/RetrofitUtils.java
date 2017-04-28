@@ -36,12 +36,16 @@ public class RetrofitUtils {
         builder.connectTimeout(10, TimeUnit.SECONDS);
     }
 
-    public static Retrofit getClient(String baseUrl, OkHttpClient client, Context context) {
+    public static Retrofit getClient(String baseUrl, OkHttpClient client, Context context, int type) {
         mBaseUrl = baseUrl;
-        builder.addInterceptor(getCacheInterceptor(context))
-                .addNetworkInterceptor(getCacheInterceptor(context))
+        builder.addInterceptor(getCacheInterceptor(context, type))
+                .addNetworkInterceptor(getCacheInterceptor(context, type))
                 .cache(new Cache(context.getCacheDir(), 10 * 1024 * 1024));
         return getClient(client);
+    }
+
+    public static Retrofit getClient(String baseUrl, OkHttpClient client, Context context) {
+        return getClient(baseUrl, client, context, TYPE_SHORT);
     }
 
     public static Retrofit getClient(String baseUrl, OkHttpClient client) {
@@ -62,7 +66,10 @@ public class RetrofitUtils {
                 .build();
     }
 
-    public static Interceptor getCacheInterceptor(final Context context) {
+    public static final int TYPE_LONG = 1001;
+    public static final int TYPE_SHORT = 1002;
+
+    public static Interceptor getCacheInterceptor(final Context context, final int type) {
         return new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
@@ -74,7 +81,8 @@ public class RetrofitUtils {
                 }
 
                 Response response = chain.proceed(request);
-                if (NetUtils.isNetworkReachable(context)) {//有网络情况下，根据请求接口的设置，配置缓存。
+                if (NetUtils.isNetworkReachable(context) && type == TYPE_SHORT) {//有网络情况下，根据请求接口的设置，配置缓存。
+
                     if (NetUtils.getWifiEnabled(context)) {
                         //这样在下次请求时，根据缓存决定是否真正发出请求。
                         String cacheControl = request.cacheControl().toString();
@@ -88,6 +96,7 @@ public class RetrofitUtils {
                                 .removeHeader("Pragma")
                                 .build();
                     }
+
                 } else {//无网络
                     return response.newBuilder().header("Cache-Control", "public,only-if-cached,max-stale=360000")
                             .removeHeader("Pragma")

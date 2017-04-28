@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="7dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorTransDark"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <com.zjf.core.widget.MostLengthGridView
+        android:id="@+id/item_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="4dp"
+        android:cacheColorHint="#00000000"
+        android:horizontalSpacing="4dp"
+        android:listSelector="@drawable/empty_selector"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:verticalSpacing="4dp">
+
+    </com.zjf.core.widget.MostLengthGridView>
+
+</LinearLayout>

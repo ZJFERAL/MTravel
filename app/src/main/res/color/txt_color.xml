@@ -4,6 +4,6 @@
         android:color="#000"
         android:state_pressed="false"/>
     <item
-        android:color="#009BE1"
+        android:color="@color/colorAccent"
         android:state_pressed="true"/>
 </selector>

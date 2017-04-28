@@ -29,6 +29,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:button">@null</item>
+        <item name="android:clickable">true</item>
         <item name="android:textColor">@color/txt_color</item>
         <item name="android:background">#fff</item>
         <item name="android:gravity">bottom|center_horizontal</item>

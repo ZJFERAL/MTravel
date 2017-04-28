@@ -451,8 +451,12 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
 
     @Override
     public void onFailure(String msg, int type) {
-        showSnakBar(msg, type);
         onCloseSwipe();
+        try {
+            showSnakBar(msg, type);
+        } catch (Exception e) {
+            showToast(msg);
+        }
     }
 
     private void onCloseSwipe() {

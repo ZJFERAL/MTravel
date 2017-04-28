@@ -99,7 +99,7 @@ public class StrategyActivity extends MVPActivity<StrategyPresenter> implements 
         mAdapter.flushData(data);
         if (isFirst) {
             isFirst = false;
-            mToolbar.setTitle(data.get(0).getName_zh_cn());
+            mToolbar.setTitle(data.get(0).getName_zh_cn() + getString(R.string.tip));
             setSupportActionBar(mToolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
