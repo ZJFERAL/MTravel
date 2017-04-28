@@ -1,6 +1,7 @@
 package com.mcy.mtravel.adapter;
 
 import android.content.Context;
+import android.view.View;
 
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.entity.PagesBean;
@@ -21,8 +22,15 @@ public class TipMenuItemAdapter extends CAbsViewAdapter<PagesBean> {
     }
 
     @Override
-    protected void setItemView(CAbsViewViewHolder holder, PagesBean item) {
+    protected void setItemView(CAbsViewViewHolder holder, final PagesBean item) {
         holder.setText(R.id.txt_tip_menu_item, item.getTitle());
+        holder.setOnclickListener(R.id.txt_tip_menu_item, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemId = item.getId();
+                
+            }
+        });
     }
 
 }

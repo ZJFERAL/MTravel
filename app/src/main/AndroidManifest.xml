@@ -53,7 +53,35 @@
             android:name=".view.activity.AboutActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TipsActivity">
+        <activity
+            android:name=".view.activity.TipsActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".view.activity.SearchActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".view.activity.TipsDetialActivity">
+        </activity>
+        <activity android:name=".view.activity.TipsTripsListActivity">
+        </activity>
+        <activity android:name=".view.activity.TripsDetialActivity">
+        </activity>
+        <activity android:name=".view.activity.TravelListActivity">
+        </activity>
+        <activity android:name=".view.activity.TravelDetialActivity">
+        </activity>
+        <activity android:name=".view.activity.TravelDetialItemActivity">
+        </activity>
+        <activity android:name=".view.activity.SpecialActivity">
+        </activity>
+        <activity android:name=".view.activity.TravelPlaceTripsActivity">
+        </activity>
+        <activity android:name=".view.activity.TravelPlacePicturesActivity">
+        </activity>
+        <activity android:name=".view.activity.ShowPictureActivity">
+        </activity>
+        <activity android:name=".view.activity.MapActivity">
         </activity>
     </application>
 
