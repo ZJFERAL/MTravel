@@ -61,27 +61,50 @@
             android:name=".view.activity.SearchActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TipsDetialActivity">
+        <activity
+            android:name=".view.activity.TipsDetialActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TipsTripsListActivity">
+        <activity
+            android:name=".view.activity.TipsTripsListActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TripsDetialActivity">
+        <activity
+            android:name=".view.activity.TripsDetialActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TravelListActivity">
+        <activity
+            android:name=".view.activity.TravelListActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TravelDetialActivity">
+        <activity
+            android:name=".view.activity.TravelDetialActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TravelDetialItemActivity">
+        <activity
+            android:name=".view.activity.TravelDetialItemActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.SpecialActivity">
+        <activity
+            android:name=".view.activity.SpecialActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TravelPlaceTripsActivity">
+        <activity
+            android:name=".view.activity.TravelPlaceTripsActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.TravelPlacePicturesActivity">
+        <activity
+            android:name=".view.activity.TravelPlacePicturesActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".view.activity.ShowPictureActivity">
+        <activity
+            android:name=".view.activity.ShowPictureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransThems">
         </activity>
-        <activity android:name=".view.activity.MapActivity">
+        <activity
+            android:name=".view.activity.MapActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

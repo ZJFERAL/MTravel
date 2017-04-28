@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">漫途</string>
-    <string name="all_search">  大家都在搜 南京</string>
+    <string name="all_search">\t\t大家都在搜 南京</string>
     <string name="error_token">getToken error</string>
     <string name="enter">立即体验</string>
     <string name="error_net">网络似乎有些问题...</string>
