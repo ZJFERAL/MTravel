@@ -18,4 +18,8 @@ public class FinalParams extends com.zjf.core.utils.FinalParams {
     public static final String TIP_TITLE = "TIP_TITLE";
     public static final String USER_ID = "USER_ID";
     public static final String STRATEGY_ID = "STRATEGY_ID";
+    public static final String TIPS_DETIAL_ID = "TIPS_DETIAL_ID";
+    public static final String TIPS_DETIAL_TYPE = "TIPS_DETIAL_TYPE";
+    public static final String TIPS_DETIAL_GROUP = "TIPS_DETIAL_GROUP";
+    public static final String TIPS_DETIAL_SINGLE = "TIPS_DETIAL_SINGLE";
 }

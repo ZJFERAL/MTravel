@@ -65,18 +65,21 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        TextView textView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.expand_text, parent, false);
-        textView.setText("DAY " + groups.get(groupPosition));
-        return textView;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.expand_text, parent, false);
+        }
+        ((TextView) convertView).setText("DAY " + groups.get(groupPosition));
+        return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-
-        TextView textView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.expand_text_item, parent, false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.expand_text_item, parent, false);
+        }
         String s = items.get(groupPosition).get(childPosition);
-        textView.setText("     · " + s);
-        return textView;
+        ((TextView) convertView).setText("     · " + s);
+        return convertView;
     }
 
     @Override

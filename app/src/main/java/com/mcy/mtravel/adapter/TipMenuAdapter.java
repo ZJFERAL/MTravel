@@ -19,8 +19,14 @@ import java.util.List;
 
 public class TipMenuAdapter extends CAbsViewAdapter<StrategyDetialBean> {
 
+    private String mID;
+
     public TipMenuAdapter(Context context, List<StrategyDetialBean> data, int... itemLayoutIds) {
         super(context, data, itemLayoutIds);
+    }
+
+    public void setID(String ID) {
+        mID = ID;
     }
 
     @Override
@@ -86,6 +92,7 @@ public class TipMenuAdapter extends CAbsViewAdapter<StrategyDetialBean> {
         holder.setText(R.id.txt_title, title).setImageResource(R.id.img_icon, resId);
         List<PagesBean> pages = item.getPages();
         TipMenuItemAdapter adapter = new TipMenuItemAdapter(mContext, pages, R.layout.item_tipmenu_item);
+        adapter.setID(mID);
         MostLengthGridView view = holder.getView(R.id.item_view);
         view.setAdapter(adapter);
     }

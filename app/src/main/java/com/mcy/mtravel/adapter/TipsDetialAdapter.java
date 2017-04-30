@@ -1,0 +1,225 @@
+package com.mcy.mtravel.adapter;
+
+import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.mcy.mtravel.R;
+import com.mcy.mtravel.entity.ChildrenBean;
+import com.mcy.mtravel.entity.Pages;
+import com.mcy.mtravel.entity.PhotosBean;
+import com.mcy.mtravel.entity.SectionsBean;
+import com.zjf.core.adapter.CAbsViewAdapter;
+import com.zjf.core.adapter.CAbsViewViewHolder;
+import com.zjf.core.adapter.CRecyclerViewAdapter;
+import com.zjf.core.adapter.CRecyclerViewViewHolder;
+import com.zjf.core.utils.DeviceUtils;
+
+import java.util.List;
+
+/**
+ * @author :ZJF
+ * @version : 2017-04-30 下午 9:13
+ */
+
+public class TipsDetialAdapter extends BaseExpandableListAdapter {
+
+    private List<ChildrenBean> mChildrenBeanList;
+    private Context mContext;
+    private int width;
+
+    public TipsDetialAdapter(List<ChildrenBean> childrenBeanList, Context context) {
+        mChildrenBeanList = childrenBeanList;
+        mContext = context;
+        width = DeviceUtils.getDeviceScreenWidth(mContext);
+    }
+
+    @Override
+    public int getGroupCount() {
+        return mChildrenBeanList != null ? mChildrenBeanList.size() : 0;
+    }
+
+    @Override
+    public int getChildrenCount(int groupPosition) {
+        ChildrenBean childrenBean = mChildrenBeanList.get(groupPosition);
+        return childrenBean.getSections() != null ? childrenBean.getSections().size() : 0;
+    }
+
+    @Override
+    public ChildrenBean getGroup(int groupPosition) {
+        return mChildrenBeanList.get(groupPosition);
+    }
+
+    @Override
+    public SectionsBean getChild(int groupPosition, int childPosition) {
+        return mChildrenBeanList.get(groupPosition).getSections().get(childPosition);
+    }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+        return mChildrenBeanList.get(groupPosition).getId();
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return mChildrenBeanList.get(groupPosition).getSections().get(childPosition).getId();
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        GroupHolder holder = null;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_tip_detial_expand_head, parent, false);
+            holder = new GroupHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (GroupHolder) convertView.getTag();
+        }
+        if (isExpanded) {
+            holder.getImgArrow().setImageResource(R.drawable.ic_arrow_drop_up_yellow_700_24dp);
+        } else {
+            holder.getImgArrow().setImageResource(R.drawable.ic_arrow_drop_down_yellow_700_24dp);
+        }
+        holder.getTxtTitle().setText(mChildrenBeanList.get(groupPosition).getTitle());
+        return convertView;
+    }
+
+    @Override
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        ChildHolder holder = null;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_tip_detial, parent, false);
+            holder = new ChildHolder(convertView, mContext);
+            convertView.setTag(holder);
+        } else {
+            holder = (ChildHolder) convertView.getTag();
+        }
+        SectionsBean bean = mChildrenBeanList.get(groupPosition).getSections().get(childPosition);
+        if (!TextUtils.isEmpty(bean.getTitle())) {
+            holder.txtTitle.setVisibility(View.VISIBLE);
+            holder.txtTitle.setText(bean.getTitle());
+        }
+        if (!TextUtils.isEmpty(bean.getDescription())) {
+            holder.webContent.setVisibility(View.VISIBLE);
+            setHtml(bean.getDescription(), holder.webContent);
+        }
+        List<PhotosBean> photos = bean.getPhotos();
+        if (photos != null && photos.size() != 0) {
+            holder.recyPhotos.setVisibility(View.VISIBLE);
+            holder.recyPhotos.setAdapter(new CRecyclerViewAdapter<PhotosBean>(mContext, photos, R.layout.item_photos) {
+                @Override
+                public void setConvertView(CRecyclerViewViewHolder holder, PhotosBean item, int position) {
+                    int realWidth = width / 2;
+                    float scale = realWidth * 1f / item.getImage_width();
+                    int realHeight = (int) (scale * item.getImage_height());
+                    ImageView view = holder.getView(R.id.img_photo);
+                    view.setLayoutParams(new FrameLayout.LayoutParams(realWidth, realHeight));
+                    holder.setImageByUrl(R.id.img_photo, item.getImage_url(), realWidth, realHeight, R.drawable.weit_place);
+                }
+            });
+        }
+        List<Pages> pages = bean.getPages();
+        if (pages != null && pages.size() != 0) {
+            holder.layPages.setVisibility(View.VISIBLE);
+            holder.listPages.setAdapter(new CAbsViewAdapter<Pages>(mContext, pages, R.layout.item_tip_detial_pages) {
+                @Override
+                protected void setItemView(CAbsViewViewHolder holder, final Pages item) {
+                    holder.setText(R.id.txt_pages, item.getTitle())
+                            .setOnclickListener(R.id.txt_pages, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    item.getDestination_id();
+                                }
+                            });
+                }
+            });
+
+        }
+        if (!TextUtils.isEmpty(bean.getTravel_date())) {
+            holder.layBottom.setVisibility(View.VISIBLE);
+            holder.txtTime.setText(bean.getTravel_date());
+        }
+        if (bean.getUser() != null && (!TextUtils.isEmpty(bean.getUser().getName()))) {
+            holder.layBottom.setVisibility(View.VISIBLE);
+            holder.txtAuthor.setText(bean.getUser().getName());
+        }
+
+
+        return convertView;
+    }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return true;
+    }
+
+    private void setHtml(String htmlData, WebView view) {
+        htmlData = htmlData.replaceAll("&", "");
+        htmlData = htmlData.replaceAll("quot;", "\"");
+        htmlData = htmlData.replaceAll("lt;", "<");
+        htmlData = htmlData.replaceAll("gt;", ">");
+        htmlData = htmlData.replaceAll("nbsp;", "");
+        view.loadDataWithBaseURL(null, htmlData, "text/html", "utf-8", null);
+    }
+
+    static class GroupHolder {
+        private TextView txtTitle;
+        private ImageView imgArrow;
+
+        public GroupHolder(View convertView) {
+            txtTitle = (TextView) convertView.findViewById(R.id.txt_head_title);
+            imgArrow = (ImageView) convertView.findViewById(R.id.img_arrow);
+        }
+
+        public TextView getTxtTitle() {
+            return txtTitle;
+        }
+
+        public ImageView getImgArrow() {
+            return imgArrow;
+        }
+    }
+
+    static class ChildHolder {
+        TextView txtTitle, txtTime, txtAuthor;
+        WebView webContent;
+        RecyclerView recyPhotos;
+        LinearLayout layBottom, layPages;
+        ListView listPages;
+
+        public ChildHolder(View convertView, Context context) {
+            txtTitle = (TextView) convertView.findViewById(R.id.txt_title);
+            webContent = (WebView) convertView.findViewById(R.id.web_content);
+            txtTime = (TextView) convertView.findViewById(R.id.txt_time);
+            txtAuthor = (TextView) convertView.findViewById(R.id.txt_author);
+            recyPhotos = (RecyclerView) convertView.findViewById(R.id.item_recy);
+            layBottom = (LinearLayout) convertView.findViewById(R.id.lay_bottom);
+            layPages = (LinearLayout) convertView.findViewById(R.id.layout_pages);
+            listPages = (ListView) convertView.findViewById(R.id.list_pages);
+
+            txtTitle.setVisibility(View.GONE);
+            webContent.setVisibility(View.GONE);
+            recyPhotos.setVisibility(View.GONE);
+            layBottom.setVisibility(View.GONE);
+            layPages.setVisibility(View.GONE);
+
+            recyPhotos.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        }
+    }
+}

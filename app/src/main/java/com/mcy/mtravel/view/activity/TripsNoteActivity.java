@@ -128,6 +128,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         mRecyclerview.setAdapter(mAdapter);
         mDrawer.setScrimColor(Color.TRANSPARENT);
         mImgUser.setVisibility(View.GONE);
+        mExpandListview.setGroupIndicator(null);
         mCollapsingToolbar.setExpandedTitleColor(Color.WHITE);
     }
 

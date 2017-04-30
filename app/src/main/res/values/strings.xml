@@ -37,4 +37,5 @@
     <string name="attraction">景点\nAttraction</string>
     <string name="hotel">住宿\nHotel</string>
     <string name="departure">离境需知\nDeparture</string>
+    <string name="about_content">\t相关内容</string>
 </resources>

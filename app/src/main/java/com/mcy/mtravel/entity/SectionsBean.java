@@ -27,6 +27,7 @@ public class SectionsBean {
     private List<PhotosBean> photos;
     private String travel_date;
     private UserBean user;
+    private List<Pages> pages;
 
 
     public int getId() {
@@ -75,5 +76,13 @@ public class SectionsBean {
 
     public void setUser(UserBean user) {
         this.user = user;
+    }
+
+    public List<Pages> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<Pages> pages) {
+        this.pages = pages;
     }
 }

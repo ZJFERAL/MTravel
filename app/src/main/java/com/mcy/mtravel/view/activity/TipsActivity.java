@@ -87,6 +87,7 @@ public class TipsActivity extends MVPActivity<TipPresenter> implements TipView {
     @Override
     public void onGetData(List<StrategyDetialBean> list) {
         mAdapter = new TipMenuAdapter(mContext, list, R.layout.item_tipmenu);
+        mAdapter.setID(mID);
         mListView.setAdapter(mAdapter);
     }
 }

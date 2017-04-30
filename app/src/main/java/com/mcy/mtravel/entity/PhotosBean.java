@@ -19,9 +19,9 @@ public class PhotosBean {
     private int image_width;
     private int image_height;
     private String description;
-    private Object trip_id;
-    private Object note_id;
-    private Object user_name;
+    private int trip_id;
+    private int note_id;
+    private String user_name;
 
     public String getImage_url() {
         return image_url;
@@ -55,27 +55,27 @@ public class PhotosBean {
         this.description = description;
     }
 
-    public Object getTrip_id() {
+    public int getTrip_id() {
         return trip_id;
     }
 
-    public void setTrip_id(Object trip_id) {
+    public void setTrip_id(int trip_id) {
         this.trip_id = trip_id;
     }
 
-    public Object getNote_id() {
+    public int getNote_id() {
         return note_id;
     }
 
-    public void setNote_id(Object note_id) {
+    public void setNote_id(int note_id) {
         this.note_id = note_id;
     }
 
-    public Object getUser_name() {
+    public String getUser_name() {
         return user_name;
     }
 
-    public void setUser_name(Object user_name) {
+    public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
 }
