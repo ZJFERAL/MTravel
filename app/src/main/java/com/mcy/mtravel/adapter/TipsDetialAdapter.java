@@ -1,13 +1,14 @@
 package com.mcy.mtravel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -20,6 +21,8 @@ import com.mcy.mtravel.entity.ChildrenBean;
 import com.mcy.mtravel.entity.Pages;
 import com.mcy.mtravel.entity.PhotosBean;
 import com.mcy.mtravel.entity.SectionsBean;
+import com.mcy.mtravel.utils.FinalParams;
+import com.mcy.mtravel.view.activity.TipsDetialActivity;
 import com.zjf.core.adapter.CAbsViewAdapter;
 import com.zjf.core.adapter.CAbsViewViewHolder;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
@@ -109,6 +112,13 @@ public class TipsDetialAdapter extends BaseExpandableListAdapter {
             convertView.setTag(holder);
         } else {
             holder = (ChildHolder) convertView.getTag();
+            holder.txtTitle.setVisibility(View.GONE);
+            holder.txtContent.setVisibility(View.GONE);
+            holder.recyPhotos.setVisibility(View.GONE);
+            holder.layBottom.setVisibility(View.GONE);
+            holder.layPages.setVisibility(View.GONE);
+            holder.txtEnd.setVisibility(View.GONE);
+
         }
         SectionsBean bean = mChildrenBeanList.get(groupPosition).getSections().get(childPosition);
         if (!TextUtils.isEmpty(bean.getTitle())) {
@@ -116,8 +126,8 @@ public class TipsDetialAdapter extends BaseExpandableListAdapter {
             holder.txtTitle.setText(bean.getTitle());
         }
         if (!TextUtils.isEmpty(bean.getDescription())) {
-            holder.webContent.setVisibility(View.VISIBLE);
-            setHtml(bean.getDescription(), holder.webContent);
+            holder.txtContent.setVisibility(View.VISIBLE);
+            holder.txtContent.setText(bean.getDescription());
         }
         List<PhotosBean> photos = bean.getPhotos();
         if (photos != null && photos.size() != 0) {
@@ -125,12 +135,12 @@ public class TipsDetialAdapter extends BaseExpandableListAdapter {
             holder.recyPhotos.setAdapter(new CRecyclerViewAdapter<PhotosBean>(mContext, photos, R.layout.item_photos) {
                 @Override
                 public void setConvertView(CRecyclerViewViewHolder holder, PhotosBean item, int position) {
-                    int realWidth = width / 2;
-                    float scale = realWidth * 1f / item.getImage_width();
-                    int realHeight = (int) (scale * item.getImage_height());
+                    int realheight = (int) (width / 2.2);
+                    float scale = realheight * 1f / item.getImage_height();
+                    int realWidth = (int) (item.getImage_width() * scale);
                     ImageView view = holder.getView(R.id.img_photo);
-                    view.setLayoutParams(new FrameLayout.LayoutParams(realWidth, realHeight));
-                    holder.setImageByUrl(R.id.img_photo, item.getImage_url(), realWidth, realHeight, R.drawable.weit_place);
+                    view.setLayoutParams(new FrameLayout.LayoutParams(realWidth, realheight));
+                    holder.setImageByUrl(R.id.img_photo, item.getImage_url(), R.drawable.weit_place);
                 }
             });
         }
@@ -139,12 +149,19 @@ public class TipsDetialAdapter extends BaseExpandableListAdapter {
             holder.layPages.setVisibility(View.VISIBLE);
             holder.listPages.setAdapter(new CAbsViewAdapter<Pages>(mContext, pages, R.layout.item_tip_detial_pages) {
                 @Override
-                protected void setItemView(CAbsViewViewHolder holder, final Pages item) {
+                protected void setItemView(CAbsViewViewHolder holder, final Pages item, int position) {
                     holder.setText(R.id.txt_pages, item.getTitle())
                             .setOnclickListener(R.id.txt_pages, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    item.getDestination_id();
+                                    int id = item.getDestination_id();
+                                    Intent intent = new Intent(mContext, TipsDetialActivity.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString(FinalParams.TIP_TITLE, item.getTitle());
+                                    bundle.putString(FinalParams.TIP_ID, id + "");
+                                    bundle.putString(FinalParams.TIPS_DETIAL_CHILD_TITLE, item.getTitle());
+                                    intent.putExtra("data", bundle);
+                                    mContext.startActivity(intent);
                                 }
                             });
                 }
@@ -160,6 +177,9 @@ public class TipsDetialAdapter extends BaseExpandableListAdapter {
             holder.txtAuthor.setText(bean.getUser().getName());
         }
 
+        if (groupPosition == getGroupCount() - 1 && childPosition == getChildrenCount(groupPosition) - 1) {
+            holder.txtEnd.setVisibility(View.VISIBLE);
+        }
 
         return convertView;
     }
@@ -169,14 +189,6 @@ public class TipsDetialAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    private void setHtml(String htmlData, WebView view) {
-        htmlData = htmlData.replaceAll("&", "");
-        htmlData = htmlData.replaceAll("quot;", "\"");
-        htmlData = htmlData.replaceAll("lt;", "<");
-        htmlData = htmlData.replaceAll("gt;", ">");
-        htmlData = htmlData.replaceAll("nbsp;", "");
-        view.loadDataWithBaseURL(null, htmlData, "text/html", "utf-8", null);
-    }
 
     static class GroupHolder {
         private TextView txtTitle;
@@ -197,28 +209,28 @@ public class TipsDetialAdapter extends BaseExpandableListAdapter {
     }
 
     static class ChildHolder {
-        TextView txtTitle, txtTime, txtAuthor;
-        WebView webContent;
+        private int width;
+        TextView txtTitle, txtTime, txtAuthor, txtContent, txtEnd;
         RecyclerView recyPhotos;
         LinearLayout layBottom, layPages;
         ListView listPages;
 
         public ChildHolder(View convertView, Context context) {
+            width = DeviceUtils.getDeviceScreenWidth(context);
             txtTitle = (TextView) convertView.findViewById(R.id.txt_title);
-            webContent = (WebView) convertView.findViewById(R.id.web_content);
+            txtContent = (TextView) convertView.findViewById(R.id.txt_content);
             txtTime = (TextView) convertView.findViewById(R.id.txt_time);
             txtAuthor = (TextView) convertView.findViewById(R.id.txt_author);
             recyPhotos = (RecyclerView) convertView.findViewById(R.id.item_recy);
             layBottom = (LinearLayout) convertView.findViewById(R.id.lay_bottom);
             layPages = (LinearLayout) convertView.findViewById(R.id.layout_pages);
             listPages = (ListView) convertView.findViewById(R.id.list_pages);
+            txtEnd = (TextView) convertView.findViewById(R.id.txt_end);
 
-            txtTitle.setVisibility(View.GONE);
-            webContent.setVisibility(View.GONE);
-            recyPhotos.setVisibility(View.GONE);
-            layBottom.setVisibility(View.GONE);
-            layPages.setVisibility(View.GONE);
 
+            recyPhotos.setLayoutParams(
+                    new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT, (int) (width / 2.2)));
             recyPhotos.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         }
     }

@@ -28,7 +28,12 @@
     <ExpandableListView
         android:id="@+id/expand_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:cacheColorHint="#00000000"
+        android:listSelector="@drawable/empty_selector"
+        android:padding="5dp"/>
+
 
     <LinearLayout
         android:id="@+id/empty_view"

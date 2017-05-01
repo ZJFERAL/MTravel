@@ -58,11 +58,11 @@ public abstract class CAbsViewAdapter<T> extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         int type = getConverViewType(position);
         CAbsViewViewHolder holder = getViewHolder(convertView, parent, type);
-        setItemView(holder, getItem(position));
+        setItemView(holder, getItem(position),position);
         return holder.getConvertView();
     }
 
-    protected abstract void setItemView(CAbsViewViewHolder holder, T item);
+    protected abstract void setItemView(CAbsViewViewHolder holder, T item, int position);
 
     private CAbsViewViewHolder getViewHolder(View convertView, ViewGroup parent, int type) {
         return CAbsViewViewHolder.creatViewHolder(convertView, mContext, mItemLayoutIds[type], parent, type);

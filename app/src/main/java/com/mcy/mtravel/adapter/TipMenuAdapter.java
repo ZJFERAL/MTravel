@@ -30,7 +30,7 @@ public class TipMenuAdapter extends CAbsViewAdapter<StrategyDetialBean> {
     }
 
     @Override
-    protected void setItemView(CAbsViewViewHolder holder, StrategyDetialBean item) {
+    protected void setItemView(CAbsViewViewHolder holder, StrategyDetialBean item, int position) {
         LogUtils.e("setItemView");
         int type = item.getCategory_type();
         String title;
@@ -93,6 +93,7 @@ public class TipMenuAdapter extends CAbsViewAdapter<StrategyDetialBean> {
         List<PagesBean> pages = item.getPages();
         TipMenuItemAdapter adapter = new TipMenuItemAdapter(mContext, pages, R.layout.item_tipmenu_item);
         adapter.setID(mID);
+        adapter.setGroupPosition(position);
         MostLengthGridView view = holder.getView(R.id.item_view);
         view.setAdapter(adapter);
     }
