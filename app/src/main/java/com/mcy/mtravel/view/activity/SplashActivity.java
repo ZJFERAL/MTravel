@@ -1,7 +1,12 @@
 package com.mcy.mtravel.view.activity;
 
 import android.animation.Animator;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.Settings;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
@@ -130,7 +135,7 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
 
     @Override
     public SplashPresenter create() {
-        return new SplashPresenter();
+        return new SplashPresenter(mPermissions);
     }
 
     @Override
@@ -169,5 +174,23 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
     @Override
     public void exit() {
         SplashActivity.this.finish();
+    }
+
+    @Override
+    public void showPermisssionDialog(String permissionName, String tips) {
+        new AlertDialog.Builder(mContext)
+                .setMessage(tips)
+                .setTitle(getString(R.string.txt_tips))
+                .setPositiveButton(getString(R.string.sure), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.setData(Uri.fromParts("package", mContext.getPackageName(), null));
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show();
     }
 }
