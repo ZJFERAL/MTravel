@@ -21,4 +21,5 @@ public class FinalParams extends com.zjf.core.utils.FinalParams {
     public static final String TIPS_DETIAL_CHILD_TITLE = "TIPS_DETIAL_CHILD_TITLE";
     public static final String TIPS_DETIAL_GROUP_POSITION = "TIPS_DETIAL_GROUP_POSITION";
     public static final String TIPS_DETIAL_CHILD_POSITION = "TIPS_DETIAL_CHILD_POSITION";
+    public static final String TRIPS_DETIAL_ID = "TRIPS_DETIAL_ID";
 }

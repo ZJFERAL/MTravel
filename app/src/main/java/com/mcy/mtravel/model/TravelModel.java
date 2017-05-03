@@ -3,8 +3,8 @@ package com.mcy.mtravel.model;
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.api.CyjUrl;
-import com.mcy.mtravel.entity.TipTripsBean;
-import com.mcy.mtravel.model.impl.TipTripsListModelImpl;
+import com.mcy.mtravel.entity.TravelListBean;
+import com.mcy.mtravel.model.impl.TravelModelImpl;
 import com.mcy.mtravel.utils.FinalParams;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.utils.RetrofitUtils;
@@ -21,29 +21,35 @@ import io.reactivex.schedulers.Schedulers;
  * Created by zhaojifeng on 2017/5/3.
  */
 
-public class TipTripsListModel implements TipTripsListModelImpl {
+public class TravelModel implements TravelModelImpl {
 
     private String mID;
     private List<Disposable> mDisposables;
     private CyjUrl mUrl;
     private int index = 1;
 
-    public TipTripsListModel(String travelListID) {
-        mID = travelListID;
+    public TravelModel(String ID) {
+        mID = ID;
         mDisposables = new ArrayList<>();
     }
 
     @Override
-    public void getData(final OnAsyncModelListener<List<TipTripsBean>> listener) {
+    public void onRefreshData(OnAsyncModelListener<List<TravelListBean>> listener) {
+        index = 1;
+        getData(listener);
+    }
+
+    @Override
+    public void getData(final OnAsyncModelListener<List<TravelListBean>> listener) {
         if (mUrl == null) {
             mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null, App.getInstance()).create(CyjUrl.class);
         }
-        mUrl.getTipTripsList(mID, index + "")
+        mUrl.getTravelList(mID, index + "")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<TipTripsBean>>() {
+                .subscribe(new Consumer<List<TravelListBean>>() {
                     @Override
-                    public void accept(List<TipTripsBean> been) throws Exception {
+                    public void accept(List<TravelListBean> been) throws Exception {
                         if (been != null) {
                             if (been.size() != 0) {
                                 listener.onSuccess(been);
@@ -64,13 +70,6 @@ public class TipTripsListModel implements TipTripsListModelImpl {
     }
 
     @Override
-    public void onRefreshData(OnAsyncModelListener<List<TipTripsBean>> listener) {
-        index = 1;
-        getData(listener);
-    }
-
-
-    @Override
     public void cancel() {
         if (mDisposables != null) {
             if (mDisposables.size() > 0) {
@@ -84,4 +83,5 @@ public class TipTripsListModel implements TipTripsListModelImpl {
             mDisposables.clear();
         }
     }
+
 }

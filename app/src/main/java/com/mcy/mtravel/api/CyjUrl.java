@@ -5,6 +5,7 @@ import com.mcy.mtravel.entity.StrategyBean;
 import com.mcy.mtravel.entity.StrategyDetialBean;
 import com.mcy.mtravel.entity.TargetPlaceBean;
 import com.mcy.mtravel.entity.TipTripsBean;
+import com.mcy.mtravel.entity.TravelListBean;
 import com.mcy.mtravel.entity.TripNoteBean;
 import com.mcy.mtravel.entity.TripsBean;
 import com.mcy.mtravel.entity.UserWithTripsBean;
@@ -44,5 +45,8 @@ public interface CyjUrl {
     Observable<List<StrategyDetialBean>> getWikiTips(@Path("id") String id);
 
     @GET(value = "destinations/plans/{id}.json")
-    Observable<List<TipTripsBean>> getTravelList(@Path("id") String id, @Query("page") String index);
+    Observable<List<TipTripsBean>> getTipTripsList(@Path("id") String id, @Query("page") String index);
+
+    @GET(value = "destinations/attractions/{id}.json")
+    Observable<List<TravelListBean>> getTravelList(@Path("id") String id, @Query("page") String index);
 }

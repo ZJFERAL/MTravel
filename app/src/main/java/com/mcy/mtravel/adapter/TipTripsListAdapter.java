@@ -31,7 +31,7 @@ public class TipTripsListAdapter extends CRecyclerViewAdapter<TipTripsBean> {
                 .setText(R.id.txt_date, item.getPlan_days_count() + "天")
                 .setText(R.id.txt_num, item.getPlan_nodes_count() + "个旅行地")
                 .setText(R.id.txt_content, item.getDescription())
-                .setImageByUrl(R.id.img_cover, item.getImage_url());
+                .setImageByUrl(R.id.img_cover, item.getImage_url(), R.drawable.weit_place);
         ImageView view = holder.getView(R.id.img_cover);
         view.setLayoutParams(new RelativeLayout.LayoutParams(mWidth, (int) (mWidth / 1.9)));
     }

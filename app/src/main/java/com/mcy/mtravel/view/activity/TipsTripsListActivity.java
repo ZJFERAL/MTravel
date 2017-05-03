@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.mcy.mtravel.R;
@@ -92,6 +93,16 @@ public class TipsTripsListActivity extends MVPActivity<TipTripsListPresenter> im
             }
         });
         mRecyclerview.addOnScrollListener(listener);
+        mRecyclerview.addOnItemTouchListener(new CRecyclerViewAdapter.RecyclerItemClickListener(mContext, new CRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                TipTripsBean bean = mAdapter.getData().get(position);
+                int id = bean.getId();
+                Intent intent = new Intent(mContext, TripsDetialActivity.class);
+                intent.putExtra(FinalParams.TRIPS_DETIAL_ID, id + "");
+                startActivity(intent);
+            }
+        }));
     }
 
     @Override
