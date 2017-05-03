@@ -106,6 +106,10 @@
             android:name=".view.activity.MapActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".view.activity.SpecialDetialActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
