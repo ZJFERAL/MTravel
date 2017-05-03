@@ -7,7 +7,6 @@ import com.mcy.mtravel.R;
 import com.mcy.mtravel.model.GetTokenModel;
 import com.mcy.mtravel.model.impl.GetTokenModelImpl;
 import com.mcy.mtravel.view.impl.SplashView;
-import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.presenter.Presenter;
@@ -37,22 +36,14 @@ public class SplashPresenter extends Presenter<SplashView> {
     }
 
     public void requestPermission(final String permissionName) {
-        mPermissions.requestEach(permissionName)
-                .subscribe(new Consumer<Permission>() {
+        mPermissions.request(permissionName)
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void accept(Permission permission) throws Exception {
-                        if (isAttached) {
-                            if (permission.granted) {
-                                switch (permission.name) {
-                                    case Manifest.permission.READ_PHONE_STATE:
-                                        getData();
-                                        break;
-                                }
-                            } else if (permission.shouldShowRequestPermissionRationale) {
-                                requestPermission(permissionName);
-                            } else {
-                                mView.showPermisssionDialog(permissionName, App.getInstance().getString(R.string.permission));
-                            }
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (aBoolean) {
+                            getData();
+                        } else {
+                            mView.showPermisssionDialog(permissionName, App.getInstance().getString(R.string.permission));
                         }
                     }
                 });

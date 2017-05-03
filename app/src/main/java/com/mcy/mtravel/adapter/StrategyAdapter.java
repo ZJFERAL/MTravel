@@ -10,7 +10,10 @@ import android.widget.RelativeLayout;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.entity.StrategyBean;
 import com.mcy.mtravel.utils.FinalParams;
+import com.mcy.mtravel.view.activity.SpecialActivity;
 import com.mcy.mtravel.view.activity.TipsActivity;
+import com.mcy.mtravel.view.activity.TipsTripsListActivity;
+import com.mcy.mtravel.view.activity.TravelListActivity;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.DeviceUtils;
@@ -48,17 +51,32 @@ public class StrategyAdapter extends CRecyclerViewAdapter<StrategyBean> {
                 }).setOnclickListener(R.id.trip, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(mContext, TipsTripsListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(FinalParams.TIP_ID, item.getId() + "");
+                bundle.putString(FinalParams.TIP_TITLE, item.getName_zh_cn());
+                intent.putExtra("data", bundle);
+                mContext.startActivity(intent);
             }
         }).setOnclickListener(R.id.travel, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(mContext, TravelListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(FinalParams.TIP_ID, item.getId() + "");
+                bundle.putString(FinalParams.TIP_TITLE, item.getName_zh_cn());
+                intent.putExtra("data", bundle);
+                mContext.startActivity(intent);
             }
         }).setOnclickListener(R.id.special, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(mContext, SpecialActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(FinalParams.TIP_ID, item.getId() + "");
+                bundle.putString(FinalParams.TIP_TITLE, item.getName_zh_cn());
+                intent.putExtra("data", bundle);
+                mContext.startActivity(intent);
             }
         });
         ImageView view = holder.getView(R.id.img_cover);
