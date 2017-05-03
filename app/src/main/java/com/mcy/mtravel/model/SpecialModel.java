@@ -9,10 +9,10 @@ import com.mcy.mtravel.utils.FinalParams;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.utils.RetrofitUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -23,27 +23,19 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SpecialModel implements SpecialModelImpl {
     private String mID;
-    private List<Disposable> mDisposables;
+    private CompositeDisposable mCompositeDisposable;
     private CyjUrl mUrl;
     private int index = 1;
 
     public SpecialModel(String ID) {
         mID = ID;
-        mDisposables = new ArrayList<>();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void cancel() {
-        if (mDisposables != null) {
-            if (mDisposables.size() > 0) {
-                for (int i = 0; i < mDisposables.size(); i++) {
-                    Disposable disposable = mDisposables.get(i);
-                    if (disposable.isDisposed()) {
-                        disposable.dispose();
-                    }
-                }
-            }
-            mDisposables.clear();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
         }
     }
 
@@ -52,7 +44,7 @@ public class SpecialModel implements SpecialModelImpl {
         if (mUrl == null) {
             mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null, App.getInstance()).create(CyjUrl.class);
         }
-        mUrl.getSpecialList(mID, index + "")
+        Disposable subscribe = mUrl.getSpecialList(mID, index + "")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<SpecialListBean>>() {
@@ -75,6 +67,7 @@ public class SpecialModel implements SpecialModelImpl {
                         listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                     }
                 });
+        mCompositeDisposable.add(subscribe);
     }
 
     @Override

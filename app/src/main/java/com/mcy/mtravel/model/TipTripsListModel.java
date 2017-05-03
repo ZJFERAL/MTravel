@@ -9,10 +9,10 @@ import com.mcy.mtravel.utils.FinalParams;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.utils.RetrofitUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -24,13 +24,13 @@ import io.reactivex.schedulers.Schedulers;
 public class TipTripsListModel implements TipTripsListModelImpl {
 
     private String mID;
-    private List<Disposable> mDisposables;
+    private CompositeDisposable mCompositeDisposable;
     private CyjUrl mUrl;
     private int index = 1;
 
     public TipTripsListModel(String travelListID) {
         mID = travelListID;
-        mDisposables = new ArrayList<>();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class TipTripsListModel implements TipTripsListModelImpl {
         if (mUrl == null) {
             mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null, App.getInstance()).create(CyjUrl.class);
         }
-        mUrl.getTipTripsList(mID, index + "")
+        Disposable subscribe = mUrl.getTipTripsList(mID, index + "")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<TipTripsBean>>() {
@@ -61,6 +61,7 @@ public class TipTripsListModel implements TipTripsListModelImpl {
                         listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                     }
                 });
+        mCompositeDisposable.add(subscribe);
     }
 
     @Override
@@ -72,16 +73,8 @@ public class TipTripsListModel implements TipTripsListModelImpl {
 
     @Override
     public void cancel() {
-        if (mDisposables != null) {
-            if (mDisposables.size() > 0) {
-                for (int i = 0; i < mDisposables.size(); i++) {
-                    Disposable disposable = mDisposables.get(i);
-                    if (disposable.isDisposed()) {
-                        disposable.dispose();
-                    }
-                }
-            }
-            mDisposables.clear();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
         }
     }
 }

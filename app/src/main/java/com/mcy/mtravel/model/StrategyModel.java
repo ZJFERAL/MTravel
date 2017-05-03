@@ -9,10 +9,10 @@ import com.mcy.mtravel.utils.FinalParams;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.utils.RetrofitUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -24,20 +24,20 @@ import io.reactivex.schedulers.Schedulers;
 public class StrategyModel implements StrategyModelImpl {
 
     private String mStrategyID;
-    private List<Disposable> mDisposables;
+    private CompositeDisposable mCompositeDisposable;
     private CyjUrl mUrl;
 
     public StrategyModel(String strategyID) {
         mStrategyID = strategyID;
-        mDisposables = new ArrayList<>();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void getData(final OnAsyncModelListener<List<StrategyBean>> listener) {
         if (mUrl == null) {
-            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null,App.getInstance()).create(CyjUrl.class);
+            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null, App.getInstance()).create(CyjUrl.class);
         }
-        mUrl.getStrategy(mStrategyID)
+        Disposable subscribe = mUrl.getStrategy(mStrategyID)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<List<StrategyBean>>() {
@@ -55,20 +55,13 @@ public class StrategyModel implements StrategyModelImpl {
                         listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                     }
                 });
+        mCompositeDisposable.add(subscribe);
     }
 
     @Override
     public void cancel() {
-        if (mDisposables != null) {
-            if (mDisposables.size() > 0) {
-                for (int i = 0; i < mDisposables.size(); i++) {
-                    Disposable disposable = mDisposables.get(i);
-                    if (disposable.isDisposed()) {
-                        disposable.dispose();
-                    }
-                }
-            }
-            mDisposables.clear();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
         }
     }
 }

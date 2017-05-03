@@ -11,11 +11,9 @@ import com.mcy.mtravel.utils.UrlUtils;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.utils.RetrofitUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -28,12 +26,12 @@ public class NewsModel implements NewsModelImpl {
 
     private SPUtils mSPUtils;
     private int currentIndex = 0;
-    private List<Disposable> mDisposables;
+    private CompositeDisposable mCompositeDisposable;
     private QyerUrl mQyerUrl;
 
     public NewsModel() {
         mSPUtils = new SPUtils();
-        mDisposables = new ArrayList<>();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
@@ -65,7 +63,7 @@ public class NewsModel implements NewsModelImpl {
                         listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                     }
                 });
-        mDisposables.add(subscribe);
+        mCompositeDisposable.add(subscribe);
     }
 
     @Override
@@ -76,16 +74,8 @@ public class NewsModel implements NewsModelImpl {
 
     @Override
     public void cancel() {
-        if (mDisposables != null) {
-            if (mDisposables.size() > 0) {
-                for (int i = 0; i < mDisposables.size(); i++) {
-                    Disposable disposable = mDisposables.get(i);
-                    if (disposable.isDisposed()) {
-                        disposable.dispose();
-                    }
-                }
-            }
-            mDisposables.clear();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
         }
     }
 

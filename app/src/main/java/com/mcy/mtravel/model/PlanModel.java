@@ -9,10 +9,10 @@ import com.mcy.mtravel.utils.FinalParams;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.utils.RetrofitUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -24,34 +24,26 @@ import io.reactivex.schedulers.Schedulers;
 public class PlanModel implements PlanModelImpl {
 
 
-    private List<Disposable> mDisposables;
+    private CompositeDisposable mCompositeDisposable;
     private CyjUrl mUrl;
 
     public PlanModel() {
-        mDisposables = new ArrayList<>();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void cancel() {
-        if (mDisposables != null) {
-            if (mDisposables.size() > 0) {
-                for (int i = 0; i < mDisposables.size(); i++) {
-                    Disposable disposable = mDisposables.get(i);
-                    if (disposable.isDisposed()) {
-                        disposable.dispose();
-                    }
-                }
-            }
-            mDisposables.clear();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
         }
     }
 
     @Override
     public void getData(final OnAsyncModelListener<List<TargetPlaceBean>> listener) {
         if (mUrl == null) {
-            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null,App.getInstance()).create(CyjUrl.class);
+            mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null, App.getInstance()).create(CyjUrl.class);
         }
-        mUrl.getTargetZone()
+        Disposable subscribe = mUrl.getTargetZone()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<List<TargetPlaceBean>>() {
@@ -69,6 +61,7 @@ public class PlanModel implements PlanModelImpl {
                         listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                     }
                 });
+        mCompositeDisposable.add(subscribe);
 
     }
 }
