@@ -74,4 +74,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </android.support.v4.view.ViewPager>
+
+    <include layout="@layout/empty_view_layout"/>
+
 </android.support.design.widget.CoordinatorLayout>

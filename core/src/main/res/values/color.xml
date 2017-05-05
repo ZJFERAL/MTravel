@@ -12,4 +12,17 @@
     <color name="color_trans_press">#3bdcdada</color>
     <color name="color_black">#d6000000</color>
     <color name="color_blue">#fa254ed4</color>
+
+
+    <color name="colorWhite">#fff</color>
+    <color name="colorSimpleWhite">#e2e1e1</color>
+    <color name="colorYelloWhite">#fffefa</color>
+    <color name="colorTrans">#00ffffff</color>
+    <color name="colorBlack">#262525</color>
+    <color name="colorSimpleLine">#d2d1d1</color>
+    <color name="colorLightDark">#8b8a8a</color>
+    <color name="colorTransDark">#b78b8a8a</color>
+    <color name="colorDrawerBG">#dcea6952</color>
+    <color name="colorDrawerHeadBG">#cde68c65</color>
+    <color name="colorTransDeepDark">#b7535353</color>
 </resources>

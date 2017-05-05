@@ -10,7 +10,6 @@
     <string name="travelnote">游记</string>
     <string name="plan">攻略</string>
     <string name="next_exit">再按一次退出</string>
-    <string name="no_data">  正在加载...</string>
     <string name="asian">国外·亚洲</string>
     <string name="europe">国外·欧洲</string>
     <string name="us">美洲、大洋洲、非洲与南极洲</string>
@@ -41,6 +40,4 @@
     <string name="about_content">\t相关内容</string>
     <string name="permission">需要读取手机唯一标识的权限</string>
     <string name="txt_tips">提示</string>
-    <string name="sure">确定</string>
-    <string name="cancel">取消</string>
 </resources>
