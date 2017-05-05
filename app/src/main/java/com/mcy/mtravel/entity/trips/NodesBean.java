@@ -1,4 +1,4 @@
-package com.mcy.mtravel.entity;
+package com.mcy.mtravel.entity.trips;
 
 import java.util.List;
 

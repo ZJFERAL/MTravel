@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.TipTripsListAdapter;
 import com.mcy.mtravel.base.MVPActivity;
-import com.mcy.mtravel.entity.TipTripsBean;
+import com.mcy.mtravel.entity.tip.TipTripsBean;
 import com.mcy.mtravel.presenter.TipTripsListPresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.TipTripsListView;

@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.NewsAdapter;
 import com.mcy.mtravel.base.MVPFragment;
-import com.mcy.mtravel.entity.IndexBean;
+import com.mcy.mtravel.entity.index.IndexBean;
 import com.mcy.mtravel.presenter.NewsPresenter;
 import com.mcy.mtravel.view.activity.WebViewActivity;
 import com.mcy.mtravel.view.impl.NewsView;

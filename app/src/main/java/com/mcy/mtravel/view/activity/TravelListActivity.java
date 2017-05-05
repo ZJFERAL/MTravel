@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.TravelListAdapter;
 import com.mcy.mtravel.base.MVPActivity;
-import com.mcy.mtravel.entity.TravelListBean;
+import com.mcy.mtravel.entity.tip.TravelListBean;
 import com.mcy.mtravel.presenter.TravelPresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.TravelView;

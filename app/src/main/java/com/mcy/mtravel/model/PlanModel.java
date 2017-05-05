@@ -3,7 +3,7 @@ package com.mcy.mtravel.model;
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.api.CyjUrl;
-import com.mcy.mtravel.entity.TargetPlaceBean;
+import com.mcy.mtravel.entity.index.TargetPlaceBean;
 import com.mcy.mtravel.model.impl.PlanModelImpl;
 import com.mcy.mtravel.utils.FinalParams;
 import com.zjf.core.impl.OnAsyncModelListener;

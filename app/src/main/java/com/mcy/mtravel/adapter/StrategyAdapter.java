@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.StrategyBean;
+import com.mcy.mtravel.entity.tip.StrategyBean;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.activity.SpecialActivity;
 import com.mcy.mtravel.view.activity.TipsActivity;

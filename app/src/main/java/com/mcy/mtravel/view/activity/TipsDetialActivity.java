@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.TipsDetialAdapter;
 import com.mcy.mtravel.base.MVPActivity;
-import com.mcy.mtravel.entity.ChildrenBean;
+import com.mcy.mtravel.entity.tipwiki.ChildrenBean;
 import com.mcy.mtravel.presenter.TipsDetialPresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.TipsDetialView;

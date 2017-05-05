@@ -17,10 +17,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.ChildrenBean;
-import com.mcy.mtravel.entity.Pages;
-import com.mcy.mtravel.entity.PhotosBean;
-import com.mcy.mtravel.entity.SectionsBean;
+import com.mcy.mtravel.entity.tipwiki.ChildrenBean;
+import com.mcy.mtravel.entity.tipwiki.Pages;
+import com.mcy.mtravel.entity.tipwiki.PhotosBean;
+import com.mcy.mtravel.entity.tipwiki.SectionsBean;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.activity.TipsDetialActivity;
 import com.zjf.core.adapter.CAbsViewAdapter;

@@ -1,6 +1,6 @@
 package com.mcy.mtravel.view.impl;
 
-import com.mcy.mtravel.entity.IndexBean;
+import com.mcy.mtravel.entity.index.IndexBean;
 import com.zjf.core.view.BaseViewImp;
 
 import java.util.List;

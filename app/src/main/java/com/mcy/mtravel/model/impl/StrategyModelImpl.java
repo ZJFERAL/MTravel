@@ -1,6 +1,6 @@
 package com.mcy.mtravel.model.impl;
 
-import com.mcy.mtravel.entity.StrategyBean;
+import com.mcy.mtravel.entity.tip.StrategyBean;
 import com.zjf.core.model.BaseAsyncModelImp;
 
 import java.util.List;

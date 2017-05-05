@@ -1,7 +1,7 @@
 package com.mcy.mtravel.view.impl;
 
-import com.mcy.mtravel.entity.CBannerBean;
-import com.mcy.mtravel.entity.TripsBean;
+import com.mcy.mtravel.entity.index.CBannerBean;
+import com.mcy.mtravel.entity.index.TripsBean;
 import com.zjf.core.view.BaseViewImp;
 
 import java.util.List;

@@ -1,4 +1,6 @@
-package com.mcy.mtravel.entity;
+package com.mcy.mtravel.entity.trips;
+
+import com.mcy.mtravel.entity.tip.DestinationBean;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.mcy.mtravel.model.impl;
 
-import com.mcy.mtravel.entity.UserWithTripsBean;
+import com.mcy.mtravel.entity.user.UserWithTripsBean;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.model.BaseAsyncModelImp;
 

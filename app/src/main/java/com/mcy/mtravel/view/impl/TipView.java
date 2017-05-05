@@ -1,6 +1,6 @@
 package com.mcy.mtravel.view.impl;
 
-import com.mcy.mtravel.entity.StrategyDetialBean;
+import com.mcy.mtravel.entity.tipwiki.StrategyDetialBean;
 import com.zjf.core.view.BaseViewImp;
 
 import java.util.List;

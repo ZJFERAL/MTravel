@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.SpecialListAdapter;
 import com.mcy.mtravel.base.MVPActivity;
-import com.mcy.mtravel.entity.SpecialListBean;
+import com.mcy.mtravel.entity.tip.SpecialListBean;
 import com.mcy.mtravel.presenter.SpecialListPresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.SpecialListView;

@@ -4,11 +4,10 @@ import android.content.Context;
 
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.PagesBean;
-import com.mcy.mtravel.entity.StrategyDetialBean;
+import com.mcy.mtravel.entity.tipwiki.PagesBean;
+import com.mcy.mtravel.entity.tipwiki.StrategyDetialBean;
 import com.zjf.core.adapter.CAbsViewAdapter;
 import com.zjf.core.adapter.CAbsViewViewHolder;
-import com.zjf.core.utils.LogUtils;
 import com.zjf.core.widget.MostLengthGridView;
 
 import java.util.List;
@@ -31,7 +30,6 @@ public class TipMenuAdapter extends CAbsViewAdapter<StrategyDetialBean> {
 
     @Override
     protected void setItemView(CAbsViewViewHolder holder, StrategyDetialBean item, int position) {
-        LogUtils.e("setItemView");
         int type = item.getCategory_type();
         String title;
         int resId;

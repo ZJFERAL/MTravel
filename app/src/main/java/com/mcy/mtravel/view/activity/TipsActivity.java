@@ -10,7 +10,7 @@ import android.widget.ListView;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.TipMenuAdapter;
 import com.mcy.mtravel.base.MVPActivity;
-import com.mcy.mtravel.entity.StrategyDetialBean;
+import com.mcy.mtravel.entity.tipwiki.StrategyDetialBean;
 import com.mcy.mtravel.presenter.TipPresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.TipView;

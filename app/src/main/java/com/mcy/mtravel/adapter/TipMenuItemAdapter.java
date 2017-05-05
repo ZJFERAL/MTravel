@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.PagesBean;
+import com.mcy.mtravel.entity.tipwiki.PagesBean;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.activity.TipsDetialActivity;
 import com.zjf.core.adapter.CAbsViewAdapter;

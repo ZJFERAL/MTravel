@@ -1,6 +1,6 @@
 package com.mcy.mtravel.presenter;
 
-import com.mcy.mtravel.entity.TipTripsBean;
+import com.mcy.mtravel.entity.tip.TipTripsBean;
 import com.mcy.mtravel.model.TipTripsListModel;
 import com.mcy.mtravel.model.impl.TipTripsListModelImpl;
 import com.mcy.mtravel.view.impl.TipTripsListView;

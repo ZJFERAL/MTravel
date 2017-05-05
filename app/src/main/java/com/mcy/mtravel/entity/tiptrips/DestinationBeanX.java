@@ -1,10 +1,15 @@
-package com.mcy.mtravel.entity;
+package com.mcy.mtravel.entity.tiptrips;
 
 /**
- * Created by zhaojifeng on 2017/4/20.
+ * Created by zhaojifeng on 2017/5/5.
  */
 
-public class DestinationBean {
+public class DestinationBeanX {
+    /**
+     * id : 167
+     * name_zh_cn : 关西
+     */
+
     private int id;
     private String name_zh_cn;
 

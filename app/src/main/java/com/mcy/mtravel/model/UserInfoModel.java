@@ -3,7 +3,7 @@ package com.mcy.mtravel.model;
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.api.CyjUrl;
-import com.mcy.mtravel.entity.UserWithTripsBean;
+import com.mcy.mtravel.entity.user.UserWithTripsBean;
 import com.mcy.mtravel.model.impl.UserInfoModelImpl;
 import com.mcy.mtravel.utils.FinalParams;
 import com.zjf.core.impl.OnAsyncModelListener;

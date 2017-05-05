@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.api.QyerUrl;
-import com.mcy.mtravel.entity.TokenBean;
+import com.mcy.mtravel.entity.user.TokenBean;
 import com.mcy.mtravel.model.impl.GetTokenModelImpl;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.utils.SPUtils;

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.PlanCountryAdapter;
 import com.mcy.mtravel.base.MVPFragment;
-import com.mcy.mtravel.entity.TargetPlaceBean;
+import com.mcy.mtravel.entity.index.TargetPlaceBean;
 import com.mcy.mtravel.presenter.PlanPresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.activity.StrategyActivity;

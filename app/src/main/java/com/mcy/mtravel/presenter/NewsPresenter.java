@@ -1,6 +1,6 @@
 package com.mcy.mtravel.presenter;
 
-import com.mcy.mtravel.entity.IndexBean;
+import com.mcy.mtravel.entity.index.IndexBean;
 import com.mcy.mtravel.model.GetTokenModel;
 import com.mcy.mtravel.model.NewsModel;
 import com.mcy.mtravel.model.impl.GetTokenModelImpl;

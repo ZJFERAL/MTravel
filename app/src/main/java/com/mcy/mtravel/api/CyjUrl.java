@@ -1,15 +1,15 @@
 package com.mcy.mtravel.api;
 
-import com.mcy.mtravel.entity.CBannerBean;
-import com.mcy.mtravel.entity.SpecialListBean;
-import com.mcy.mtravel.entity.StrategyBean;
-import com.mcy.mtravel.entity.StrategyDetialBean;
-import com.mcy.mtravel.entity.TargetPlaceBean;
-import com.mcy.mtravel.entity.TipTripsBean;
-import com.mcy.mtravel.entity.TravelListBean;
-import com.mcy.mtravel.entity.TripNoteBean;
-import com.mcy.mtravel.entity.TripsBean;
-import com.mcy.mtravel.entity.UserWithTripsBean;
+import com.mcy.mtravel.entity.index.CBannerBean;
+import com.mcy.mtravel.entity.tip.SpecialListBean;
+import com.mcy.mtravel.entity.tip.StrategyBean;
+import com.mcy.mtravel.entity.tipwiki.StrategyDetialBean;
+import com.mcy.mtravel.entity.index.TargetPlaceBean;
+import com.mcy.mtravel.entity.tip.TipTripsBean;
+import com.mcy.mtravel.entity.tip.TravelListBean;
+import com.mcy.mtravel.entity.trips.TripNoteBean;
+import com.mcy.mtravel.entity.index.TripsBean;
+import com.mcy.mtravel.entity.user.UserWithTripsBean;
 
 import java.util.List;
 

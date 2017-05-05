@@ -1,4 +1,4 @@
-package com.mcy.mtravel.entity;
+package com.mcy.mtravel.entity.tipwiki;
 
 import java.util.List;
 
@@ -6,15 +6,15 @@ import java.util.List;
  * Created by zhaojifeng on 2017/4/27.
  */
 
-public class PagesBean {
+public class ChildrenBean {
     /**
-     * id : 3
-     * title : 游玩指南
+     * id : 4
+     * title : 日本游玩概览
      */
 
     private int id;
     private String title;
-    private List<ChildrenBean> children;
+    private List<SectionsBean> sections;
 
     public int getId() {
         return id;
@@ -32,11 +32,11 @@ public class PagesBean {
         this.title = title;
     }
 
-    public List<ChildrenBean> getChildren() {
-        return children;
+    public List<SectionsBean> getSections() {
+        return sections;
     }
 
-    public void setChildren(List<ChildrenBean> children) {
-        this.children = children;
+    public void setSections(List<SectionsBean> sections) {
+        this.sections = sections;
     }
 }

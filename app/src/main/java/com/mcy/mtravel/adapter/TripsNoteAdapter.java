@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.NotesBean;
-import com.mcy.mtravel.entity.PhotoBean;
+import com.mcy.mtravel.entity.trips.NotesBean;
+import com.mcy.mtravel.entity.trips.PhotoBean;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.DeviceUtils;

@@ -1,6 +1,6 @@
 package com.mcy.mtravel.view.impl;
 
-import com.mcy.mtravel.entity.UserWithTripsBean;
+import com.mcy.mtravel.entity.user.UserWithTripsBean;
 import com.zjf.core.view.BaseViewImp;
 
 /**

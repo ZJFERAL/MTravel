@@ -1,7 +1,7 @@
 package com.mcy.mtravel.model.impl;
 
-import com.mcy.mtravel.entity.CBannerBean;
-import com.mcy.mtravel.entity.TripsBean;
+import com.mcy.mtravel.entity.index.CBannerBean;
+import com.mcy.mtravel.entity.index.TripsBean;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.model.BaseAsyncModelImp;
 

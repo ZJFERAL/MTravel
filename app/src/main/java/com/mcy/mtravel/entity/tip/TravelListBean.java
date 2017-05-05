@@ -1,4 +1,4 @@
-package com.mcy.mtravel.entity;
+package com.mcy.mtravel.entity.tip;
 
 /**
  * Created by zhaojifeng on 2017/5/3.

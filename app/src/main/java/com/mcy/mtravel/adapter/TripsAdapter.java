@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.TripsBean;
+import com.mcy.mtravel.entity.index.TripsBean;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.activity.TripsNoteActivity;
 import com.mcy.mtravel.view.activity.UserInfoActivity;

@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.SpecialListBean;
+import com.mcy.mtravel.entity.tip.SpecialListBean;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.DeviceUtils;

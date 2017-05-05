@@ -1,4 +1,6 @@
-package com.mcy.mtravel.entity;
+package com.mcy.mtravel.entity.tipwiki;
+
+import com.mcy.mtravel.entity.user.UserBean;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package com.mcy.mtravel.model;
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.api.CyjUrl;
-import com.mcy.mtravel.entity.StrategyDetialBean;
+import com.mcy.mtravel.entity.tipwiki.StrategyDetialBean;
 import com.mcy.mtravel.utils.FinalParams;
 import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.model.BaseAsyncModelImp;
@@ -67,7 +67,7 @@ public class TipModel implements BaseAsyncModelImp<List<StrategyDetialBean>> {
 
     @Override
     public void getData(final OnAsyncModelListener<List<StrategyDetialBean>> listener) {
-        if (mDetialBeen.size() != 0) {
+        if (mDetialBeen != null && mDetialBeen.size() != 0) {
             listener.onSuccess(mDetialBeen);
             return;
         }

@@ -1,6 +1,6 @@
 package com.mcy.mtravel.model.impl;
 
-import com.mcy.mtravel.entity.TripNoteBean;
+import com.mcy.mtravel.entity.trips.TripNoteBean;
 import com.zjf.core.model.BaseAsyncModelImp;
 
 /**

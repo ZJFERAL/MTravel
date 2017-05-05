@@ -3,7 +3,7 @@ package com.mcy.mtravel.model;
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.api.QyerUrl;
-import com.mcy.mtravel.entity.IndexBean;
+import com.mcy.mtravel.entity.index.IndexBean;
 import com.mcy.mtravel.model.impl.NewsModelImpl;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.utils.SPUtils;

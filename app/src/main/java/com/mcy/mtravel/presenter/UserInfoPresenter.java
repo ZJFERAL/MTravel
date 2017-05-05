@@ -2,7 +2,7 @@ package com.mcy.mtravel.presenter;
 
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.UserWithTripsBean;
+import com.mcy.mtravel.entity.user.UserWithTripsBean;
 import com.mcy.mtravel.model.UserInfoModel;
 import com.mcy.mtravel.model.impl.UserInfoModelImpl;
 import com.mcy.mtravel.utils.FinalParams;

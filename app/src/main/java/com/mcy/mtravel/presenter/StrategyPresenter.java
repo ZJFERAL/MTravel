@@ -1,6 +1,6 @@
 package com.mcy.mtravel.presenter;
 
-import com.mcy.mtravel.entity.StrategyBean;
+import com.mcy.mtravel.entity.tip.StrategyBean;
 import com.mcy.mtravel.model.StrategyModel;
 import com.mcy.mtravel.model.impl.StrategyModelImpl;
 import com.mcy.mtravel.view.impl.StrategyView;

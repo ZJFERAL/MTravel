@@ -1,10 +1,12 @@
-package com.mcy.mtravel.entity;
+package com.mcy.mtravel.entity.user;
+
+import com.mcy.mtravel.entity.other.BaseBean;
 
 /**
  * Created by zhaojifeng on 2017/4/12.
  */
 
-public class TokenBean extends BaseBean{
+public class TokenBean extends BaseBean {
 
 
     private DataBean data;

@@ -1,4 +1,6 @@
-package com.mcy.mtravel.entity;
+package com.mcy.mtravel.entity.index;
+
+import com.mcy.mtravel.entity.other.BaseBean;
 
 import java.util.List;
 

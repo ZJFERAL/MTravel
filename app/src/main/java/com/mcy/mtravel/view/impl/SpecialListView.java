@@ -1,6 +1,6 @@
 package com.mcy.mtravel.view.impl;
 
-import com.mcy.mtravel.entity.SpecialListBean;
+import com.mcy.mtravel.entity.tip.SpecialListBean;
 import com.zjf.core.view.BaseViewImp;
 
 import java.util.List;

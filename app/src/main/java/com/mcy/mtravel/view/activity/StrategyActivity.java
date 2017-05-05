@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.StrategyAdapter;
 import com.mcy.mtravel.base.MVPActivity;
-import com.mcy.mtravel.entity.StrategyBean;
+import com.mcy.mtravel.entity.tip.StrategyBean;
 import com.mcy.mtravel.presenter.StrategyPresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.StrategyView;

@@ -4,9 +4,9 @@ import android.text.TextUtils;
 
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.ChildrenBean;
-import com.mcy.mtravel.entity.PagesBean;
-import com.mcy.mtravel.entity.StrategyDetialBean;
+import com.mcy.mtravel.entity.tipwiki.ChildrenBean;
+import com.mcy.mtravel.entity.tipwiki.PagesBean;
+import com.mcy.mtravel.entity.tipwiki.StrategyDetialBean;
 import com.mcy.mtravel.model.TipModel;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.TipsDetialView;

@@ -1,6 +1,6 @@
 package com.mcy.mtravel.presenter;
 
-import com.mcy.mtravel.entity.SpecialListBean;
+import com.mcy.mtravel.entity.tip.SpecialListBean;
 import com.mcy.mtravel.model.SpecialModel;
 import com.mcy.mtravel.model.impl.SpecialModelImpl;
 import com.mcy.mtravel.view.impl.SpecialListView;

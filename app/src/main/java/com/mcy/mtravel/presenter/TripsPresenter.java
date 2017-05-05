@@ -1,7 +1,7 @@
 package com.mcy.mtravel.presenter;
 
-import com.mcy.mtravel.entity.CBannerBean;
-import com.mcy.mtravel.entity.TripsBean;
+import com.mcy.mtravel.entity.index.CBannerBean;
+import com.mcy.mtravel.entity.index.TripsBean;
 import com.mcy.mtravel.model.TripsModel;
 import com.mcy.mtravel.model.impl.TripsModelImpl;
 import com.mcy.mtravel.view.impl.TripsView;

@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.IndexBean;
+import com.mcy.mtravel.entity.index.IndexBean;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.TimeUtils;

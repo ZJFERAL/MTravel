@@ -2,10 +2,10 @@ package com.mcy.mtravel.presenter;
 
 import android.text.TextUtils;
 
-import com.mcy.mtravel.entity.NodesBean;
-import com.mcy.mtravel.entity.NotesBean;
-import com.mcy.mtravel.entity.TripDaysBean;
-import com.mcy.mtravel.entity.TripNoteBean;
+import com.mcy.mtravel.entity.trips.NodesBean;
+import com.mcy.mtravel.entity.trips.NotesBean;
+import com.mcy.mtravel.entity.trips.TripDaysBean;
+import com.mcy.mtravel.entity.trips.TripNoteBean;
 import com.mcy.mtravel.model.TripsNoteModel;
 import com.mcy.mtravel.model.impl.TripsNoteModelImpl;
 import com.mcy.mtravel.view.impl.TripsNoteView;

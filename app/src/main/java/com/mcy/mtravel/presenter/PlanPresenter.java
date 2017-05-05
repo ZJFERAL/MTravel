@@ -2,7 +2,7 @@ package com.mcy.mtravel.presenter;
 
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.TargetPlaceBean;
+import com.mcy.mtravel.entity.index.TargetPlaceBean;
 import com.mcy.mtravel.model.PlanModel;
 import com.mcy.mtravel.model.impl.PlanModelImpl;
 import com.mcy.mtravel.view.impl.PlanView;

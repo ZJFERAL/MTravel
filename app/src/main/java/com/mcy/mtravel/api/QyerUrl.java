@@ -1,7 +1,7 @@
 package com.mcy.mtravel.api;
 
-import com.mcy.mtravel.entity.IndexBean;
-import com.mcy.mtravel.entity.TokenBean;
+import com.mcy.mtravel.entity.index.IndexBean;
+import com.mcy.mtravel.entity.user.TokenBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;

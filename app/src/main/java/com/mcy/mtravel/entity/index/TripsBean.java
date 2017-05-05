@@ -1,4 +1,6 @@
-package com.mcy.mtravel.entity;
+package com.mcy.mtravel.entity.index;
+
+import com.mcy.mtravel.entity.user.UserBean;
 
 /**
  * Created by zhaojifeng on 2017/4/18.
