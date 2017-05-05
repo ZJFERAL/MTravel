@@ -10,7 +10,7 @@ import java.util.List;
  * Created by zhaojifeng on 2017/5/3.
  */
 
-public abstract class RecyclerViewPresenter<V extends BaseRecyclerViewImpl<B>, M extends BaseModel<List<B>>, B> extends Presenter_temp<V, M> {
+public abstract class RecyclerViewPresenter<V extends BaseRecyclerViewImpl<B>, M extends BaseModel<List<B>>, B> extends RecyclerViewBasePresenter<V, M,B> {
 
     @Override
     protected void onViewCreated() {

@@ -14,7 +14,6 @@ public class TipTripsDetialBean {
     private int budget;
     private String budget_description;
     private String tips;
-    private Object start_date;
     private boolean current_user_favorite;
     private int updated_at;
     private String image_url;
@@ -68,13 +67,6 @@ public class TipTripsDetialBean {
         this.tips = tips;
     }
 
-    public Object getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(Object start_date) {
-        this.start_date = start_date;
-    }
 
     public boolean isCurrent_user_favorite() {
         return current_user_favorite;

@@ -1,5 +1,7 @@
 package com.mcy.mtravel.entity.tiptrips;
 
+import com.mcy.mtravel.entity.tip.DestinationBean;
+
 /**
  * Created by zhaojifeng on 2017/5/5.
  */
@@ -35,7 +37,7 @@ public class PlanNodesBean {
     private String entry_type;
     private String attraction_type;
     private boolean user_entry;
-    private DestinationBeanX destination;
+    private DestinationBean destination;
 
     public int getId() {
         return id;
@@ -141,11 +143,11 @@ public class PlanNodesBean {
         this.user_entry = user_entry;
     }
 
-    public DestinationBeanX getDestination() {
+    public DestinationBean getDestination() {
         return destination;
     }
 
-    public void setDestination(DestinationBeanX destination) {
+    public void setDestination(DestinationBean destination) {
         this.destination = destination;
     }
 }

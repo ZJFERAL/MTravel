@@ -7,10 +7,7 @@ import com.zjf.core.impl.OnAsyncModelListener;
  */
 
 public interface BaseModelImpl_Temp<T> {
-
     void cancel();
-
     void getMoreData(OnAsyncModelListener<T> listener);
-
     void refreshData(OnAsyncModelListener<T> listener);
 }

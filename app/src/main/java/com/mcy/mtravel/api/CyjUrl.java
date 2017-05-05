@@ -53,4 +53,7 @@ public interface CyjUrl {
 
     @GET(value = "articles.json")
     Observable<List<SpecialListBean>> getSpecialList(@Query("destination_id") String id, @Query("page") String index);
+
+    @GET(value = "plans/{id}.json")
+    Observable<TipTripsBean> getTipTripDetial(@Path("id") String id);
 }

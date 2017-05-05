@@ -29,6 +29,8 @@ public abstract class BaseModel<T> implements BaseModelImpl_Temp<T> {
         getMoreData(listener);
     }
 
+
+
     @Override
     public void cancel() {
         if (mCompositeDisposable != null) {
