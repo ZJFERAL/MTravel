@@ -3,9 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@color/colorYelloWhite"
-              android:orientation="vertical"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp">
+              android:orientation="vertical">
 
     <include
         layout="@layout/layout_date_head"
@@ -16,10 +14,10 @@
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <ImageView
             android:layout_width="35dp"
@@ -38,24 +36,27 @@
         android:id="@+id/txt_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="7dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:textSize="16sp"/>
 
     <ImageView
         android:id="@+id/img_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/txt_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="7dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_location_on_grey_600_18dp"
         android:textColor="@color/colorLightDark"/>
@@ -63,9 +64,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/colorSimpleLine"/>
 
 </LinearLayout>

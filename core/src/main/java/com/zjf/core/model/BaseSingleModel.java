@@ -18,5 +18,5 @@ public abstract class BaseSingleModel<T> extends BaseModel<T> {
         getData(listener);
     }
 
-    protected abstract void getData(OnAsyncModelListener<T> listener);
+    public abstract void getData(OnAsyncModelListener<T> listener);
 }

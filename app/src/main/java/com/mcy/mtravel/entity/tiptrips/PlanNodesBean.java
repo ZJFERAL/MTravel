@@ -31,13 +31,21 @@ public class PlanNodesBean {
     private String tips;
     private String lat;
     private String lng;
-    private int distance;
     private String image_url;
     private String entry_name;
     private String entry_type;
     private String attraction_type;
     private boolean user_entry;
+    private String firstTitle;
     private DestinationBean destination;
+
+    public String getFirstTitle() {
+        return firstTitle;
+    }
+
+    public void setFirstTitle(String firstTitle) {
+        this.firstTitle = firstTitle;
+    }
 
     public int getId() {
         return id;
@@ -95,13 +103,6 @@ public class PlanNodesBean {
         this.lng = lng;
     }
 
-    public int getDistance() {
-        return distance;
-    }
-
-    public void setDistance(int distance) {
-        this.distance = distance;
-    }
 
     public String getImage_url() {
         return image_url;

@@ -1,6 +1,7 @@
 package com.mcy.mtravel.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -29,11 +30,21 @@ public class TravelListAdapter extends CRecyclerViewAdapter<TravelListBean> {
     public void setConvertView(CRecyclerViewViewHolder holder, TravelListBean item, int position) {
         ImageView view = holder.getView(R.id.img_cover);
         view.setLayoutParams(new RelativeLayout.LayoutParams((int) (mWidth * 2f / 3), (int) (mWidth / 3.6)));
+        StringBuilder name = new StringBuilder();
+        String name_en = item.getName_en();
+        String strName = item.getName();
+        if (!TextUtils.isEmpty(strName)) {
+            name.append(strName);
+        }
+        if ((!TextUtils.isEmpty(name_en)) && (!strName.equals(name_en))) {
+            name.append("\n" + name_en);
+        }
+
         holder.setText(R.id.txt_num, item.getAttraction_trips_count() + " 篇游记")
-                .setText(R.id.txt_name, item.getName() + "\n" + item.getName_en())
+                .setText(R.id.txt_name, name.toString())
                 .setText(R.id.txt_content, item.getDescription_summary())
                 .setImageByUrl(R.id.img_cover, item.getImage_url(), R.drawable.weit_place);
-        int resId = R.drawable.icon_location_0star;
+        int resId = R.drawable.icon_location_5star;
         try {
             String score = item.getUser_score();
             int intScore = (int) Double.parseDouble(score);
