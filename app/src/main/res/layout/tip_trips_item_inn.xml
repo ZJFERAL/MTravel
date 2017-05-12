@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <ImageView
+        android:id="@+id/img_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/img_cover"
+        android:layout_alignLeft="@id/img_cover"
+        android:layout_alignRight="@id/img_cover"
+        android:layout_alignTop="@id/img_cover"
+        android:background="@drawable/bg_black2trans_reve"/>
+
+    <TextView
+        android:id="@+id/txt_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_cover"
+        android:layout_margin="7dp"
+        android:textColor="@color/color_black"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/img_cover"
+        android:layout_alignLeft="@id/img_cover"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:drawableLeft="@drawable/icon_plan_time"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/txt_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/img_cover"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@id/txt_date"
+        android:drawableLeft="@drawable/icon_plan_sight"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txt_date"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="19sp"/>
+</RelativeLayout>

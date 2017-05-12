@@ -9,14 +9,12 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
@@ -26,20 +24,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.ExpandableAdapter;
 import com.mcy.mtravel.adapter.TripsNoteAdapter;
 import com.mcy.mtravel.base.MVPActivity;
-import com.mcy.mtravel.entity.trips.NotesBean;
 import com.mcy.mtravel.entity.index.TripsBean;
+import com.mcy.mtravel.entity.trips.NotesBean;
 import com.mcy.mtravel.presenter.TripsNotePresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.TripsNoteView;
 import com.zjf.core.utils.DeviceUtils;
-import com.zjf.core.utils.ImageUtils;
 import com.zjf.core.utils.LogUtils;
 import com.zjf.core.utils.SnackBarUtils;
 import com.zjf.core.utils.TimeUtils;
@@ -94,12 +88,12 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
     private TripsNoteAdapter mAdapter;
     private List<List<String>> mItems;
     private LinearLayoutManager mLayoutManager;
-    private ViewGroup.LayoutParams mParams;
+
     private int mHeadHeight;
     private int mTop;
     private int mBottom;
     private boolean isScrollToFirst;
-    private int mID;
+    private int mUserID;
     private List<String> mMenuTitles;
 
 
@@ -114,7 +108,6 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         super.initVariables();
         mNoteList = new ArrayList<>();
         mAdapter = new TripsNoteAdapter(mContext, mNoteList, R.layout.item_trips_notes);
-
     }
 
     @Override
@@ -138,7 +131,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString(FinalParams.USER_ID, mID + "");
+                bundle.putString(FinalParams.USER_ID, mUserID + "");
                 jumpTo(TripsNoteActivity.this, UserInfoActivity.class, bundle, false);
             }
         });
@@ -220,9 +213,6 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
                 if (nextBeanDay != day) {
                     if (mLayoutManager.getChildCount() >= 2) {
                         int top = recyclerView.getChildAt(1).getTop();
-                        if (mParams == null) {
-                            mParams = mLayDateHead.getLayoutParams();
-                        }
                         if (top <= mHeadHeight) {
                             mLayDateHead.setTop(mTop - (mHeadHeight - top));
                             mLayDateHead.setBottom(mBottom - (mHeadHeight - top));
@@ -512,19 +502,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         Glide.with(mContext)
                 .load(bean.getFront_cover_photo_url())
                 .placeholder(R.drawable.weit_place)
-                .listener(new RequestListener<String, GlideDrawable>() {
-                    @Override
-                    public boolean onException(Exception e, String s, Target<GlideDrawable> target, boolean b) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(GlideDrawable drawable, String s, Target<GlideDrawable> target, boolean b, boolean b1) {
-                        mImgCover.setImageDrawable(drawable);
-                        setTitleBackColor(drawable);
-                        return true;
-                    }
-                }).into(mImgCover);
+                .into(mImgCover);
         mImgCover.setLayoutParams(new RelativeLayout.LayoutParams(width, (int) (width / 1.7)));
 
         Glide.with(mContext)
@@ -537,48 +515,7 @@ public class TripsNoteActivity extends MVPActivity<TripsNotePresenter> implement
         mCollapsingToolbar.setTitle(bean.getName());
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mID = bean.getUser().getId();
+        mUserID = bean.getUser().getId();
     }
 
-    private void setTitleBackColor(GlideDrawable drawable) {
-        try {
-            Palette.Builder builder = Palette.from(ImageUtils.drawableToBitmap(drawable));
-            builder.generate(new Palette.PaletteAsyncListener() {
-                @Override
-                public void onGenerated(Palette palette) {
-                    Palette.Swatch swatch = palette.getLightMutedSwatch();
-                    if (swatch == null) {
-                        LogUtils.e("swatch == null");
-                        swatch = palette.getLightVibrantSwatch();
-                        if (swatch == null) {
-                            swatch = palette.getDarkMutedSwatch();
-                            if (swatch == null) {
-                                swatch = palette.getDarkVibrantSwatch();
-                                if (swatch == null) {
-                                    swatch = palette.getDominantSwatch();
-                                }
-                            }
-                        }
-                    }
-                    if (swatch != null) {
-                        mCollapsingToolbar.setContentScrimColor(swatch.getRgb());
-                        mCollapsingToolbar.setCollapsedTitleTextColor(swatch.getTitleTextColor());
-                        mFloatActionMenu.setRippleColor(swatch.getRgb());
-                    }
-                    Palette.Swatch swatch_lm = palette.getLightMutedSwatch();
-                    Palette.Swatch swatch_lv = palette.getLightVibrantSwatch();
-                    if (swatch_lm != null && swatch_lv != null) {
-                        mBgMenu.setBackgroundColor(swatch_lm.getRgb());
-                        mBgHead.setBackgroundColor(swatch_lv.getRgb());
-                    }
-
-
-                }
-            });
-        } catch (Exception e) {
-            LogUtils.e("setTitleBackColor", e.getMessage());
-        } finally {
-            onCloseSwipe();
-        }
-    }
 }

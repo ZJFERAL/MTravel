@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.adapter.PlanCountryAdapter;
 import com.mcy.mtravel.base.MVPFragment;
-import com.mcy.mtravel.entity.index.TargetPlaceBean;
+import com.mcy.mtravel.entity.tip.DestinationBean;
 import com.mcy.mtravel.presenter.PlanPresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.activity.StrategyActivity;
@@ -50,7 +50,7 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
     Unbinder unbinder;
 
     private PlanCountryAdapter mAdapter;
-    private List<TargetPlaceBean.DestinationsBean> mList;
+    private List<DestinationBean> mList;
 
     public PlanFragment() {
         // Required empty public constructor
@@ -124,7 +124,7 @@ public class PlanFragment extends MVPFragment<PlanPresenter> implements PlanView
     }
 
     @Override
-    public void onRightItem(List<TargetPlaceBean.DestinationsBean> data) {
+    public void onRightItem(List<DestinationBean> data) {
         mAdapter.flushData(data);
         onCloseSwipe();
     }

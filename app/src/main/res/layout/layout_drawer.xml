@@ -4,6 +4,7 @@
               android:layout_width="250dp"
               android:layout_height="match_parent"
               android:background="@color/colorDrawerBG"
+              android:clickable="true"
               android:orientation="vertical">
 
     <LinearLayout
@@ -31,6 +32,7 @@
             android:layout_marginBottom="5dp"
             android:gravity="center"
             android:text="@string/menu"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"/>
     </LinearLayout>
 

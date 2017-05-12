@@ -40,4 +40,5 @@
     <string name="about_content">\t相关内容</string>
     <string name="permission">需要读取手机唯一标识的权限</string>
     <string name="txt_tips">提示</string>
+    <string name="noforget">今日备忘</string>
 </resources>

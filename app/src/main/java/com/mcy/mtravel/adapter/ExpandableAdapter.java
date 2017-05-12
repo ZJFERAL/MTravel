@@ -68,7 +68,11 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.expand_text, parent, false);
         }
-        ((TextView) convertView).setText("DAY " + groups.get(groupPosition));
+        String s = groups.get(groupPosition);
+        ((TextView) convertView).setText("DAY " + s);
+        if (s.length() > 3) {
+            ((TextView) convertView).setText(s);
+        }
         return convertView;
     }
 

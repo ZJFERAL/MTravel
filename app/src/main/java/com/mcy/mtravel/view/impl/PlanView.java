@@ -1,6 +1,6 @@
 package com.mcy.mtravel.view.impl;
 
-import com.mcy.mtravel.entity.index.TargetPlaceBean;
+import com.mcy.mtravel.entity.tip.DestinationBean;
 import com.zjf.core.view.BaseViewImp;
 
 import java.util.List;
@@ -13,6 +13,6 @@ public interface PlanView extends BaseViewImp {
 
     void onLeftItem(List<String> data);
 
-    void onRightItem(List<TargetPlaceBean.DestinationsBean> data);
+    void onRightItem(List<DestinationBean> data);
 
 }

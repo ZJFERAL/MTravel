@@ -1,14 +1,15 @@
 package com.mcy.mtravel.api;
 
 import com.mcy.mtravel.entity.index.CBannerBean;
+import com.mcy.mtravel.entity.index.TargetPlaceBean;
+import com.mcy.mtravel.entity.index.TripsBean;
 import com.mcy.mtravel.entity.tip.SpecialListBean;
 import com.mcy.mtravel.entity.tip.StrategyBean;
-import com.mcy.mtravel.entity.tipwiki.StrategyDetialBean;
-import com.mcy.mtravel.entity.index.TargetPlaceBean;
 import com.mcy.mtravel.entity.tip.TipTripsBean;
 import com.mcy.mtravel.entity.tip.TravelListBean;
+import com.mcy.mtravel.entity.tiptrips.TipTripsDetialBean;
+import com.mcy.mtravel.entity.tipwiki.StrategyDetialBean;
 import com.mcy.mtravel.entity.trips.TripNoteBean;
-import com.mcy.mtravel.entity.index.TripsBean;
 import com.mcy.mtravel.entity.user.UserWithTripsBean;
 
 import java.util.List;
@@ -55,5 +56,5 @@ public interface CyjUrl {
     Observable<List<SpecialListBean>> getSpecialList(@Query("destination_id") String id, @Query("page") String index);
 
     @GET(value = "plans/{id}.json")
-    Observable<TipTripsBean> getTipTripDetial(@Path("id") String id);
+    Observable<TipTripsDetialBean> getTipTripDetial(@Path("id") String id);
 }

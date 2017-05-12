@@ -98,9 +98,14 @@ public class TipsTripsListActivity extends MVPActivity<TipTripsListPresenter> im
             public void onItemClick(View view, int position) {
                 TipTripsBean bean = mAdapter.getData().get(position);
                 int id = bean.getId();
-                Intent intent = new Intent(mContext, TripsDetialActivity.class);
-                intent.putExtra(FinalParams.TRIPS_DETIAL_ID, id + "");
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString(FinalParams.TRIPS_DETIAL_ID, id + "");
+                bundle.putString(FinalParams.TRIPS_DETIAL_IMG_URL, bean.getImage_url());
+                bundle.putString(FinalParams.TRIPS_DETIAL_TITLE, bean.getName());
+                bundle.putString(FinalParams.TRIPS_DETIAL_CONTENT, bean.getDescription());
+                bundle.putString(FinalParams.TRIPS_DETIAL_DAY_NUM, bean.getPlan_days_count() + "");
+                bundle.putString(FinalParams.TRIPS_DETIAL_PLACE_NUM, bean.getPlan_nodes_count() + "");
+                jumpTo(TipsTripsListActivity.this, TripsDetialActivity.class, bundle, false);
             }
         }));
     }
