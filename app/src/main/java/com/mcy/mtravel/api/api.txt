@@ -40,16 +40,7 @@ https://chanyouji.com/api/destinations.json
 			
 			旅行地具体
 			https://chanyouji.com/api/attractions/35443.json
-				
-				照片
-				https://chanyouji.com/api/attractions/photos/35443.json?page=1
-				
-				游记列表	order by 人气
-				https://chanyouji.com/api/attractions/35443.json?attraction_trips=true&page=1	
-				https://chanyouji.com/api/attractions/35443.json?attraction_trips=true&order=date&page=1
 
-				地图点
-				https://chanyouji.com/api/attractions/nearby_pois/35443.json
 		
 		专题列表
 		https://chanyouji.com/api/articles.json?destination_id=55&page=1

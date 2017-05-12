@@ -15,13 +15,24 @@ public class PhotosBean {
      * user_name : null
      */
 
+    private int id;
     private String image_url;
     private int image_width;
     private int image_height;
     private String description;
     private int trip_id;
+    private int likes_count;
     private int note_id;
     private String user_name;
+    private String trip_name;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getImage_url() {
         return image_url;
@@ -46,6 +57,14 @@ public class PhotosBean {
     public void setImage_height(int image_height) {
         this.image_height = image_height;
     }
+    public int getLikes_count() {
+        return likes_count;
+    }
+
+    public void setLikes_count(int likes_count) {
+        this.likes_count = likes_count;
+    }
+
 
     public String getDescription() {
         return description;
@@ -77,5 +96,13 @@ public class PhotosBean {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public String getTrip_name() {
+        return trip_name;
+    }
+
+    public void setTrip_name(String trip_name) {
+        this.trip_name = trip_name;
     }
 }
