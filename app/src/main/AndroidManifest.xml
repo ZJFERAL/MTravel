@@ -58,10 +58,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".view.activity.SearchActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".view.activity.TipsDetialActivity"
             android:screenOrientation="portrait">
         </activity>
@@ -97,15 +93,7 @@
             android:name=".view.activity.TravelPlacePicturesActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity
-            android:name=".view.activity.ShowPictureActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TransThems">
-        </activity>
-        <activity
-            android:name=".view.activity.MapActivity"
-            android:screenOrientation="portrait">
-        </activity>
+
         <activity
             android:name=".view.activity.SpecialDetialActivity"
             android:screenOrientation="portrait">
