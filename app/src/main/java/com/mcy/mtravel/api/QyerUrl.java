@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Url;
 
 /**
- * Created by machengyuan on 2017/4/12.
+ * Created by jifengZhao on 2017/4/12.
  */
 
 public interface QyerUrl {

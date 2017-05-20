@@ -3,7 +3,7 @@ package com.mcy.mtravel.entity.trips;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/4/20.
+ * Created by jifengZhao on 2017/4/20.
  */
 
 public class NodesBean {

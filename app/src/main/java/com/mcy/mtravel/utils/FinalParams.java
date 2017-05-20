@@ -1,7 +1,7 @@
 package com.mcy.mtravel.utils;
 
 /**
- * Created by machengyuan on 2017/4/13.
+ * Created by jifengZhao on 2017/4/13.
  */
 
 public class FinalParams extends com.zjf.core.utils.FinalParams {
@@ -27,4 +27,7 @@ public class FinalParams extends com.zjf.core.utils.FinalParams {
     public static final String TRIPS_DETIAL_CONTENT = "TRIPS_DETIAL_CONTENT";
     public static final String TRIPS_DETIAL_DAY_NUM = "TRIPS_DETIAL_DAY_NUM";
     public static final String TRIPS_DETIAL_PLACE_NUM = "TRIPS_DETIAL_PLACE_NUM";
+    public static final String SPECIAL_URL = "SPECIAL_URL";
+    public static final String SPECIAL_TITLE = "SPECIAL_TITLE";
+    public static final String SPECIAL_DES = "SPECIAL_DES";
 }

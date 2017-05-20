@@ -7,7 +7,7 @@ import com.zjf.core.view.BaseRecyclerViewImpl;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/5/3.
+ * Created by jifengZhao on 2017/5/3.
  */
 
 public abstract class RecyclerViewPresenter<V extends BaseRecyclerViewImpl<B>, M extends BaseModel<List<B>>, B> extends RecyclerViewBasePresenter<V, M,B> {

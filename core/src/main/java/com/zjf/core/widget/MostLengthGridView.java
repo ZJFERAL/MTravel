@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.widget.GridView;
 
 /**
- * Created by machengyuan on 2017/4/28.
+ * Created by jifengZhao on 2017/4/28.
  */
 
 public class MostLengthGridView extends GridView {

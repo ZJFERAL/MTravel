@@ -3,7 +3,7 @@ package com.mcy.mtravel.entity.tiptrips;
 import com.mcy.mtravel.entity.tip.DestinationBean;
 
 /**
- * Created by machengyuan on 2017/5/5.
+ * Created by jifengZhao on 2017/5/5.
  */
 
 public class PlanNodesBean {

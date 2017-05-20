@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/4/14.
+ * Created by jifengZhao on 2017/4/14.
  */
 
 public class ImageViewPagerAdapter extends PagerAdapter {

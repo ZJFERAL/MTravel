@@ -5,7 +5,7 @@ import io.reactivex.processors.FlowableProcessor;
 import io.reactivex.processors.PublishProcessor;
 
 /**
- * Created by machengyuan on 2017/4/14.
+ * Created by jifengZhao on 2017/4/14.
  */
 
 public class RxBus {

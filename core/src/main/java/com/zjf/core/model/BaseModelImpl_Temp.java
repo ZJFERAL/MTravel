@@ -3,7 +3,7 @@ package com.zjf.core.model;
 import com.zjf.core.impl.OnAsyncModelListener;
 
 /**
- * Created by machengyuan on 2017/5/3.
+ * Created by jifengZhao on 2017/5/3.
  */
 
 public interface BaseModelImpl_Temp<T> {

@@ -6,7 +6,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 /**
- * Created by machengyuan on 2017/4/13.
+ * Created by jifengZhao on 2017/4/13.
  */
 
 public class DeviceUtils {

@@ -1,7 +1,7 @@
 package com.mcy.mtravel.entity.tipwiki;
 
 /**
- * Created by machengyuan on 2017/4/27.
+ * Created by jifengZhao on 2017/4/27.
  */
 
 public class PhotosBean {

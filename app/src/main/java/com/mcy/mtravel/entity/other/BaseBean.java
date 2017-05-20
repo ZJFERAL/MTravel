@@ -1,7 +1,7 @@
 package com.mcy.mtravel.entity.other;
 
 /**
- * Created by machengyuan on 2017/4/12.
+ * Created by jifengZhao on 2017/4/12.
  */
 
 public class BaseBean {

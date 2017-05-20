@@ -13,7 +13,7 @@ import com.zjf.core.widget.MostLengthGridView;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/4/28.
+ * Created by jifengZhao on 2017/4/28.
  */
 
 public class TipMenuAdapter extends CAbsViewAdapter<StrategyDetialBean> {

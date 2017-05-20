@@ -3,7 +3,7 @@ package com.zjf.core.impl;
 import android.support.design.widget.AppBarLayout;
 
 /**
- * Created by machengyuan on 2017/4/21.
+ * Created by jifengZhao on 2017/4/21.
  */
 
 public abstract class AppBarStateChangeListener implements AppBarLayout.OnOffsetChangedListener {

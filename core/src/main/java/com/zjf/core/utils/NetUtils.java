@@ -6,7 +6,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 
 /**
- * Created by machengyuan on 2017/4/11.
+ * Created by jifengZhao on 2017/4/11.
  */
 
 public class NetUtils {

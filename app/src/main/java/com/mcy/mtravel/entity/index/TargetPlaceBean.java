@@ -5,7 +5,7 @@ import com.mcy.mtravel.entity.tip.DestinationBean;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/4/19.
+ * Created by jifengZhao on 2017/4/19.
  */
 
 public class TargetPlaceBean {

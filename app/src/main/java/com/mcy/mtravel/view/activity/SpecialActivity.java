@@ -96,6 +96,9 @@ public class SpecialActivity extends MVPActivity<SpecialListPresenter> implement
                 int id = bean.getId();
                 Intent intent = new Intent(mContext, SpecialDetialActivity.class);
                 intent.putExtra(FinalParams.TRIPS_DETIAL_ID, id + "");
+                intent.putExtra(FinalParams.SPECIAL_URL, bean.getImage_url());
+                intent.putExtra(FinalParams.SPECIAL_TITLE, bean.getName());
+                intent.putExtra(FinalParams.SPECIAL_DES, bean.getTitle());
                 startActivity(intent);
             }
         }));

@@ -19,7 +19,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by machengyuan on 2017/4/18.
+ * Created by jifengZhao on 2017/4/18.
  */
 
 public class TripsModel implements TripsModelImpl {

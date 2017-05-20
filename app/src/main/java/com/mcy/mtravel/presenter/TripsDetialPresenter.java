@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/5/5.
+ * Created by jifengZhao on 2017/5/5.
  */
 
 public class TripsDetialPresenter extends Presenter<TripsDetialView> {

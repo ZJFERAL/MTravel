@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/4/20.
+ * Created by jifengZhao on 2017/4/20.
  */
 
 public class TripsNotePresenter extends Presenter<TripsNoteView> {

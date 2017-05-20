@@ -1,12 +1,11 @@
 package com.mcy.mtravel.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.mcy.mtravel.R;
-import com.mcy.mtravel.entity.tip.TravelListBean;
+import com.mcy.mtravel.entity.special.AttractionBean;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.DeviceUtils;
@@ -14,36 +13,25 @@ import com.zjf.core.utils.DeviceUtils;
 import java.util.List;
 
 /**
- * Created by jifengZhao on 2017/5/3.
+ * @author :ZJF
+ * @version : 2017-05-20 下午 3:14
  */
 
-public class TravelListAdapter extends CRecyclerViewAdapter<TravelListBean> {
+public class SpecialLocaionAdapter extends CRecyclerViewAdapter<AttractionBean>{
 
     private int mWidth;
-
-    public TravelListAdapter(Context context, List<TravelListBean> data, int... itemLayoutIds) {
+    public SpecialLocaionAdapter(Context context, List<AttractionBean> data, int... itemLayoutIds) {
         super(context, data, itemLayoutIds);
-        mWidth = DeviceUtils.getDeviceScreenWidth(mContext);
+        mWidth = DeviceUtils.getDeviceScreenWidth(context);
     }
 
     @Override
-    public void setConvertView(CRecyclerViewViewHolder holder, TravelListBean item, int position) {
-        ImageView view = holder.getView(R.id.img_cover);
-        view.setLayoutParams(new RelativeLayout.LayoutParams((int) (mWidth * 2f / 3), (int) (mWidth / 3.6)));
-        StringBuilder name = new StringBuilder();
-        String name_en = item.getName_en();
-        String strName = item.getName();
-        if (!TextUtils.isEmpty(strName)) {
-            name.append(strName);
-        }
-        if ((!TextUtils.isEmpty(name_en)) && (!strName.equals(name_en))) {
-            name.append("\n" + name_en);
-        }
+    public void setConvertView(CRecyclerViewViewHolder holder, AttractionBean item, int position) {
+        View imageView = holder.getView(R.id.img_cover);
+        imageView.setLayoutParams(new LinearLayout.LayoutParams(mWidth/4,mWidth/5));
+        holder.setImageByUrl(R.id.img_cover,item.getImage_url(),R.drawable.weit_place)
+                .setText(R.id.txt_name,item.getName());
 
-        holder.setText(R.id.txt_num, item.getAttraction_trips_count() + " 篇游记")
-                .setText(R.id.txt_name, name.toString())
-                .setText(R.id.txt_content, item.getDescription_summary())
-                .setImageByUrl(R.id.img_cover, item.getImage_url(), R.drawable.weit_place);
         int resId = R.drawable.icon_location_5star;
         try {
             String score = item.getUser_score();
@@ -72,6 +60,5 @@ public class TravelListAdapter extends CRecyclerViewAdapter<TravelListBean> {
         } finally {
             holder.setImageResource(R.id.img_star, resId);
         }
-
     }
 }

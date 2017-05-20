@@ -6,7 +6,7 @@ import com.zjf.core.model.BaseAsyncModelImp;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/4/19.
+ * Created by jifengZhao on 2017/4/19.
  */
 
 public interface PlanModelImpl extends BaseAsyncModelImp<List<TargetPlaceBean>>{

@@ -3,48 +3,45 @@ package com.mcy.mtravel.model;
 import com.mcy.mtravel.App;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.api.CyjUrl;
-import com.mcy.mtravel.entity.tip.StrategyBean;
-import com.mcy.mtravel.model.impl.StrategyModelImpl;
+import com.mcy.mtravel.entity.special.SpecialBean;
 import com.mcy.mtravel.utils.FinalParams;
 import com.zjf.core.impl.OnAsyncModelListener;
+import com.zjf.core.model.BaseSingleModel;
+import com.zjf.core.utils.LogUtils;
 import com.zjf.core.utils.RetrofitUtils;
 
-import java.util.List;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by jifengZhao on 2017/4/26.
+ * @author :ZJF
+ * @version : 2017-05-20 下午 3:23
  */
 
-public class StrategyModel implements StrategyModelImpl {
+public class SpecialDeticalModel extends BaseSingleModel<SpecialBean> {
 
-    private String mStrategyID;
-    private CompositeDisposable mCompositeDisposable;
     private CyjUrl mUrl;
+    private String mID;
 
-    public StrategyModel(String strategyID) {
-        mStrategyID = strategyID;
-        mCompositeDisposable = new CompositeDisposable();
+    public SpecialDeticalModel(String ID) {
+        mID = ID;
     }
 
     @Override
-    public void getData(final OnAsyncModelListener<List<StrategyBean>> listener) {
+    public void getData(final OnAsyncModelListener<SpecialBean> listener) {
         if (mUrl == null) {
             mUrl = RetrofitUtils.getClient(FinalParams.CY_APP_BASEURL, null, App.getInstance()).create(CyjUrl.class);
         }
-        Disposable subscribe = mUrl.getStrategy(mStrategyID)
-                .observeOn(AndroidSchedulers.mainThread())
+        Disposable disposable = mUrl.getSpecialDetial(mID)
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<List<StrategyBean>>() {
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<SpecialBean>() {
                     @Override
-                    public void accept(List<StrategyBean> list) throws Exception {
-                        if (list != null && list.size() != 0) {
-                            listener.onSuccess(list);
+                    public void accept(SpecialBean bean) throws Exception {
+                        if (bean != null) {
+                            listener.onSuccess(bean);
                         } else {
                             listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
                         }
@@ -53,15 +50,9 @@ public class StrategyModel implements StrategyModelImpl {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         listener.onFailure(App.getStringRes(R.string.error_net), FinalParams.ERROR_INFO);
+                        LogUtils.e("Throwable", throwable.getMessage());
                     }
                 });
-        mCompositeDisposable.add(subscribe);
-    }
-
-    @Override
-    public void cancel() {
-        if (mCompositeDisposable != null) {
-            mCompositeDisposable.clear();
-        }
+        mCompositeDisposable.add(disposable);
     }
 }

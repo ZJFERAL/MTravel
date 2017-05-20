@@ -6,7 +6,7 @@ import com.zjf.core.view.BaseViewImp;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/5/5.
+ * Created by jifengZhao on 2017/5/5.
  */
 
 public interface TripsDetialView extends BaseViewImp {

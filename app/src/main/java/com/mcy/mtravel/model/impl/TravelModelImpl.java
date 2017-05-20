@@ -7,7 +7,7 @@ import com.zjf.core.model.BaseAsyncModelImp;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/5/3.
+ * Created by jifengZhao on 2017/5/3.
  */
 
 public interface TravelModelImpl extends BaseAsyncModelImp<List<TravelListBean>>{

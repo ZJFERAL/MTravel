@@ -11,7 +11,7 @@ import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.presenter.Presenter;
 
 /**
- * Created by machengyuan on 2017/4/21.
+ * Created by jifengZhao on 2017/4/21.
  */
 
 public class UserInfoPresenter extends Presenter<UserInfoView> {

@@ -3,6 +3,7 @@ package com.mcy.mtravel.api;
 import com.mcy.mtravel.entity.index.CBannerBean;
 import com.mcy.mtravel.entity.index.TargetPlaceBean;
 import com.mcy.mtravel.entity.index.TripsBean;
+import com.mcy.mtravel.entity.special.SpecialBean;
 import com.mcy.mtravel.entity.tip.SpecialListBean;
 import com.mcy.mtravel.entity.tip.StrategyBean;
 import com.mcy.mtravel.entity.tip.TipTripsBean;
@@ -20,7 +21,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
- * Created by machengyuan on 2017/4/18.
+ * Created by jifengZhao on 2017/4/18.
  */
 
 public interface CyjUrl {
@@ -57,4 +58,7 @@ public interface CyjUrl {
 
     @GET(value = "plans/{id}.json")
     Observable<TipTripsDetialBean> getTipTripDetial(@Path("id") String id);
+
+    @GET(value = "articles/{id}.json")
+    Observable<SpecialBean> getSpecialDetial(@Path("id") String id);
 }

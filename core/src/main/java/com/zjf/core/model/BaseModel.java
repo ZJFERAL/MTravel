@@ -5,7 +5,7 @@ import com.zjf.core.impl.OnAsyncModelListener;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
- * Created by machengyuan on 2017/5/3.
+ * Created by jifengZhao on 2017/5/3.
  */
 
 public abstract class BaseModel<T> implements BaseModelImpl_Temp<T> {

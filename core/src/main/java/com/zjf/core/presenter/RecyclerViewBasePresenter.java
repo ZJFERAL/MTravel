@@ -4,7 +4,7 @@ import com.zjf.core.model.BaseModel;
 import com.zjf.core.view.BaseRecyclerViewImpl;
 
 /**
- * Created by machengyuan on 2017/5/5.
+ * Created by jifengZhao on 2017/5/5.
  */
 
 public abstract class RecyclerViewBasePresenter<V extends BaseRecyclerViewImpl<B>, M extends BaseModel, B> extends Presenter_temp<V, M> {

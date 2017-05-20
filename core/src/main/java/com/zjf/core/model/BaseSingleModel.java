@@ -3,7 +3,7 @@ package com.zjf.core.model;
 import com.zjf.core.impl.OnAsyncModelListener;
 
 /**
- * Created by machengyuan on 2017/5/5.
+ * Created by jifengZhao on 2017/5/5.
  */
 
 public abstract class BaseSingleModel<T> extends BaseModel<T> {

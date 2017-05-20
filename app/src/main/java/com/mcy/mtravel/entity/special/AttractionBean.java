@@ -1,7 +1,7 @@
 package com.mcy.mtravel.entity.special;
 
 /**
- * Created by machengyuan on 2017/5/12.
+ * Created by jifengZhao on 2017/5/12.
  */
 
 public class AttractionBean {

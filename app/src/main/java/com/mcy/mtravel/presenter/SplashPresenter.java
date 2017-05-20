@@ -16,7 +16,7 @@ import com.zjf.core.utils.LogUtils;
 import io.reactivex.functions.Consumer;
 
 /**
- * Created by machengyuan on 2017/4/14.
+ * Created by jifengZhao on 2017/4/14.
  */
 
 public class SplashPresenter extends Presenter<SplashView> {

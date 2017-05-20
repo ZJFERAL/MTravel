@@ -1,7 +1,7 @@
 package com.mcy.mtravel.entity.tip;
 
 /**
- * Created by machengyuan on 2017/4/20.
+ * Created by jifengZhao on 2017/4/20.
  */
 
 public class DestinationBean {

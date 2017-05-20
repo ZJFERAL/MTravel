@@ -5,7 +5,7 @@ import com.mcy.mtravel.entity.other.BaseBean;
 import java.util.List;
 
 /**
- * Created by machengyuan on 2017/4/13.
+ * Created by jifengZhao on 2017/4/13.
  */
 
 public class IndexBean extends BaseBean {

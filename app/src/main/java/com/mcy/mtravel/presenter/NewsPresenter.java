@@ -12,7 +12,7 @@ import com.zjf.core.impl.OnAsyncModelListener;
 import com.zjf.core.presenter.Presenter;
 
 /**
- * Created by machengyuan on 2017/4/14.
+ * Created by jifengZhao on 2017/4/14.
  */
 
 public class NewsPresenter extends Presenter<NewsView> {

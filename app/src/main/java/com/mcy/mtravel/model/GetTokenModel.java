@@ -23,7 +23,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by machengyuan on 2017/4/14.
+ * Created by jifengZhao on 2017/4/14.
  */
 
 public class GetTokenModel implements GetTokenModelImpl {

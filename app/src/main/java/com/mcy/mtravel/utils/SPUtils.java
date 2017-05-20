@@ -3,7 +3,7 @@ package com.mcy.mtravel.utils;
 import com.mcy.mtravel.App;
 
 /**
- * Created by machengyuan on 2017/4/13.
+ * Created by jifengZhao on 2017/4/13.
  */
 
 public class SPUtils extends com.zjf.core.utils.SPUtils {

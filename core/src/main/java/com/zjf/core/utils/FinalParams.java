@@ -1,7 +1,7 @@
 package com.zjf.core.utils;
 
 /**
- * Created by machengyuan on 2017/4/14.
+ * Created by jifengZhao on 2017/4/14.
  */
 
 public class FinalParams {
