@@ -1,5 +1,7 @@
 package com.mcy.mtravel.presenter;
 
+import android.text.TextUtils;
+
 import com.mcy.mtravel.entity.special.ArticleSectionsBean;
 import com.mcy.mtravel.entity.special.AttractionBean;
 import com.mcy.mtravel.entity.special.SpecialBean;
@@ -37,9 +39,19 @@ public class SpecialDetialPresenter extends Presenter_temp<SpecialDetialView, Sp
             public void onSuccess(SpecialBean msg) {
                 List<AttractionBean> mAttractionBeen = new ArrayList<AttractionBean>();
                 int size = msg.getArticle_sections().size();
+                List<ArticleSectionsBean> sections = msg.getArticle_sections();
                 for (int i = 0; i < size; i++) {
-                    ArticleSectionsBean bean = msg.getArticle_sections().get(i);
-                    mAttractionBeen.add(bean.getAttraction());
+                    ArticleSectionsBean bean = sections.get(i);
+                    String title = bean.getTitle();
+                    if (TextUtils.isEmpty(title)) {
+                        if (i > 0) {
+                            bean.setTitle(sections.get(i - 1).getTitle());
+                        }
+                    }
+                    AttractionBean attraction = bean.getAttraction();
+                    if (attraction != null) {
+                        mAttractionBeen.add(attraction);
+                    }
                 }
                 mView.getData(msg.getArticle_sections(), mAttractionBeen);
             }

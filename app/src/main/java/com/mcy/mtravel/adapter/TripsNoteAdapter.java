@@ -51,7 +51,10 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
         if (day != lastDay) {
             layout_date.setVisibility(View.VISIBLE);
             holder.setText(R.id.txt_day_num, "Day" + day);
-            holder.setText(R.id.txt_head_time, bean.getTrip_date() + " " + TimeUtils.getWeek(bean.getTrip_date(), "yyyy-MM-dd"));
+            String date = bean.getTrip_date();
+            if (!TextUtils.isEmpty(date)) {
+                holder.setText(R.id.txt_head_time, date + " " + TimeUtils.getWeek(date, "yyyy-MM-dd"));
+            }
         }
 
 

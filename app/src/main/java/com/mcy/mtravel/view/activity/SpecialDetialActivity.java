@@ -7,6 +7,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -23,7 +25,6 @@ import com.mcy.mtravel.presenter.SpecialDetialPresenter;
 import com.mcy.mtravel.utils.FinalParams;
 import com.mcy.mtravel.view.impl.SpecialDetialView;
 import com.zjf.core.utils.DeviceUtils;
-import com.zjf.core.utils.LogUtils;
 import com.zjf.core.utils.SnackBarUtils;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class SpecialDetialActivity extends MVPActivity<SpecialDetialPresenter> i
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerview;
     @BindView(R.id.txt_day_num)
-    TextView mTxtDayNum;
+    TextView mLayDateHead;
     @BindView(R.id.empty_view)
     FrameLayout mEmptyView;
     @BindView(R.id.coor_bg)
@@ -60,6 +61,11 @@ public class SpecialDetialActivity extends MVPActivity<SpecialDetialPresenter> i
     private String mDes;
     private List<ArticleSectionsBean> mArticleSectionsBeanList;
     private SpecialDetialAdapter mAdapter;
+    private LinearLayoutManager mLayoutManager;
+    private int mHeadHeight;
+    private int mTop;
+    private int mBottom;
+    private String tempTitle;
 
     @Override
     public void initVariables() {
@@ -69,7 +75,7 @@ public class SpecialDetialActivity extends MVPActivity<SpecialDetialPresenter> i
         mTitle = intent.getStringExtra(FinalParams.SPECIAL_TITLE);
         mDes = intent.getStringExtra(FinalParams.SPECIAL_DES);
         mArticleSectionsBeanList = new ArrayList<>();
-        mAdapter = new SpecialDetialAdapter(this,
+        mAdapter = new SpecialDetialAdapter(mContext,
                 mArticleSectionsBeanList, R.layout.item_specila_detial_item);
         super.initVariables();
     }
@@ -83,15 +89,69 @@ public class SpecialDetialActivity extends MVPActivity<SpecialDetialPresenter> i
         mCollapsingToolbar.setTitleEnabled(false);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mRecyclerview.setLayoutManager(new LinearLayoutManager
-                (mContext, LinearLayoutManager.VERTICAL, false));
         mAdapter.setEmptyView(mEmptyView);
+        mLayoutManager = new LinearLayoutManager
+                (mContext, LinearLayoutManager.VERTICAL, false);
+        mRecyclerview.setLayoutManager(mLayoutManager);
         mRecyclerview.setAdapter(mAdapter);
     }
 
     @Override
     public void setListener() {
+        mRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
 
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int firstPosition = mLayoutManager.findFirstVisibleItemPosition();
+
+                setTitleData(firstPosition);
+
+                int nextPostion = firstPosition == mArticleSectionsBeanList.size() - 1 ? firstPosition : firstPosition + 1;
+                ArticleSectionsBean bean = mArticleSectionsBeanList.get(nextPostion);
+                String title = bean.getTitle();
+
+                if (mHeadHeight == 0) {
+                    mHeadHeight = mLayDateHead.getHeight();
+                    mTop = mLayDateHead.getTop();
+                    mBottom = mLayDateHead.getBottom();
+                }
+                if ((!TextUtils.isEmpty(title)) && (!title.equals(tempTitle))) {
+                    if (mLayoutManager.getChildCount() >= 2) {
+                        int top = recyclerView.getChildAt(1).getTop();
+                        if (top <= mHeadHeight) {
+                            mLayDateHead.setTop(mTop - (mHeadHeight - top));
+                            mLayDateHead.setBottom(mBottom - (mHeadHeight - top));
+                        } else {
+                            mLayDateHead.setTop(mTop);
+                            mLayDateHead.setBottom(mBottom);
+                        }
+                    }
+                } else {
+                    mLayDateHead.setTop(mTop);
+                    mLayDateHead.setBottom(mBottom);
+                }
+
+            }
+        });
+    }
+
+    private void setTitleData(int position) {
+        ArticleSectionsBean bean = mArticleSectionsBeanList.get(position);
+        String currentTitle = bean.getTitle();
+        if (!TextUtils.isEmpty(currentTitle)) {
+            mLayDateHead.setVisibility(View.VISIBLE);
+            if (!currentTitle.equals(tempTitle)) {
+                tempTitle = currentTitle;
+                mLayDateHead.setText(tempTitle);
+            }
+        } else {
+            mLayDateHead.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -116,10 +176,9 @@ public class SpecialDetialActivity extends MVPActivity<SpecialDetialPresenter> i
 
     @Override
     public void getData(List<ArticleSectionsBean> mArticleSectionsBeen, List<AttractionBean> mAttractionBeen) {
+
         mAdapter.setAttractionBeen(mAttractionBeen);
-        int size = mArticleSectionsBeen.size();
-        LogUtils.e("" + size);
-        mAdapter.addNewData(mArticleSectionsBeanList);
+        mAdapter.addNewData(mArticleSectionsBeen);
 
         int width = DeviceUtils.getDeviceScreenWidth(this);
         mImgCover.setLayoutParams(new RelativeLayout.LayoutParams(width, (int) (width / 1.7)));

@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,10 +44,20 @@ public class SpecialDetialAdapter extends CRecyclerViewAdapter<ArticleSectionsBe
     }
 
     @Override
-    public void setConvertView(CRecyclerViewViewHolder holder, ArticleSectionsBean item, int position) {
+    public void setConvertView(CRecyclerViewViewHolder holder, ArticleSectionsBean item, final int position) {
         String title = item.getTitle();
         TextView titleView = holder.getView(R.id.txt_item_title);
-        if (TextUtils.isEmpty(title)) {
+        String lastTitle = " ";
+        if (position == 0) {
+            lastTitle = " ";
+        } else {
+            lastTitle = mData.get(position - 1).getTitle();
+        }
+        if (TextUtils.isEmpty(lastTitle)) {
+            lastTitle = " ";//防止为空
+        }
+        if (TextUtils.isEmpty(title)
+                || (lastTitle.equals(title))) {
             titleView.setVisibility(View.GONE);
         } else {
             titleView.setVisibility(View.VISIBLE);
@@ -61,6 +70,7 @@ public class SpecialDetialAdapter extends CRecyclerViewAdapter<ArticleSectionsBe
             contenView.setVisibility(View.GONE);
         } else {
             contenView.setVisibility(View.VISIBLE);
+
             contenView.setText(description);
         }
 
@@ -78,22 +88,29 @@ public class SpecialDetialAdapter extends CRecyclerViewAdapter<ArticleSectionsBe
             coverView.setLayoutParams(new RelativeLayout.LayoutParams(mWidth, realHeight));
             NoteBean note = item.getNote();
             holder.setImageByUrl(R.id.img_item_cover, url, R.drawable.weit_place);
+
+            TextView authorView = holder.getView(R.id.txt_item_pic_from_author);
             if (note != null) {
+                authorView.setVisibility(View.VISIBLE);
                 String name = note.getUser_name();
                 String trip_name = note.getTrip_name();
-                final int noteId = note.getId();
                 holder.setText(R.id.txt_item_pic_from_author, name
                         + " 的 " + trip_name + "游记")
                         .setOnclickListener(R.id.lay_imag, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Bundle bundle = new Bundle();
-                                bundle.putString(FinalParams.TRIPS_NOTE_ID, noteId + "");
-                                Intent intent = new Intent(mContext, TripsNoteActivity.class);
-                                intent.putExtra("data", bundle);
-                                mContext.startActivity(intent);
+                                NoteBean bean = mData.get(position).getNote();
+                                if (bean != null) {
+                                    bundle.putString(FinalParams.TRIPS_NOTE_ID, bean.getTrip_id() + "");
+                                    Intent intent = new Intent(mContext, TripsNoteActivity.class);
+                                    intent.putExtra("data", bundle);
+                                    mContext.startActivity(intent);
+                                }
                             }
                         });
+            } else {
+                authorView.setVisibility(View.GONE);
             }
         }
 
@@ -116,13 +133,16 @@ public class SpecialDetialAdapter extends CRecyclerViewAdapter<ArticleSectionsBe
         View view = holder.getView(R.id.lay_bottom);
         if (position == getRealCount() - 1) {
             view.setVisibility(View.VISIBLE);
-            view.setLayoutParams(new LinearLayout.LayoutParams(mWidth, (int) (mWidth / 2.5)));
+            //view.setLayoutParams(new LinearLayout.LayoutParams(mWidth, mWidth / 2));
             holder.setText(R.id.txt_about_location,
                     App.getStringRes(R.string.about_loaction)
                             + ":" + mAttractionBeen.size());
             RecyclerView recyclerView = holder.getView(R.id.item_recy);
-            SpecialLocaionAdapter mAdapter = new SpecialLocaionAdapter(mContext, mAttractionBeen, R.layout.item_special_adapter_location);
-            recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+            SpecialLocaionAdapter mAdapter =
+                    new SpecialLocaionAdapter(mContext, mAttractionBeen,
+                            R.layout.item_special_adapter_location);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mContext,
+                    LinearLayoutManager.HORIZONTAL, false));
             recyclerView.setAdapter(mAdapter);
         } else {
             view.setVisibility(View.GONE);

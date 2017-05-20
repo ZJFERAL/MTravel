@@ -114,7 +114,7 @@ public class TripsFragment extends MVPFragment<TripsPresenter> implements TripsV
         if (data != null && mAdapter != null) {
             mAdapter.flushData(data);
             if (!mAdapter.hasHeaderView() && headData != null) {
-                makeHead(headData);
+                //makeHead(headData);
             }
         }
         onCloseSwipe();

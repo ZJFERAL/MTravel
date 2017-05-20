@@ -59,11 +59,11 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            app:tabBackground="@color/colorPrimaryDark"
-            app:tabIndicatorColor="@color/colorWhite"
+            app:tabBackground="@color/colorWhite"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/colorWhite"
-            app:tabTextColor="@color/colorAccent"/>
+            app:tabSelectedTextColor="@color/colorPrimaryDark"
+            app:tabTextColor="@color/colorLightAccent"/>
     </android.support.design.widget.AppBarLayout>
 
 
