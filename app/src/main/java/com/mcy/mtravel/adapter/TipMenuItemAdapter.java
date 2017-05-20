@@ -15,7 +15,7 @@ import com.zjf.core.adapter.CAbsViewViewHolder;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/28.
+ * Created by machengyuan on 2017/4/28.
  */
 
 public class TipMenuItemAdapter extends CAbsViewAdapter<PagesBean> {

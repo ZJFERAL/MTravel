@@ -1,7 +1,7 @@
 package com.mcy.mtravel.utils;
 
 /**
- * Created by zhaojifeng on 2017/4/13.
+ * Created by machengyuan on 2017/4/13.
  */
 
 public class FinalParams extends com.zjf.core.utils.FinalParams {

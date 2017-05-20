@@ -4,7 +4,7 @@ import com.mcy.mtravel.entity.user.UserWithTripsBean;
 import com.zjf.core.view.BaseViewImp;
 
 /**
- * Created by zhaojifeng on 2017/4/21.
+ * Created by machengyuan on 2017/4/21.
  */
 
 public interface UserInfoView extends BaseViewImp {

@@ -5,7 +5,7 @@ import com.mcy.mtravel.entity.index.TripsBean;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/21.
+ * Created by machengyuan on 2017/4/21.
  */
 
 public class UserWithTripsBean extends UserBean{

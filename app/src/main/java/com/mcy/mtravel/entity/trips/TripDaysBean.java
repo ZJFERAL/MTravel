@@ -5,7 +5,7 @@ import com.mcy.mtravel.entity.tip.DestinationBean;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/20.
+ * Created by machengyuan on 2017/4/20.
  */
 
 public class TripDaysBean {

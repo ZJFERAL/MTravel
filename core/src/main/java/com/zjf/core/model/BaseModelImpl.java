@@ -1,7 +1,7 @@
 package com.zjf.core.model;
 
 /**
- * Created by zhaojifeng on 2017/4/14.
+ * Created by machengyuan on 2017/4/14.
  */
 
 public interface BaseModelImpl {

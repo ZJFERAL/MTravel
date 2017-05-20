@@ -9,7 +9,7 @@ import com.zjf.core.presenter.Presenter;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/27.
+ * Created by machengyuan on 2017/4/27.
  */
 
 public class TipPresenter extends Presenter<TipView> {

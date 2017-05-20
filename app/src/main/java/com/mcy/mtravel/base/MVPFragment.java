@@ -4,7 +4,7 @@ import com.mcy.mtravel.utils.SPUtils;
 import com.zjf.core.presenter.BasePresenter;
 
 /**
- * Created by zhaojifeng on 2017/4/14.
+ * Created by machengyuan on 2017/4/14.
  */
 
 public abstract class MVPFragment<T extends BasePresenter> extends com.zjf.core.view.MVPFragment<T> {

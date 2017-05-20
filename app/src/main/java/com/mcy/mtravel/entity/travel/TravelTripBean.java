@@ -3,7 +3,7 @@ package com.mcy.mtravel.entity.travel;
 import com.mcy.mtravel.entity.user.UserBean;
 
 /**
- * Created by zhaojifeng on 2017/5/12.
+ * Created by machengyuan on 2017/5/12.
  */
 
 public class TravelTripBean {

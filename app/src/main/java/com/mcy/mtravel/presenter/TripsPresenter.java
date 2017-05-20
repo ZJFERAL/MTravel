@@ -12,7 +12,7 @@ import com.zjf.core.utils.LogUtils;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/14.
+ * Created by machengyuan on 2017/4/14.
  */
 
 public class TripsPresenter extends Presenter<TripsView> {

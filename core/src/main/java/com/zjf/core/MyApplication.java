@@ -3,7 +3,7 @@ package com.zjf.core;
 import android.app.Application;
 
 /**
- * Created by zhaojifeng on 2017/4/10.
+ * Created by machengyuan on 2017/4/10.
  */
 
 public class MyApplication extends Application{

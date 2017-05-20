@@ -13,7 +13,7 @@ import com.zjf.core.utils.TimeUtils;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/17.
+ * Created by machengyuan on 2017/4/17.
  */
 
 public class NewsAdapter extends CRecyclerViewAdapter<IndexBean.DataBean.FeedsBean.ListBean> {

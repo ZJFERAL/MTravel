@@ -13,7 +13,7 @@ import com.zjf.core.utils.DeviceUtils;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/19.
+ * Created by machengyuan on 2017/4/19.
  */
 
 public class PlanCountryAdapter extends CRecyclerViewAdapter<DestinationBean> {

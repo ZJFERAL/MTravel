@@ -6,7 +6,7 @@ import com.zjf.core.view.BaseViewImp;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/26.
+ * Created by machengyuan on 2017/4/26.
  */
 
 public interface StrategyView extends BaseViewImp{

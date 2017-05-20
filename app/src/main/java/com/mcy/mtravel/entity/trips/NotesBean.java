@@ -1,7 +1,7 @@
 package com.mcy.mtravel.entity.trips;
 
 /**
- * Created by zhaojifeng on 2017/4/20.
+ * Created by machengyuan on 2017/4/20.
  */
 
 public class NotesBean {

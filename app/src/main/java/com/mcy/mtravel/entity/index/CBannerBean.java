@@ -1,7 +1,7 @@
 package com.mcy.mtravel.entity.index;
 
 /**
- * Created by zhaojifeng on 2017/4/18.
+ * Created by machengyuan on 2017/4/18.
  */
 
 public class CBannerBean {

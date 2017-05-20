@@ -10,7 +10,7 @@ import com.zjf.core.presenter.Presenter;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/26.
+ * Created by machengyuan on 2017/4/26.
  */
 
 public class StrategyPresenter extends Presenter<StrategyView> {

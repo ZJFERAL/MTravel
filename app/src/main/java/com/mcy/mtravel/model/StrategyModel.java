@@ -18,7 +18,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by zhaojifeng on 2017/4/26.
+ * Created by machengyuan on 2017/4/26.
  */
 
 public class StrategyModel implements StrategyModelImpl {

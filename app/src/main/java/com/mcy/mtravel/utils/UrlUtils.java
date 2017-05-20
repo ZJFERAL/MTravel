@@ -10,7 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 /**
- * Created by zhaojifeng on 2017/4/13.
+ * Created by machengyuan on 2017/4/13.
  */
 
 public class UrlUtils {

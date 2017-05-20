@@ -5,7 +5,7 @@ import com.zjf.core.utils.LogUtils;
 import com.zjf.core.utils.SnackBarUtils;
 
 /**
- * Created by zhaojifeng on 2017/4/11.
+ * Created by machengyuan on 2017/4/11.
  */
 
 public class App extends MyApplication {

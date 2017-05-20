@@ -8,7 +8,7 @@ import com.zjf.core.model.BaseAsyncModelImp;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/4/18.
+ * Created by machengyuan on 2017/4/18.
  */
 
 public interface TripsModelImpl extends BaseAsyncModelImp<List<TripsBean>> {

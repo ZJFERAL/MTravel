@@ -7,7 +7,7 @@ import com.zjf.core.model.BaseAsyncModelImp;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/5/3.
+ * Created by machengyuan on 2017/5/3.
  */
 
 public interface SpecialModelImpl extends BaseAsyncModelImp<List<SpecialListBean>>{

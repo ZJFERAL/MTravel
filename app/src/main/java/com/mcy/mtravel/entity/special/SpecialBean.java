@@ -3,7 +3,7 @@ package com.mcy.mtravel.entity.special;
 import java.util.List;
 
 /**
- * Created by zhaojifeng on 2017/5/12.
+ * Created by machengyuan on 2017/5/12.
  */
 
 public class SpecialBean {

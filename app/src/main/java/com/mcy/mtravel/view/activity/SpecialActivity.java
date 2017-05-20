@@ -94,7 +94,7 @@ public class SpecialActivity extends MVPActivity<SpecialListPresenter> implement
             public void onItemClick(View view, int position) {
                 SpecialListBean bean = mAdapter.getData().get(position);
                 int id = bean.getId();
-                Intent intent = new Intent(mContext, TravelDetialActivity.class);
+                Intent intent = new Intent(mContext, SpecialDetialActivity.class);
                 intent.putExtra(FinalParams.TRIPS_DETIAL_ID, id + "");
                 startActivity(intent);
             }

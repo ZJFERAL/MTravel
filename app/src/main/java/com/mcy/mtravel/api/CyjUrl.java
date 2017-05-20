@@ -20,7 +20,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
- * Created by zhaojifeng on 2017/4/18.
+ * Created by machengyuan on 2017/4/18.
  */
 
 public interface CyjUrl {
