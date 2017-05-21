@@ -24,6 +24,7 @@ public class AttractionContentsBean {
     private int photos_count;
     private int node_id;
     private String comment;
+    private String title;
     private int node_comments_count;
     private TravelTripBean trip;
     private List<TravelNotesBean> notes;
@@ -82,5 +83,13 @@ public class AttractionContentsBean {
 
     public void setNotes(List<TravelNotesBean> notes) {
         this.notes = notes;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

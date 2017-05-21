@@ -133,7 +133,6 @@ public class SpecialDetialAdapter extends CRecyclerViewAdapter<ArticleSectionsBe
         View view = holder.getView(R.id.lay_bottom);
         if (position == getRealCount() - 1) {
             view.setVisibility(View.VISIBLE);
-            //view.setLayoutParams(new LinearLayout.LayoutParams(mWidth, mWidth / 2));
             holder.setText(R.id.txt_about_location,
                     App.getStringRes(R.string.about_loaction)
                             + ":" + mAttractionBeen.size());

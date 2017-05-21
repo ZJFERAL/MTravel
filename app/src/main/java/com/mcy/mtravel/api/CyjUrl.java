@@ -10,6 +10,7 @@ import com.mcy.mtravel.entity.tip.TipTripsBean;
 import com.mcy.mtravel.entity.tip.TravelListBean;
 import com.mcy.mtravel.entity.tiptrips.TipTripsDetialBean;
 import com.mcy.mtravel.entity.tipwiki.StrategyDetialBean;
+import com.mcy.mtravel.entity.travel.TravelBean;
 import com.mcy.mtravel.entity.trips.TripNoteBean;
 import com.mcy.mtravel.entity.user.UserWithTripsBean;
 
@@ -61,4 +62,7 @@ public interface CyjUrl {
 
     @GET(value = "articles/{id}.json")
     Observable<SpecialBean> getSpecialDetial(@Path("id") String id);
+
+    @GET(value = "attractions/{id}.json")
+    Observable<TravelBean> getTravelDetial(@Path("id") String id);
 }

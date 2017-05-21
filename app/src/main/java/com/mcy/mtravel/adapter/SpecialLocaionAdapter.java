@@ -17,9 +17,9 @@ import java.util.List;
  * @version : 2017-05-20 下午 3:14
  */
 
-public class SpecialLocaionAdapter extends CRecyclerViewAdapter<AttractionBean>{
-
+public class SpecialLocaionAdapter extends CRecyclerViewAdapter<AttractionBean> {
     private int mWidth;
+
     public SpecialLocaionAdapter(Context context, List<AttractionBean> data, int... itemLayoutIds) {
         super(context, data, itemLayoutIds);
         mWidth = DeviceUtils.getDeviceScreenWidth(context);
@@ -28,9 +28,9 @@ public class SpecialLocaionAdapter extends CRecyclerViewAdapter<AttractionBean>{
     @Override
     public void setConvertView(CRecyclerViewViewHolder holder, AttractionBean item, int position) {
         View imageView = holder.getView(R.id.img_cover);
-        imageView.setLayoutParams(new LinearLayout.LayoutParams(mWidth/4,mWidth/5));
-        holder.setImageByUrl(R.id.img_cover,item.getImage_url(),R.drawable.weit_place)
-                .setText(R.id.txt_name,item.getName());
+        imageView.setLayoutParams(new LinearLayout.LayoutParams(mWidth / 4, mWidth / 5));
+        holder.setImageByUrl(R.id.img_cover, item.getImage_url(), R.drawable.weit_place)
+                .setText(R.id.txt_name, item.getName());
 
         int resId = R.drawable.icon_location_5star;
         try {
@@ -60,5 +60,6 @@ public class SpecialLocaionAdapter extends CRecyclerViewAdapter<AttractionBean>{
         } finally {
             holder.setImageResource(R.id.img_star, resId);
         }
+
     }
 }
