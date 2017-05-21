@@ -13,11 +13,13 @@
         app:contentPadding="5dp">
 
         <LinearLayout
+            android:id="@+id/layout_root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/lay_flag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -33,6 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/img_cover"
                     android:layout_alignLeft="@id/img_cover"
+                    android:layout_alignRight="@id/img_cover"
                     android:background="@color/colorTransDark"
                     android:gravity="center"
                     android:textColor="@color/colorWhite"/>
@@ -41,9 +44,10 @@
 
             <TextView
                 android:id="@+id/txt_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:singleLine="true"
                 android:padding="7dp"/>
         </LinearLayout>
 

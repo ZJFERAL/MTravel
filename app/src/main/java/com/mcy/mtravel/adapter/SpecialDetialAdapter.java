@@ -17,6 +17,7 @@ import com.mcy.mtravel.entity.special.ArticleSectionsBean;
 import com.mcy.mtravel.entity.special.AttractionBean;
 import com.mcy.mtravel.entity.special.NoteBean;
 import com.mcy.mtravel.utils.FinalParams;
+import com.mcy.mtravel.view.activity.TravelDetialActivity;
 import com.mcy.mtravel.view.activity.TripsNoteActivity;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
@@ -114,7 +115,7 @@ public class SpecialDetialAdapter extends CRecyclerViewAdapter<ArticleSectionsBe
             }
         }
 
-        AttractionBean attraction = item.getAttraction();
+        final AttractionBean attraction = item.getAttraction();
         TextView locationView = holder.getView(R.id.txt_item_locatiuon);
 
         if (attraction == null) {
@@ -125,7 +126,10 @@ public class SpecialDetialAdapter extends CRecyclerViewAdapter<ArticleSectionsBe
             locationView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    int id = attraction.getId();
+                    Intent intent = new Intent(mContext, TravelDetialActivity.class);
+                    intent.putExtra(FinalParams.TRIPS_DETIAL_ID, id + "");
+                    mContext.startActivity(intent);
                 }
             });
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               android:orientation="vertical">
 
     <TextView
@@ -15,33 +15,28 @@
         android:textSize="20sp"
         android:textStyle="bold"/>
 
-    <WebView
-        android:id="@+id/web_desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp">
-
-    </WebView>
-
     <TextView
         android:id="@+id/txt_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"/>
+        android:padding="15dp"
+        android:textSize="16sp"/>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/item_recy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp">
-
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
     </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
+        android:id="@+id/layout_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/txt_author"
@@ -75,22 +70,22 @@
         android:visibility="gone">
 
 
-
         <TextView
             android:id="@+id/txt_about_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about_loaction"
+            android:text="@string/around_loaction"
             android:textSize="17sp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/item_recy_location"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/lay_bottom_hotel"
         android:layout_width="match_parent"
@@ -112,11 +107,10 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/item_recy_hotel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
-
 
 
 </LinearLayout>

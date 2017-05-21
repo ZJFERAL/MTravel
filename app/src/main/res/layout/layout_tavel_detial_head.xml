@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               android:orientation="vertical">
 
     <RelativeLayout
@@ -12,7 +12,6 @@
             android:id="@+id/img_cover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:scaleType="fitXY"/>
 
         <TextView
@@ -22,7 +21,7 @@
             android:layout_alignLeft="@id/img_cover"
             android:layout_alignRight="@id/img_cover"
             android:layout_alignTop="@id/img_cover"
-            android:background="@drawable/bg_black2trans"/>
+            android:background="@drawable/bg_black2trans_reve"/>
 
         <TextView
             android:id="@+id/txt_name_en"
@@ -63,6 +62,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:padding="15dp"
+        android:textColor="@color/colorBlack"
         android:textSize="15sp"/>
 
 </LinearLayout>

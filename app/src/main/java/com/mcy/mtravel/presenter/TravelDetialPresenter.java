@@ -79,6 +79,7 @@ public class TravelDetialPresenter extends Presenter_temp<TravelDetialView, Trav
         headTravelBean.setPhotos_count(msg.getPhotos_count());
         headTravelBean.setAttraction_trips_count(msg.getAttraction_trips_count());
         headTravelBean.setDescription(msg.getDescription());
+        headTravelBean.setImage_url(msg.getImage_url());
         return headTravelBean;
     }
 }

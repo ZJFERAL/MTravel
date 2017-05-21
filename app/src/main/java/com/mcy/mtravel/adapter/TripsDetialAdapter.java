@@ -1,6 +1,7 @@
 package com.mcy.mtravel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.entity.tiptrips.PlanNodesBean;
+import com.mcy.mtravel.utils.FinalParams;
+import com.mcy.mtravel.view.activity.TravelDetialActivity;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.DeviceUtils;
@@ -65,7 +68,9 @@ public class TripsDetialAdapter extends CRecyclerViewAdapter<PlanNodesBean> {
             public void onClick(View v) {
                 int id = item.getEntry_id();
                 if (id != 0) {
-
+                    Intent intent = new Intent(mContext, TravelDetialActivity.class);
+                    intent.putExtra(FinalParams.TRIPS_DETIAL_ID, id + "");
+                    mContext.startActivity(intent);
                 }
                 LogUtils.e("Entry_id:", id + "");
             }

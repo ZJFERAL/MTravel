@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="wrap_content"
-             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/img_photo"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scaleType="fitXY"/>
+
     <TextView
         android:id="@+id/txt_bottom_photo_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/img_photo"
+        android:layout_alignLeft="@id/img_photo"
+        android:layout_alignRight="@id/img_photo"
         android:background="@color/colorTransDark"
-        android:textColor="@color/colorWhite"
-        android:layout_gravity="bottom"/>
-</FrameLayout>
+        android:singleLine="true"
+        android:textColor="@color/colorWhite"/>
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.mcy.mtravel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +13,8 @@ import com.bumptech.glide.Glide;
 import com.mcy.mtravel.R;
 import com.mcy.mtravel.entity.trips.NotesBean;
 import com.mcy.mtravel.entity.trips.PhotoBean;
+import com.mcy.mtravel.utils.FinalParams;
+import com.mcy.mtravel.view.activity.TravelDetialActivity;
 import com.zjf.core.adapter.CRecyclerViewAdapter;
 import com.zjf.core.adapter.CRecyclerViewViewHolder;
 import com.zjf.core.utils.DeviceUtils;
@@ -35,7 +38,7 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
     }
 
     @Override
-    public void setConvertView(CRecyclerViewViewHolder holder, NotesBean item, int position) {
+    public void setConvertView(CRecyclerViewViewHolder holder, final NotesBean item, int position) {
         String entry_name = item.getEntry_name();
         boolean isShowBottom = false;
 
@@ -115,7 +118,10 @@ public class TripsNoteAdapter extends CRecyclerViewAdapter<NotesBean> {
                 txtLocation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        int id = item.getEntry_id();
+                        Intent intent = new Intent(mContext, TravelDetialActivity.class);
+                        intent.putExtra(FinalParams.TRIPS_DETIAL_ID, id + "");
+                        mContext.startActivity(intent);
                     }
                 });
             }

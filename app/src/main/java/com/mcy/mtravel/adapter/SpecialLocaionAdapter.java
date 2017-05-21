@@ -28,7 +28,7 @@ public class SpecialLocaionAdapter extends CRecyclerViewAdapter<AttractionBean> 
     @Override
     public void setConvertView(CRecyclerViewViewHolder holder, AttractionBean item, int position) {
         View imageView = holder.getView(R.id.img_cover);
-        imageView.setLayoutParams(new LinearLayout.LayoutParams(mWidth / 4, mWidth / 5));
+        imageView.setLayoutParams(new LinearLayout.LayoutParams(mWidth / 3, (int) (mWidth / 3.5)));
         holder.setImageByUrl(R.id.img_cover, item.getImage_url(), R.drawable.weit_place)
                 .setText(R.id.txt_name, item.getName());
 
